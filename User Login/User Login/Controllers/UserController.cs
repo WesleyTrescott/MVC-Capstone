@@ -73,7 +73,10 @@ namespace User_Login.Controllers
         [HttpGet]
         public ActionResult LoggedIn()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+                return View();
+            else
+                return RedirectToAction("Login", "User");
         }
 	}
 }

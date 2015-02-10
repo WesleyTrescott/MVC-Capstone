@@ -27,9 +27,11 @@ namespace User_Login.Models
 
         public bool IsValid(string _username, string password)
         {
-            using (var cn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='c:\users\wesley\documents\visual studio 2013\Projects\User Login\User Login\App_Data\Database1.mdf';Integrated Security=True"))
+            //using (var cn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='c:\users\wesley\documents\visual studio 2013\Projects\User Login\User Login\App_Data\Database1.mdf';Integrated Security=True"))
+            using (var cn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='|DataDirectory|\Login.mdf';Integrated Security=True"))
+            
             {
-                string _sql = @"SELECT [Username] FROM [dbo].[System_Users] WHERE [Username] = @u AND [Password] = @p";
+                string _sql = @"SELECT [Username] FROM [dbo].[Tbl_User_Login] WHERE [Username] = @u AND [Password] = @p";
                 var cmd = new SqlCommand(_sql, cn);
                 cmd.Parameters.Add(new SqlParameter("@u", SqlDbType.NVarChar)).Value = _username;
                 cmd.Parameters.Add(new SqlParameter("@p", SqlDbType.NVarChar)).Value = Helpers.SHA1.Encode(password);
@@ -54,9 +56,11 @@ namespace User_Login.Models
         {
             if (!IsValid(username, password))
             {
-                using (var cn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='c:\users\wesley\documents\visual studio 2013\Projects\User Login\User Login\App_Data\Database1.mdf';Integrated Security=True"))
+                //using (var cn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='c:\users\wesley\documents\visual studio 2013\Projects\User Login\User Login\App_Data\Database1.mdf';Integrated Security=True"))
+                using (var cn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='|DataDirectory|\Login.mdf';Integrated Security=True"))
+               
                 {
-                    string sqlStmt = @"INSERT INTO [dbo].[System_Users] (Username, Password, Email) VALUES (@u, @p, @e)"; 
+                    string sqlStmt = @"INSERT INTO [dbo].[Tbl_User_Login] (Username, Password, Email) VALUES (@u, @p, @e)"; 
                     var command = new SqlCommand(sqlStmt, cn);
                     command.Parameters.Add(new SqlParameter("@u", SqlDbType.NVarChar)).Value = username;
                     command.Parameters.Add(new SqlParameter("@p", SqlDbType.NVarChar)).Value = Helpers.SHA1.Encode(password);
