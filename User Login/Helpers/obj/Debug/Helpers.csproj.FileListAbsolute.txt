@@ -2,3 +2,7 @@ C:\Users\Wesley\Documents\Visual Studio 2013\Projects\User Login\Helpers\bin\Deb
 C:\Users\Wesley\Documents\Visual Studio 2013\Projects\User Login\Helpers\bin\Debug\Helpers.pdb
 C:\Users\Wesley\Documents\Visual Studio 2013\Projects\User Login\Helpers\obj\Debug\Helpers.dll
 C:\Users\Wesley\Documents\Visual Studio 2013\Projects\User Login\Helpers\obj\Debug\Helpers.pdb
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\Helpers\bin\Debug\Helpers.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\Helpers\bin\Debug\Helpers.pdb
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\Helpers\obj\Debug\Helpers.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\Helpers\obj\Debug\Helpers.pdb

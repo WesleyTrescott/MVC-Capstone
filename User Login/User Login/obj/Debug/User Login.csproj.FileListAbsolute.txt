@@ -18,3 +18,27 @@ C:\Users\Wesley\Documents\Visual Studio 2013\Projects\User Login\User Login\bin\
 C:\Users\Wesley\Documents\Visual Studio 2013\Projects\User Login\User Login\bin\System.Web.Mvc.xml
 C:\Users\Wesley\Documents\Visual Studio 2013\Projects\User Login\User Login\obj\Debug\User Login.dll
 C:\Users\Wesley\Documents\Visual Studio 2013\Projects\User Login\User Login\obj\Debug\User Login.pdb
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\User Login.dll.config
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\User Login.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\User Login.pdb
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\Helpers.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\System.Web.Helpers.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\System.Web.Mvc.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\System.Web.Razor.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\System.Web.Webpages.Deployment.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\System.Web.Webpages.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\System.Web.Webpages.Razor.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\Helpers.pdb
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\System.Web.Razor.xml
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\System.Web.Webpages.xml
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\System.Web.Webpages.Razor.xml
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\System.Web.Helpers.xml
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\System.Web.Mvc.xml
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\obj\Debug\User Login.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\obj\Debug\User Login.pdb
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\EntityFramework.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\EntityFramework.SqlServer.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\EntityFramework.xml
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\EntityFramework.SqlServer.xml
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\obj\Debug\User Login.csprojResolveAssemblyReference.cache

@@ -38,7 +38,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -81,9 +89,30 @@
     <Content Include="App_Data\Database1_log.ldf">
       <DependentUpon>Database1.mdf</DependentUpon>
     </Content>
+    <Content Include="App_Data\Login.mdf" />
+    <Content Include="App_Data\Login_log.ldf">
+      <DependentUpon>Login.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
+    <EntityDeploy Include="Models\JobsDbModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>JobsDbModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\JobsDbModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>JobsDbModel.edmx</DependentUpon>
+      <LastGenOutput>JobsDbModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\JobsDbModel.edmx.diagram">
+      <DependentUpon>JobsDbModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\JobsDbModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>JobsDbModel.edmx</DependentUpon>
+      <LastGenOutput>JobsDbModel.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -102,9 +131,28 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobSearchController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Job.cs">
+      <DependentUpon>JobsDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobsDbModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JobsDbModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobsDbModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JobsDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobsDbModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JobsDbModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -114,6 +162,7 @@
     <Content Include="packages.config" />
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\LoggedIn.cshtml" />
+    <Content Include="Views\JobSearch\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -129,6 +178,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

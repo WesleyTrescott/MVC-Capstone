@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JobsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Tbl_Jobs">
+    <Key>
+      <PropertyRef Name="Job_Id" />
+    </Key>
+    <Property Name="Job_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Job_Position" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Job_Description" Type="varchar(max)" Nullable="false" />
+    <Property Name="Customer_ID" Type="int" />
+    <Property Name="Country" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="State" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Skills" Type="varchar(max)" Nullable="false" />
+    <Property Name="Min_Exp_Req" Type="int" />
+    <Property Name="Max_Exp_Req" Type="int" />
+    <Property Name="Start_Date" Type="date" />
+    <Property Name="End_Date" Type="date" />
+    <Property Name="PayRate" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityContainer Name="JobsModelStoreContainer">
+    <EntitySet Name="Tbl_Jobs" EntityType="Self.Tbl_Jobs" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
