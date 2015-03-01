@@ -125,10 +125,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="! mvc project awesome readme.txt" />
-    <Content Include="App_Data\Database1.mdf" />
-    <Content Include="App_Data\Database1_log.ldf">
-      <DependentUpon>Database1.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Data\EnhancedJobCandidateApp.mdf" />
     <Content Include="App_Data\EnhancedJobCandidateApp_log.ldf">
       <DependentUpon>EnhancedJobCandidateApp.mdf</DependentUpon>
@@ -136,10 +132,6 @@
     <Content Include="App_Data\Job_Candidate_Application.mdf" />
     <Content Include="App_Data\Job_Candidate_Application_log.ldf">
       <DependentUpon>Job_Candidate_Application.mdf</DependentUpon>
-    </Content>
-    <Content Include="App_Data\Login.mdf" />
-    <Content Include="App_Data\Login_log.ldf">
-      <DependentUpon>Login.mdf</DependentUpon>
     </Content>
     <Content Include="Content\Awesome.css" />
     <Content Include="Content\bootstrap-theme.css" />

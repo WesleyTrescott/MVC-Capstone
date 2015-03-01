@@ -282,3 +282,23 @@ C:\SeniorProject\Prototype1_Final\MVC-Capstone-master\User Login\User Login\bin\
 C:\SeniorProject\Prototype1_Final\MVC-Capstone-master\User Login\User Login\bin\System.Web.Mvc.xml
 C:\SeniorProject\Prototype1_Final\MVC-Capstone-master\User Login\User Login\obj\Debug\User Login.dll
 C:\SeniorProject\Prototype1_Final\MVC-Capstone-master\User Login\User Login\obj\Debug\User Login.pdb
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\Antlr3.Runtime.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\CubedElement.DataTable.Contracts.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\CubedElement.DataTable.Model.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\Newtonsoft.Json.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\Omu.Awesome.Core.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\Omu.Awesome.Mvc.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\System.Data.Linq.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\System.Web.Optimization.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\WebActivator.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\WebGrease.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\WebMatrix.Data.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\Antlr3.Runtime.pdb
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\CubedElement.DataTable.Contracts.pdb
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\CubedElement.DataTable.Contracts.xml
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\CubedElement.DataTable.Model.pdb
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\CubedElement.DataTable.Model.xml
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\Newtonsoft.Json.xml
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\System.Web.Optimization.xml
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\WebMatrix.Data.xml
