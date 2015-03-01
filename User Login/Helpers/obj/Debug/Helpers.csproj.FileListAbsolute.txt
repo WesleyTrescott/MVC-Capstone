@@ -24,3 +24,7 @@ C:\Users\Simul\Desktop\Winter 2015\CSC 4996\MVC App\First Prototype\User Login\U
 C:\Users\Simul\Desktop\Winter 2015\CSC 4996\MVC App\First Prototype\User Login\User Login\Helpers\obj\Debug\Helpers.csprojResolveAssemblyReference.cache
 C:\Users\Simul\Desktop\Winter 2015\CSC 4996\MVC App\First Prototype\User Login\User Login\Helpers\obj\Debug\Helpers.dll
 C:\Users\Simul\Desktop\Winter 2015\CSC 4996\MVC App\First Prototype\User Login\User Login\Helpers\obj\Debug\Helpers.pdb
+C:\SeniorProject\Prototype1_Final\MVC-Capstone-master\User Login\Helpers\bin\Debug\Helpers.dll
+C:\SeniorProject\Prototype1_Final\MVC-Capstone-master\User Login\Helpers\bin\Debug\Helpers.pdb
+C:\SeniorProject\Prototype1_Final\MVC-Capstone-master\User Login\Helpers\obj\Debug\Helpers.dll
+C:\SeniorProject\Prototype1_Final\MVC-Capstone-master\User Login\Helpers\obj\Debug\Helpers.pdb

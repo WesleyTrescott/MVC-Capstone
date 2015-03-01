@@ -63,10 +63,10 @@
       <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Omu.Awesome.Core">
-      <HintPath>..\packages\MvcProjectAwesome.1.9\lib\40\Omu.Awesome.Core.dll</HintPath>
+      <HintPath>.\Omu.Awesome.Core.dll</HintPath>
     </Reference>
     <Reference Include="Omu.Awesome.Mvc">
-      <HintPath>..\packages\MvcProjectAwesome.1.9\lib\40\Omu.Awesome.Mvc.dll</HintPath>
+      <HintPath>.\Omu.Awesome.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Linq">
       <Private>True</Private>
@@ -93,7 +93,7 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="WebActivator">
-      <HintPath>..\packages\WebActivator.1.0.0.0\lib\WebActivator.dll</HintPath>
+      <HintPath>..\packages\WebActivator.1.5.3\lib\net40\WebActivator.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
