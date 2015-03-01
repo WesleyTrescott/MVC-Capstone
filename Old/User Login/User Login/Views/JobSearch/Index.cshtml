@@ -1,0 +1,261 @@
+﻿@model IEnumerable<User_Login.Models.Job> 
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Computech Job Search</h2>
+
+@*@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Job</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Job_Position, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Job_Position)
+                @Html.ValidationMessageFor(model => model.Job_Position)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Job_Description, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Job_Description)
+                @Html.ValidationMessageFor(model => model.Job_Description)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Customer_ID, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Customer_ID)
+                @Html.ValidationMessageFor(model => model.Customer_ID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Country, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Country)
+                @Html.ValidationMessageFor(model => model.Country)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.State, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.State)
+                @Html.ValidationMessageFor(model => model.State)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.City, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.City)
+                @Html.ValidationMessageFor(model => model.City)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Skills, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Skills)
+                @Html.ValidationMessageFor(model => model.Skills)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Min_Exp_Req, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Min_Exp_Req)
+                @Html.ValidationMessageFor(model => model.Min_Exp_Req)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Max_Exp_Req, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Max_Exp_Req)
+                @Html.ValidationMessageFor(model => model.Max_Exp_Req)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Start_Date, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Start_Date)
+                @Html.ValidationMessageFor(model => model.Start_Date)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.End_Date, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.End_Date)
+                @Html.ValidationMessageFor(model => model.End_Date)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PayRate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PayRate)
+                @Html.ValidationMessageFor(model => model.PayRate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
+
+<table cellpadding="25">
+
+    <tr>
+
+        <th></th>
+
+        <th>
+
+            Job Position
+
+        </th>
+
+        <th>
+
+            Job Description
+
+        </th>
+
+        <th>
+
+            Country
+
+        </th>
+
+        <th>
+
+            State
+
+        </th>
+
+        <th>
+
+            City
+
+        </th>
+
+        <th>
+
+            Skills
+
+        </th>
+
+        <th>
+
+            Start Date
+
+        </th>
+
+        <th>
+
+            End Date
+
+        </th>
+
+        <th>
+
+            Pay Rate
+
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model) { 
+
+
+
+    <tr>
+
+        <td>
+
+            @Html.ActionLink("Details", "Index", "Home")
+
+        </td>
+
+        <td>
+
+            @Html.Encode(item.Job_Position) 
+
+        </td>
+
+        <td>
+
+            @Html.Encode(item.Job_Description)
+
+        </td>
+
+        <td>
+
+            @Html.Encode(item.Country)
+
+        </td>
+
+        <td>
+
+            @Html.Encode(item.State)
+
+        </td>
+
+        <td>
+
+            @Html.Encode(item.City)
+
+        </td>
+
+        <td>
+
+            @Html.Encode(item.Skills)
+
+        </td>
+
+        <td>
+
+            @Html.Encode(item.Start_Date)
+
+        </td>
+
+        <td>
+
+            @Html.Encode(item.End_Date)
+
+        </td>
+
+        <td>
+
+            @Html.Encode(item.PayRate)
+
+        </td>
+
+    </tr>
+
+
+
+     }
+
+</table>

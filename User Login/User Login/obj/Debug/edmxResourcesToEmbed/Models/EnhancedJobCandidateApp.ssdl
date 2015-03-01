@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EnhancedJobCandidateAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Tbl_Admin">
+    <Key>
+      <PropertyRef Name="Admin_Email_Id" />
+    </Key>
+    <Property Name="Admin_Email_Id" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Admin_First_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Admin_Last_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Admin_Password" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tbl_Customer">
+    <Key>
+      <PropertyRef Name="Customer_Id" />
+    </Key>
+    <Property Name="Customer_Id" Type="int" Nullable="false" />
+    <Property Name="Customer_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Customer_Contact_Name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Customer_Email" Type="varchar" MaxLength="255" />
+    <Property Name="Customer_Contact_Id" Type="varchar" MaxLength="255" />
+    <Property Name="Customer_Job_Id" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Tbl_Job_Application">
+    <Key>
+      <PropertyRef Name="Job_Application_Id" />
+    </Key>
+    <Property Name="Job_Application_Id" Type="int" Nullable="false" />
+    <Property Name="Job_Id" Type="int" Nullable="false" />
+    <Property Name="Email_Id" Type="varchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tbl_Jobs">
+    <Key>
+      <PropertyRef Name="Job_Id" />
+    </Key>
+    <Property Name="Job_Id" Type="int" Nullable="false" />
+    <Property Name="Position" Type="nvarchar" MaxLength="255" />
+    <Property Name="Customer" Type="nvarchar" MaxLength="255" />
+    <Property Name="Submit_Before" Type="datetime" />
+    <Property Name="Country_Name" Type="nvarchar" MaxLength="255" />
+    <Property Name="State_Name" Type="nvarchar" MaxLength="255" />
+    <Property Name="City_Name" Type="nvarchar" MaxLength="255" />
+    <Property Name="Profile_Description" Type="nvarchar(max)" />
+    <Property Name="Required Skills" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Pay_Rate" Type="nvarchar" MaxLength="255" />
+    <Property Name="Start_Date" Type="datetime" />
+    <Property Name="End_Date" Type="datetime" />
+    <Property Name="Min_Exp_Required" Type="nvarchar" MaxLength="255" />
+    <Property Name="Max_Exp_Required" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Tbl_Users">
+    <Key>
+      <PropertyRef Name="Email_Id" />
+    </Key>
+    <Property Name="Email_Id" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="User_First_Name" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="User_Last_Name" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="User_Street" Type="varchar" MaxLength="500" />
+    <Property Name="User_City" Type="varchar" MaxLength="255" />
+    <Property Name="User_State" Type="varchar" MaxLength="255" />
+    <Property Name="User_Country" Type="varchar" MaxLength="255" />
+    <Property Name="Exp_Years" Type="varchar" MaxLength="255" />
+    <Property Name="Skills" Type="varchar(max)" />
+    <Property Name="Resume_Upload" Type="varchar(max)" />
+    <Property Name="Is_Active" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="EnhancedJobCandidateAppModelStoreContainer">
+    <EntitySet Name="Tbl_Admin" EntityType="Self.Tbl_Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Customer" EntityType="Self.Tbl_Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Job_Application" EntityType="Self.Tbl_Job_Application" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Jobs" EntityType="Self.Tbl_Jobs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Users" EntityType="Self.Tbl_Users" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

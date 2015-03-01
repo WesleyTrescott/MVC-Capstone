@@ -1,0 +1,245 @@
+﻿@model User_Login.Models.Tbl_Jobs
+@{
+    ViewBag.Title = "Job Details";    
+}
+
+
+<h2 style="align-content:center">@Html.Encode(Model.Position)</h2>
+
+<br />
+<br />
+<br />
+
+
+@*<table cellpadding="25">
+
+    <tr>
+
+        <th></th>
+
+        <th>
+
+            Job Position
+
+        </th>
+
+        <th>
+
+            Job Description
+
+        </th>
+
+        <th>
+
+            City, State, Country
+
+        </th>
+
+        <th>
+
+            State
+
+        </th>
+
+        <th>
+
+            City
+
+        </th>
+
+        <th>
+
+            Skills
+
+        </th>
+
+        <th>
+
+            Start Date
+
+        </th>
+
+        <th>
+
+            End Date
+
+        </th>
+
+        <th>
+
+            Pay Rate
+
+        </th>
+
+    </tr>
+</table>*@
+
+@*@foreach (var item in Model) {*@
+
+@*var item = Model;*@
+
+    @*<tr>
+
+        <td>
+
+            @Html.ActionLink("Details", "Index", "Home")
+
+        </td>
+
+        <td>
+
+            @Html.Encode(Model.Job_Position)
+
+        </td>
+
+        <td>
+
+            @Html.Encode(Model.Job_Description)
+
+        </td>
+
+        <td>
+
+
+            @Html.Encode(Model.City) @Html.Encode(Model.State) @Html.Encode(Model.Country)
+        </td>
+
+        <td>
+
+            @Html.Encode(Model.State)
+
+        </td>
+
+        <td>
+
+            @Html.Encode(Model.City)
+
+        </td>
+
+        <td>
+
+            @Html.Encode(Model.Skills)
+
+        </td>
+
+        <td>
+
+            @Html.Encode(Model.Start_Date)
+
+        </td>
+
+        <td>
+
+            @Html.Encode(Model.End_Date)
+
+        </td>
+
+        <td>
+
+            @Html.Encode(Model.PayRate)
+
+        </td>
+
+    </tr>*@
+
+
+<table align="left" cellpadding="2500" >
+    <tr class="rowSpace">
+        <th>
+            Position:
+        </th>
+        <th>
+            @Html.Encode(Model.Position)
+        </th>
+    </tr>
+    <tr class="rowSpace">
+        <th style="word-wrap:normal">
+            Description:
+        </th>
+        <th>
+            @Html.Encode(Model.Description)
+        </th>
+    </tr>
+    <tr class="rowSpace">
+        <th>
+            Location:
+        </th>
+        <th>
+            @Html.Encode(Model.City_Name), @Html.Encode(Model.State_Name), @Html.Encode(Model.Country_Name)
+        </th>
+    </tr>
+    <tr class="rowSpace">
+        <th>
+            Required Skills:
+        </th>
+        <th>
+            @Html.Encode(Model.Required_Skills)
+        </th>
+    </tr>
+    <tr class="rowSpace">
+        <th>
+            Customer:
+        </th>
+        <th>
+            @Html.Encode(Model.Customer)
+        </th>
+    </tr>
+    <tr class="rowSpace">
+        <th>
+            Start Date:
+        </th>
+        <th>
+            @Html.Encode(Model.Start_Date)
+        </th>
+    </tr>
+    <tr class="rowSpace">
+        <th>
+            End Date:
+        </th>
+        <th>
+            @Html.Encode(Model.End_Date)
+        </th>
+    </tr>
+    <tr class="rowSpace">
+        <th>
+            Salary:
+        </th>
+        <th>
+            @Html.Encode(Model.Pay_Rate)
+        </th>
+    </tr>
+</table>
+
+<br />
+<br />
+<br />
+
+<style type="text/css">
+    .Apply {
+        align-self:center;
+        text-align:center;
+        font-family:'Courier New';
+        font-weight:bold;
+        height:36px;
+        width:80px;
+        display:inline;
+        margin:5% auto;
+        left:500px;
+    }
+
+    tr.rowSpace > td{
+        padding-bottom:1em;
+    }
+</style>
+<br />
+<br />
+<div id="btnApplyStyle">
+    <br />
+    <br />
+    @*<pre style="border:none; background-color:white;">*@
+    @*<form class="Apply">*@
+    <input type="button" class="btn btn-default" value="Apply" onclick="window.location.href='@Url.Action("Apply", "JobSearch")'" />       |     <input type="button" class="btn btn-default" value="Back" onclick="window.location.href='@Url.Action("Index", "JobSearch")'" />
+
+      @*  </form>*@
+    @*</pre>*@
+</div>

@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EnhancedJobCandidateAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Tbl_Admin">
+    <Key>
+      <PropertyRef Name="Admin_Email_Id" />
+    </Key>
+    <Property Name="Admin_Email_Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Admin_First_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Admin_Last_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Admin_Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tbl_Customer">
+    <Key>
+      <PropertyRef Name="Customer_Id" />
+    </Key>
+    <Property Name="Customer_Id" Type="Int32" Nullable="false" />
+    <Property Name="Customer_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Customer_Contact_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Customer_Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Customer_Contact_Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Customer_Job_Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Tbl_Job_Application">
+    <Key>
+      <PropertyRef Name="Job_Application_Id" />
+    </Key>
+    <Property Name="Job_Application_Id" Type="Int32" Nullable="false" />
+    <Property Name="Job_Id" Type="Int32" Nullable="false" />
+    <Property Name="Email_Id" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tbl_Jobs">
+    <Key>
+      <PropertyRef Name="Job_Id" />
+    </Key>
+    <Property Name="Job_Id" Type="Int32" Nullable="false" />
+    <Property Name="Position" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Customer" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Submit_Before" Type="DateTime" Precision="3" />
+    <Property Name="Country_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="State_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="City_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Profile_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Required_Skills" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Pay_Rate" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Start_Date" Type="DateTime" Precision="3" />
+    <Property Name="End_Date" Type="DateTime" Precision="3" />
+    <Property Name="Min_Exp_Required" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Max_Exp_Required" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Tbl_Users">
+    <Key>
+      <PropertyRef Name="Email_Id" />
+    </Key>
+    <Property Name="Email_Id" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="User_First_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="User_Last_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="User_Street" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="User_City" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="User_State" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="User_Country" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Exp_Years" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Skills" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Resume_Upload" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Is_Active" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="EnhancedJobCandidateAppEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Tbl_Admin" EntityType="Self.Tbl_Admin" />
+    <EntitySet Name="Tbl_Customer" EntityType="Self.Tbl_Customer" />
+    <EntitySet Name="Tbl_Job_Application" EntityType="Self.Tbl_Job_Application" />
+    <EntitySet Name="Tbl_Jobs" EntityType="Self.Tbl_Jobs" />
+    <EntitySet Name="Tbl_Users" EntityType="Self.Tbl_Users" />
+  </EntityContainer>
+</Schema>

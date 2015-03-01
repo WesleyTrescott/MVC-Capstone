@@ -1,0 +1,74 @@
+﻿@model User_Login.Models.User
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+<h2>Hello</h2>
+    
+<h5>
+    Make changes in your profile and click on Submit.
+</h5>
+
+@using (Html.BeginForm())
+{
+    <div style="margin:5% auto; width:auto;top:30px;">
+        @* modified by Simul *@
+        <fieldset>
+            <legend style="text-align:center;color:forestgreen">Profile Information</legend>
+            @*<div class="editor-label">
+                @Html.LabelFor(u=>u.FirstName)
+            </div>*@
+            <div class="editor-field" title="First name">
+                @Html.TextBoxFor(u => u.FirstName, new { @class = "form-control", @placeholder = "First Name" })
+            </div>
+            @*<div class="editor-label">
+                @Html.LabelFor(u => u.LastName)
+            </div>*@
+            <div class="editor-field" title="Last name">
+                @Html.TextBoxFor(u => u.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+            </div>
+            @*<div class="editor-label">
+                @Html.LabelFor(u => u.Street)
+            </div>*@
+            <div class="editor-field" title="Street">
+                @Html.TextBoxFor(u => u.Street, new { @class = "form-control", @placeholder = "Street" })
+            </div>
+            @*<div class="editor-label">
+                @Html.LabelFor(u => u.City)
+            </div>*@
+            <div class="editor-field" title="City">
+                @Html.TextBoxFor(u => u.City, new { @class = "form-control", @placeholder = "City" })
+            </div>
+            @*<div class="editor-label">
+                @Html.LabelFor(u => u.State)
+            </div>*@
+            <div class="editor-field" title="State">
+                @Html.TextBoxFor(u => u.State, new { @class = "form-control", @placeholder = "State" })
+            </div>
+            @*<div class="editor-label">
+                @Html.LabelFor(u => u.Country)
+            </div>*@
+            <div class="editor-field" title="Country">
+                @Html.TextBoxFor(u => u.Country, new { @class = "form-control", @placeholder = "Country" })
+            </div>
+            @*<div class="editor-label">
+                @Html.LabelFor(u => u.Experience_Years)
+            </div>*@
+            <div class="editor-field" title="Years of experience">
+                @Html.PasswordFor(u => u.Experience_Years, new { @class = "form-control", @placeholder = "Years of experience" })
+            </div>
+            @*<div class="editor-label">
+                @Html.LabelFor(u => u.Skills)
+            </div>*@
+            <div class="editor-field" title="Skills">
+                @Html.TextBoxFor(u => u.Skills, new { @class = "form-control", @placeholder = "Skills" })
+            </div>
+            <br />
+            <div class="text-center">
+                <input type="submit" class="btn btn-danger" value="Save Information" title="Click to save information" />
+                <input type="button" class="btn btn-danger" value="Skip" title="Go to User Home Page" onclick="window.location.href='@Url.Action("Index", "Home")'" /> 
+            </div>
+        </fieldset>
+    </div>
+}

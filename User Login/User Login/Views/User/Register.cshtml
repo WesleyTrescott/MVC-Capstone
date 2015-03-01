@@ -5,32 +5,81 @@
 }
 @using (Html.BeginForm())
 {
-    @Html.ValidationSummary(true, "Invalid Username or Password");
-    <div>
+    @Html.ValidationSummary( "Error processing your request", new { @class="alert alert-danger" });
+    <div style="margin:5% auto; width:350px;top:150px;"> @* modified by Simul *@
         <fieldset>
-            <legend>Register</legend>
-            <div class="editor-label">
-                @Html.LabelFor(u => u.UserName)
+            <legend style="text-align:center;color:forestgreen">Register</legend>
+            @*<div class="editor-label">
+                @Html.LabelFor(u => u.FirstName)
+                <text>*</text>
+            </div>*@
+            <div class="editor-field" title="Enter first name">
+                @*@Html.LabelFor(u => u.UserName);*@
+                @*<span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>*@
+                @Html.TextBoxFor(u => u.FirstName, new {@class="form-control", @placeholder="First Name*"})
             </div>
-            <div class="editor-field">
-                @Html.TextBoxFor(u => u.UserName)
+            @*<div class="editor-label">
+                @Html.LabelFor(u => u.LastName)
+                <text>*</text>
+            </div>*@
+            <div class="editor-field" title="Enter last name">
+                @Html.TextBoxFor(u => u.LastName, new { @class = "form-control", @placeholder = "Last Name*" })
+
             </div>
-            <div class="editor-label">
+            @*<div class="editor-label">
+                @Html.LabelFor(u => u.Email)
+                <text>*</text>
+            </div>*@
+            <div class="editor-field" title="Enter email address">
+                @Html.TextBoxFor(u => u.Email, new { @class = "form-control", @placeholder = "Email Address*" })
+            </div>
+            @*<div class="editor-label">
                 @Html.LabelFor(u => u.Password)
-            </div>
-            <div class="editor-field">
-                @Html.PasswordFor(u => u.Password)
+                <text>*</text>
+            </div>*@
+            <div class="editor-field" title="Enter password between 6 - 20 characters">
+                @Html.PasswordFor(u => u.Password, new { @class = "form-control", @placeholder = "Password*" })
                 @Html.ValidationMessageFor(u => u.Password)
             </div>
-            <div class="editor-label">
-                @Html.LabelFor(u => u.Email)
-            </div>
-            <div class="editor-field">
-                @Html.TextBoxFor(u => u.Email)
+            @* added by Simul Kadakia on 2/21/2015 - confirm password field *@
+            @*<div class="editor-label">
+                @Html.LabelFor(u => u.ConfirmPassword)
+                <text>*</text>
+            </div>*@
+            <div class="editor-field" title="Reenter password">
+                @Html.PasswordFor(u => u.ConfirmPassword, new { @class = "form-control", @placeholder = "Reenter password*" })
+                @Html.ValidationMessageFor(u => u.ConfirmPassword)
             </div>
             <br />
-            <input type="submit" value="Register New User" />
+            <pre style="background-color:white;border:none;">* - Required Fields
+            </pre>
+            
+            <div class="text-center">
+                <input type="submit" class="btn btn-danger" value="Create My Account" />
+            </div>
         </fieldset>
     </div>
 }
 
+
+@*
+    meeting 2/24 
+       contact us - submit
+    robot X - email confirmation
+    twitter feeds X
+    renderings ok
+    password credentials - email - optional
+    3 resume-x - 1 size - 5mb
+
+
+
+    details
+    position
+    customer
+    country, state, city
+    description
+    req skills
+    start end date if not null
+    pay rate
+
+*@

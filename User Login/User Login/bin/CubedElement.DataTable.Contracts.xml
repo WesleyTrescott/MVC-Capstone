@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CubedElement.DataTable.Contracts</name>
+    </assembly>
+    <members>
+        <member name="T:CubedElement.DataTable.Contracts.Extensions.CollectionExtensions">
+            <summary>
+            A collection of extensions to make working with the <see cref="T:System.Collections.Generic.IDictionary`2"/> easier.
+            </summary>
+        </member>
+        <member name="M:CubedElement.DataTable.Contracts.Extensions.CollectionExtensions.IsNullOrEmpty``1(System.Collections.Generic.ICollection{``0})">
+            <summary>
+            It simply provides a way to to know if the list is null or empty; meaning it will return <c>true</c> if <c>null</c> or if the <see cref="!:IList&lt;T&gt;.Count"/> is <c>0</c>.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CubedElement.DataTable.Contracts.Extensions.CollectionExtensions.OrderByDirection``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
+            <param name="keySelector"></param>
+            <param name="descending"></param>
+            <typeparam name="TSource"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:CubedElement.DataTable.Contracts.Extensions.CollectionExtensions.OrderByDirection``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
+            <param name="keySelector"></param>
+            <param name="descending"></param>
+            <typeparam name="TSource"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:CubedElement.DataTable.Contracts.IDataTableSerializer">
+            <summary>
+            Provides a way for a serialized class, to provide column names, or property names for the dataTables
+            </summary>
+        </member>
+        <member name="M:CubedElement.DataTable.Contracts.IDataTableSerializer.ToObjectArray">
+            <summary>
+            Provides a way to serialize your class as an object array, which makes it like <c>["value", something, 3]</c>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CubedElement.DataTable.Contracts.IDataTableSerializer.ColumnNames">
+            <summary>
+            Returns a collection of columns, which is used in JQuery DataTables. Note, this is 
+            typically the property names of your class 
+            <remarks>if going through the <see cref="M:CubedElement.DataTable.Contracts.IDataTableSerializer.ToObjectArray"/>, then you'll want to make sure 
+            the order of these column / property names match the order of how you lay out the object array.</remarks>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:CubedElement.DataTable.Contracts.IDataTableRequestCollection">
+            <summary>
+            IDataTableRequestCollection is a contract that is used to help provide a way to organize the data received from JQuery DataTables plug in, so 
+            you can just focus on grabbing information from the database system
+            </summary>
+        </member>
+        <member name="M:CubedElement.DataTable.Contracts.IDataTableRequestCollection.SerializeAsDataContract">
+            <summary>
+            Determines if the output should be serialized as a <c>DataContract</c> or an <c>object[]</c>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:CubedElement.DataTable.Contracts.IDataTableRequestCollection.Echo">
+            <summary>
+            'sEcho'
+            </summary>
+        </member>
+    </members>
+</doc>

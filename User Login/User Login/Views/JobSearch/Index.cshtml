@@ -1,11 +1,101 @@
-﻿@model IEnumerable<User_Login.Models.Job> 
+﻿@model IEnumerable<User_Login.Models.Tbl_Jobs> 
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Computech Job Search</h2>
+<div style="align-items:center">
+    <h3>Job Listings</h3>
+</div>
+
+@*<div id="searchGrid">
+    @{
+        var grid = new WebGrid(Model, defaultSort:"Position", canPage:true, rowsPerPage:10);
+        var db = Database.Open("DBEntities");
+        var query = "SELECT DISTINCT Job_Position FROM Tbl_Jobs ORDER BY State";
+        var countries = db.Query(query);
+        query = "SELECT * FROM Tbl_Jobs  WHERE Job_Position LIKE @0 AND State LIKE @1";
+        var Job_Position = "%" + Request["Job_Position"] + "%";
+        var State = "%" + Request["State"] + "%";
+        var data = db.Query(query, Job_Position, State);
+        //var columns = new[] { "CustomerID", "CompanyNa+++++me", "ContactName", "Address", "City", "Country", "Phone" };
+        var grid = new WebGrid(data, columnNames: columns, rowsPerPage: 6);
+    }
+    Position: <input type="text" name="company" value="@Request["company"]" />
+    Location: <select name="country">
+        <option></option>
+        @foreach (var item in Model)
+        {
+            <option @(Request["Location"] == item.State ? " selected=\"selected\"" : "")>@item.State</option>
+        }
+    </select>
+    <input type="submit" />
+
+    @grid.GetHtml(columns: grid.Columns(
+    grid.Column("Job_Position", "Position", style: ".position"),
+    grid.Column("Job_Description", "Description", style: "description", canSort: false),
+    grid.Column("City", style: "city"),
+    grid.Column("State", style: "state"),
+    grid.Column("Country", style: "country"),
+    grid.Column(format: (item) => @Html.ActionLink("Details", "Details", new {id = @item.Job_Id}, null))
+    //,grid.Column("Skills", style:"skills")
+    ), tableStyle: ".searchGrid", rowStyle: "height: 100px"
+    )
+</div>*@
+
+@*@section script{
+    <script type="text/javascript">
+    $(function(){
+        $('tbody tr').live('hover', function(){
+            $(this).toggleClass('clickable');
+        }).live('click', function(){
+            location.href = '/Details/' + $(this).find('td:first').text();
+        });
+    });
+    </script>
+    }*@
+
+<style type="text/css">
+    .clickable {
+        cursor:pointer;
+    }
+    .searchGrid {
+        height: 200px;
+        border:dashed;
+        align-content:center;
+    }
+    .position {
+        width: 500px;
+        text-align:center;
+    }
+    .description {
+        width: 700px;
+    }
+    .city{
+        width: 100px;
+    }
+    .state {
+        width: 50px;
+    }
+    .country{
+        width: 100px;
+    }
+    .skills{
+        width: 400px;
+    }
+    .mytable tbody tr td{
+          max-width:200px; 
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+    }
+    /*tr:hover td:hover{
+       overflow:visible;
+       word-wrap:break-word;
+       word-break:break-all;
+    }*/
+</style>
 
 @*@using (Html.BeginForm()) 
 {
@@ -124,138 +214,125 @@
     @Html.ActionLink("Back to List", "Index")
 </div>*@
 
-<table cellpadding="25">
+<link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+<script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 
+@using (Html.BeginForm("Index", "JobSearch", FormMethod.Get))
+{
+    <table>
+        <tr>
+            <td>
+                <text>Filter By Location</text> 
+            </td>
+            <td>
+                @Html.DropDownList("city", new SelectList(ViewBag.Location), "Select to Filter")
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <text>Filter By Customer</text>   
+            </td>
+            <td>
+                @Html.DropDownList("customer", new SelectList(ViewBag.Customer), "Select to Filter")
+            </td>
+        </tr>
+        <tr>
+        </tr>
+    </table>
+    <button type="submit" class="btn btn-submit">Filter Jobs   <span class="glyphicon glyphicon-filter"></span></button>
+}
+
+<div id="test">
+<table id="tblJobListings" class="table table-hover table-condensed ae-pagination mytable">
     <tr>
-
-        <th></th>
-
-        <th>
-
+        <td class="col-md-2">
             Job Position
-
-        </th>
-
-        <th>
-
+        </td>
+        <td class="mytable">
             Job Description
-
-        </th>
-
-        <th>
-
-            Country
-
-        </th>
-
-        <th>
-
+        </td>
+        <td class="col-md-2">
+            Location
+        </td>
+        @*<td>
             State
-
-        </th>
-
-        <th>
-
+        </td>
+        <td>
             City
-
-        </th>
-
-        <th>
-
+        </td>*@
+        <td>
             Skills
-
-        </th>
-
-        <th>
-
+        </td>
+        @*<td>
             Start Date
-
-        </th>
-
-        <th>
-
+        </td>
+        <td>
             End Date
-
-        </th>
-
-        <th>
-
+        </td>
+        <td>
             Pay Rate
-
-        </th>
-
+        </td>*@
     </tr>
 
     @foreach (var item in Model) { 
-
-
-
     <tr>
-
         <td>
-
-            @Html.ActionLink("Details", "Index", "Home")
-
+            @Html.Encode(item.Position) 
         </td>
-
         <td>
-
-            @Html.Encode(item.Job_Position) 
-
+            @Html.Encode(item.Profile_Description)
         </td>
-
         <td>
-
-            @Html.Encode(item.Job_Description)
-
+            @Html.Encode(item.City_Name) @Html.Encode(item.State_Name) @*@Html.Encode(item.Country)*@
         </td>
-
-        <td>
-
-            @Html.Encode(item.Country)
-
-        </td>
-
-        <td>
-
+        @*<td>
             @Html.Encode(item.State)
-
         </td>
-
         <td>
-
             @Html.Encode(item.City)
-
-        </td>
-
+        </td>*@
         <td>
-
-            @Html.Encode(item.Skills)
-
+            @Html.Encode(item.Required_Skills)
         </td>
-
-        <td>
-
+        @*<td>
             @Html.Encode(item.Start_Date)
 
         </td>
-
         <td>
-
             @Html.Encode(item.End_Date)
-
         </td>
-
         <td>
-
             @Html.Encode(item.PayRate)
-
+        </td>*@
+        <td>
+            @*@Html.ActionLink("Details", "Details", new { id = @item.Job_Id }, null)*@
+            @*<button id="btnDetails" class="btn btn-default" data-toggle="popover">Details</button>*@
+            @*<button id="btnDetails" class="btn btn-default" data-toggle="popover"></button>*@
+            @*<a href="#" id="btnDetails" class="btn btn-default" data-toggle="popover" tabindex="5" data-trigger="focus" title="Details" data-content="Default popover">Details</a>*@
+            @*<a href="#" id="btnDetails" class="btn btn-default" data-toggle="popover" tabindex="5" data-trigger="focus" title="Details" data-content="Default popover"></a>*@
+            <input type="button" class="btn btn-default" value="Details" onclick="window.location.href='@Url.Action("Details", "JobSearch" , new { id=@item.Job_Id })'" />
         </td>
-
     </tr>
-
-
-
      }
-
 </table>
+    </div>
+<script>
+    $(document).ready(function () {
+        $('#tblJobListings').dataTable({
+            pagingType: "bootstrapPager",
+            pagerSettings: {
+                textboxWidth: 70,
+                firstIcon: "",
+                previousIcon: "glyphicon glyphicon-arrow-left",
+                nextIcon: "glyphicon glyphicon-arrow-right",
+                lastIcon: "",
+                searchOnEnter: true,
+                language: "Page ~ of ~ pages"
+            }
+        });
+
+        $('#test').click(function () {
+            $('#tblJobListings').slideUp("slow");
+        })
+    });
+</script>

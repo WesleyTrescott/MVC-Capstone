@@ -1,0 +1,311 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CubedElement.DataTable.Model</name>
+    </assembly>
+    <members>
+        <member name="T:CubedElement.DataTable.Model.Constants.DataItemCollectionNames">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CubedElement.DataTable.Model.Constants.DataItemCollectionNames.MdataProp">
+            <summary>
+            'mDataProp_'
+            </summary>
+        </member>
+        <member name="F:CubedElement.DataTable.Model.Constants.DataItemCollectionNames.SSearch">
+            <summary>
+            'sSearch_'
+            </summary>
+        </member>
+        <member name="F:CubedElement.DataTable.Model.Constants.DataItemCollectionNames.SSortCol">
+            <summary>
+            'iSortCol_0'
+            </summary>
+        </member>
+        <member name="F:CubedElement.DataTable.Model.Constants.DataItemCollectionNames.SSearchable">
+            <summary>
+            'bSearchable_'
+            </summary>
+        </member>
+        <member name="F:CubedElement.DataTable.Model.Constants.DataItemCollectionNames.SSortDir">
+            <summary>
+            'sSortDir_'
+            </summary>
+        </member>
+        <member name="F:CubedElement.DataTable.Model.Constants.DataItemCollectionNames.BRegex">
+            <summary>
+            'bRegex_'
+            </summary>
+        </member>
+        <member name="T:CubedElement.DataTable.Model.Constants.DataItemPropertyNamesFrontEnd">
+            <summary>
+            These are constants for the UI / JavaScript Layer
+            <c>http://www.datatables.net/usage/server-side</c>
+            </summary>
+        </member>
+        <member name="F:CubedElement.DataTable.Model.Constants.DataItemPropertyNamesFrontEnd.Echo">
+            <summary>
+            It provides the name "sEcho."
+            </summary>
+        </member>
+        <member name="F:CubedElement.DataTable.Model.Constants.DataItemPropertyNamesFrontEnd.TotalRecords">
+            <summary>
+            It provides the name "iTotalRecords."
+            </summary>
+        </member>
+        <member name="F:CubedElement.DataTable.Model.Constants.DataItemPropertyNamesFrontEnd.DisplayStart">
+            <summary>
+            It provides the name "iDisplayStart."
+            </summary>
+        </member>
+        <member name="F:CubedElement.DataTable.Model.Constants.DataItemPropertyNamesFrontEnd.DisplayLength">
+            <summary>
+            It provides the name "iDisplayLength."
+            </summary>
+        </member>
+        <member name="F:CubedElement.DataTable.Model.Constants.DataItemPropertyNamesFrontEnd.TotalDisplayRecords">
+            <summary>
+            It provides the name "iTotalDisplayRecords."
+            </summary>
+        </member>
+        <member name="F:CubedElement.DataTable.Model.Constants.DataItemPropertyNamesFrontEnd.Columns">
+            <summary>
+            Note: this is a depricated field since v1.10. It provides the name "sColumns."
+            </summary>
+        </member>
+        <member name="F:CubedElement.DataTable.Model.Constants.DataItemPropertyNamesFrontEnd.ArrayData">
+            <summary>
+            It provides the name "aaData."
+            </summary>
+        </member>
+        <member name="F:CubedElement.DataTable.Model.Constants.DataItemPropertyNamesFrontEnd.DataTableWrapper">
+            <summary>
+            Just the name of the class, "dataTableSerializer," but really there is no meaning to this
+            </summary>
+        </member>
+        <member name="T:CubedElement.DataTable.Model.DataTableRequestCollection">
+            <summary>
+            As an input class, DataTableRequestRequestCollection helps provide a way to organize the data received from JQuery DataTables plug in, so 
+            you can just focus on grabbing information from the database system
+            <remarks>The reference to the server side usage: http://www.datatables.net/usage/server-side
+            </remarks>
+            </summary>
+        </member>
+        <member name="M:CubedElement.DataTable.Model.DataTableRequestCollection.GetDataPropertyValue(System.Int32)">
+            <summary>
+            Provides a fast way to look up a value inside <see cref="P:CubedElement.DataTable.Model.DataTableRequestCollection.DataProperties"/> by index. If no key exists, then it will return <c>string.Empty</c>.
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CubedElement.DataTable.Model.DataTableRequestCollection.GetColumnSearchValue(System.Int32)">
+            <summary>
+            Provides a fast way to look up a value inside <see cref="P:CubedElement.DataTable.Model.DataTableRequestCollection.ColumnSortDirection"/> by index. If no key exists, then it will return <c>string.Empty</c>.
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CubedElement.DataTable.Model.DataTableRequestCollection.GetColumnSortDirectionValue(System.Int32)">
+            <summary>
+            Provides a fast way to look up a value inside <see cref="P:CubedElement.DataTable.Model.DataTableRequestCollection.ColumnSortDirection"/> by index. If no key exists, then it will return <c>string.Empty</c>.
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CubedElement.DataTable.Model.DataTableRequestCollection.GetColumnRegExpressionValue(System.Int32)">
+            <summary>
+            Provides a fast way to look up a value inside <see cref="P:CubedElement.DataTable.Model.DataTableRequestCollection.ColumnRegExpression"/> by index. If no key exists, then it will return <c>false</c>.
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CubedElement.DataTable.Model.DataTableRequestCollection.GetColumnSortableValue(System.Int32)">
+            <summary>
+            Provides a fast way to look up a value inside <see cref="P:CubedElement.DataTable.Model.DataTableRequestCollection.ColumnSortable"/> by index. If no key exists, then it will return <c>false</c>.
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CubedElement.DataTable.Model.DataTableRequestCollection.GetColumnSearchableValue(System.Int32)">
+            <summary>
+            Provides a fast way to look up a value inside <see cref="P:CubedElement.DataTable.Model.DataTableRequestCollection.ColumnSearchable"/> by index. If no key exists, then it will return <c>false</c>.
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CubedElement.DataTable.Model.DataTableRequestCollection.GetValue``1(System.Collections.Generic.IDictionary{System.String,``0},System.String,System.Int32,``0)">
+            <summary>
+            Generic helper method to retreive a value
+            </summary>
+            <param name="collection"></param>
+            <param name="pattern"></param>
+            <param name="index"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CubedElement.DataTable.Model.DataTableRequestCollection.SerializeAsDataContract">
+            <summary>
+            Determines if the output should be serialized as a <see cref="T:System.Runtime.Serialization.DataContract"/> or an <c>object[]</c>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:CubedElement.DataTable.Model.DataTableRequestCollection.Echo">
+            <summary>
+            'sEcho'
+            </summary>
+        </member>
+        <member name="P:CubedElement.DataTable.Model.DataTableRequestCollection.GlobalSearch">
+            <summary>
+            'sSearch'
+            </summary>
+        </member>
+        <member name="P:CubedElement.DataTable.Model.DataTableRequestCollection.DisplayLength">
+            <summary>
+            'iDisplayLength'
+            </summary>
+        </member>
+        <member name="P:CubedElement.DataTable.Model.DataTableRequestCollection.DisplayStart">
+            <summary>
+            'iDisplayStart'
+            </summary>
+        </member>
+        <member name="P:CubedElement.DataTable.Model.DataTableRequestCollection.ColumnsDisplayedCount">
+            <summary>
+            'iColumns'
+            </summary>
+        </member>
+        <member name="P:CubedElement.DataTable.Model.DataTableRequestCollection.Regex">
+            <summary>
+            True if the global filter should be treated as a regular expression for advanced filtering, false if not.
+            </summary>
+        </member>
+        <member name="P:CubedElement.DataTable.Model.DataTableRequestCollection.ColumnSorted">
+            <summary>
+            'iSortCol_(int)'
+            </summary>
+        </member>
+        <member name="P:CubedElement.DataTable.Model.DataTableRequestCollection.DataProperties">
+            <summary>
+            These are the collection of properties, think getter / setter or DataTable column name. They are usually bound by "mDataProp_(int)." 
+            </summary>
+        </member>
+        <member name="P:CubedElement.DataTable.Model.DataTableRequestCollection.ColumnSearch">
+            <summary>
+            A collection where the key starts with 'sSearch_(int)' and increments where '(int)' is located.
+             </summary>
+        </member>
+        <member name="P:CubedElement.DataTable.Model.DataTableRequestCollection.ColumnSortDirection">
+            <summary>
+            A collection where the key starts with 'sSortDir_(int)' and increments where '(int)' is located.
+             </summary>
+        </member>
+        <member name="P:CubedElement.DataTable.Model.DataTableRequestCollection.ColumnRegExpression">
+            <summary>
+            A collection where the key starts with 'bRegex_(int)' and increments where '(int)' is located.
+             </summary>
+        </member>
+        <member name="P:CubedElement.DataTable.Model.DataTableRequestCollection.ColumnSortable">
+            <summary>
+            A collection where the key starts with 'bSortable_(int)' and increments where '(int)' is located.
+            </summary>
+        </member>
+        <member name="P:CubedElement.DataTable.Model.DataTableRequestCollection.ColumnSearchable">
+            <summary>
+            A collection where the key starts with 'bSearchable_(int)' and increments where '(int)' is located.
+            </summary>
+        </member>
+        <member name="P:CubedElement.DataTable.Model.DataTableRequestCollection.SortedColumnSearchName">
+            <summary>
+            A wrapper method, so you don't need to combine items <see cref="P:CubedElement.DataTable.Model.DataTableRequestCollection.ColumnSorted"/> value with <see cref="M:CubedElement.DataTable.Model.DataTableRequestCollection.GetDataPropertyValue(System.Int32)"/> to get the result. 
+            </summary>
+        </member>
+        <member name="P:CubedElement.DataTable.Model.DataTableRequestCollection.SortedColumnSearchValue">
+            <summary>
+            A wrapper method, so you don't need to combine items <see cref="P:CubedElement.DataTable.Model.DataTableRequestCollection.ColumnSorted"/> value with <see cref="M:CubedElement.DataTable.Model.DataTableRequestCollection.GetColumnSearchValue(System.Int32)"/> to get the result. 
+            </summary>
+        </member>
+        <member name="P:CubedElement.DataTable.Model.DataTableRequestCollection.SortedColumnRegExpressionValue">
+            <summary>
+            A wrapper method, so you don't need to combine items <see cref="P:CubedElement.DataTable.Model.DataTableRequestCollection.ColumnSorted"/> value with <see cref="M:CubedElement.DataTable.Model.DataTableRequestCollection.GetColumnRegExpressionValue(System.Int32)"/> to get the result. 
+            </summary>
+        </member>
+        <member name="P:CubedElement.DataTable.Model.DataTableRequestCollection.SortedColumnSearchableValue">
+            <summary>
+            A wrapper method, so you don't need to combine items <see cref="P:CubedElement.DataTable.Model.DataTableRequestCollection.ColumnSorted"/> value with <see cref="M:CubedElement.DataTable.Model.DataTableRequestCollection.GetColumnSearchableValue(System.Int32)"/> to get the result. 
+            </summary>
+        </member>
+        <member name="P:CubedElement.DataTable.Model.DataTableRequestCollection.SortedColumnDirectionValue">
+            <summary>
+            A wrapper method, so you don't need to combine items <see cref="P:CubedElement.DataTable.Model.DataTableRequestCollection.ColumnSorted"/> value with <see cref="M:CubedElement.DataTable.Model.DataTableRequestCollection.GetColumnSortDirectionValue(System.Int32)"/> to get the result. 
+            </summary>
+        </member>
+        <member name="P:CubedElement.DataTable.Model.DataTableRequestCollection.SortedColumnSortableValue">
+            <summary>
+            A wrapper method, so you don't need to combine items <see cref="P:CubedElement.DataTable.Model.DataTableRequestCollection.ColumnSorted"/> value with <see cref="M:CubedElement.DataTable.Model.DataTableRequestCollection.GetColumnSortableValue(System.Int32)"/> to get the result. 
+            </summary>
+        </member>
+        <member name="T:CubedElement.DataTable.Model.DataTableWrapper`1">
+            <summary>
+            As the output class, DataTableWrapper provides a way to take a collection of items, that you probably have applied a <see cref="T:System.Runtime.Serialization.DataContract"/> to, and 
+            have them implementing <see cref="T:CubedElement.DataTable.Contracts.IDataTableSerializer"/> where they're wrapped in a way where JQuery DataTables plug in can read.
+            <remarks>
+            The reference to the server side usage: http://www.datatables.net/usage/server-side
+            </remarks>-
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:CubedElement.DataTable.Model.DataTableWrapper`1.#ctor(CubedElement.DataTable.Contracts.IDataTableRequestCollection,System.Collections.Generic.IList{`0})">
+            <summary>
+            In put a populated <see cref="T:CubedElement.DataTable.Model.DataTableRequestCollection"/> and a collection of <see cref="T:CubedElement.DataTable.Contracts.IDataTableSerializer"/>
+            </summary>
+            <param name="dataTableRequestCollection"></param>
+            <param name="collection"></param>
+        </member>
+        <member name="P:CubedElement.DataTable.Model.DataTableWrapper`1.Echo">
+            <summary>
+            An unaltered copy of sEcho sent from the client side. This parameter will change with each draw (it is 
+            basically a draw count) - so it is important that this is implemented. Note that it strongly recommended 
+            for security reasons that you 'cast' this parameter to an integer in order to prevent 
+            Cross Site Scripting (XSS) attacks. In this case, we cast internally, and the send back as a string. 
+            If there are problems (and the default) it will return "-1"
+            </summary>
+        </member>
+        <member name="P:CubedElement.DataTable.Model.DataTableWrapper`1.TotalRecords">
+            <summary>
+            Total records, before filtering (i.e. the total number of records in the database)
+            </summary>
+        </member>
+        <member name="P:CubedElement.DataTable.Model.DataTableWrapper`1.TotalDisplayRecords">
+            <summary>
+            Total records, after filtering (i.e. the total number of records after filtering has been 
+            applied - not just the number of records being returned in this result set)
+            </summary>
+        </member>
+        <member name="P:CubedElement.DataTable.Model.DataTableWrapper`1.Columns">
+            <summary>
+            <para>Deprecated Optional - this is a string of column names, comma separated (used in 
+            combination with sName) which will allow DataTables to reorder data on the client-side 
+            if required for display. Note that the number of column names returned must exactly match 
+            the number of columns in the table. For a more flexible JSON format, please consider 
+            using mData.</para>
+            <para>
+            Note that this parameter is deprecated and will be removed in v1.10. Please now use mData. or AKA DataProperties that resides in the implementation of <c>DataTableRequestCollection</c>.
+            </para>
+            </summary>
+        </member>
+        <member name="P:CubedElement.DataTable.Model.DataTableWrapper`1.Data">
+            <summary>
+            <para>The array of data you have boxed as an object. This could be the serialized string version, or the class 
+            you've applied a <see cref="T:System.Runtime.Serialization.DataContract"/> to for serialization.</para>
+            <para>The data in a 2D array. Note that you can change the name of this parameter with sAjaxDataProp.</para>
+            <remarks>The logic in here checks to see if <see cref="M:CubedElement.DataTable.Contracts.IDataTableRequestCollection.SerializeAsDataContract"/> contains a 
+            collection of data. Specifically the DataProperties already shows the breakdown of the object's columns / properties 
+            names, so if it does have that information, it knows to serialize your collection as <see cref="T:System.Runtime.Serialization.DataContract"/>s. 
+            Otherwise, it knows that this is the old way, where you pass <see cref="P:CubedElement.DataTable.Model.DataTableWrapper`1.Columns"/> and get the results 
+            from <see cref="M:CubedElement.DataTable.Contracts.IDataTableSerializer.ToObjectArray"/>.</remarks>
+            </summary>
+        </member>
+    </members>
+</doc>

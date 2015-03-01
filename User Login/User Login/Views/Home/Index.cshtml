@@ -1,12 +1,88 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Job Search Site";
 }
 
 <h2>Welcome to the Job Search Site!</h2>
 
-<img src="~/Content/Images/computech logo.png" alt="Computech Logo"/>
+<img src="~/Content/Images/computech logo.png" alt="Computech Logo" />
 <br />
 <br />
-<input type="button" value="Search For Jobs!" onclick="location.href = '@Url.Action("Index", "JobSearch")'" />
+<br />
+<br />
 
+<button id="btnSearch" class="btn btn-search" value="Search for Jobs" onclick="location.href='@Url.Action("Index","JobSearch")'">
+    Search for Jobs
+    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+</button>
+
+@*<div class="container">
+    <div class="row">*@
+<div class="tableright">
+    <table>
+        <tr>
+            <td class="span2 description blue">
+                <h3> Test </h3>
+                <p>
+                    <strong>Detroit MI</strong><br />
+                </p>
+            </td>
+            <td class="span2 description red">
+                <h3> Test 2 </h3>
+                <p>
+                    <strong>Detroit MI</strong>
+                    <br />
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td class="span2 description orange">
+                <h3> Test 2 </h3>
+                <p>
+                    <strong>Detroit MI</strong>
+                    <br />
+                </p>
+            </td>
+            <td class="span2 description green">
+                <h3> Test 2 </h3>
+                <p>
+                    <strong>Detroit MI</strong>
+                    <br />
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td class="span2 description blue">
+                <h3> Test 2 </h3>
+                <p>
+                    <strong>Detroit MI</strong>
+                    <br />
+                </p>
+            </td>
+            <td class="span2 description red">
+                <h3> Test 2 </h3>
+                <p>
+                    <strong>Detroit MI</strong>
+                    <br />
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td class="span2 description orange">
+                <h3> Test 2 </h3>
+                <p>
+                    <strong>Detroit MI</strong>
+                    <br />
+                </p>
+            </td>
+            <td class="span2 description green">
+                <h3> Test 2 </h3>
+                <p>
+                    <strong>Detroit MI</strong>
+                    <br />
+                </p>
+            </td>
+        </tr>
+    </table>
+</div>
+@*</div>
+    </div>*@

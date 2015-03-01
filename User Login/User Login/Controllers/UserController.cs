@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Threading;
+using User_Login.Models;
 
 namespace User_Login.Controllers
 {
@@ -23,19 +25,25 @@ namespace User_Login.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(Models.User user)
+        public ActionResult Login(Models.LoginUser user)
         {
             if (ModelState.IsValid)
             {
-                if (user.IsValid(user.UserName, user.Password))
+                if (user.IsValid(user.Email, user.Password))
                 {
-                    FormsAuthentication.SetAuthCookie(user.UserName, user.RememberMe);
+                    FormsAuthentication.SetAuthCookie(user.Email, user.RememberMe);
                     return RedirectToAction("LoggedIn", "User");
                 }
                 else
                 {
                     ModelState.AddModelError("", "Login data is incorrect!");
                 }
+            }
+            else
+            {
+                var errors = ModelState.Select(x => x.Value.Errors)
+                           .Where(y => y.Count > 0)
+                           .ToList();
             }
             return View(user);
         }
@@ -55,17 +63,30 @@ namespace User_Login.Controllers
         [HttpPost]
         public ActionResult Register(Models.User user)
         {
-            if(ModelState.IsValid)
+            var entities = new Job_Candidate_Application_Entities();
+
+            if (ModelState.IsValid)
             {
-                if(user.Email != null && user.RegisterUser(user.UserName, user.Password, user.Email))
+                if (user.Email != null && user.RegisterUser(user.FirstName, user.LastName, user.Password, user.Email))
                 {
-                    FormsAuthentication.SetAuthCookie(user.UserName, user.RememberMe);
-                    return RedirectToAction("Login", "User");
+                    FormsAuthentication.SetAuthCookie(user.Email, user.RememberMe);
+                    //return RedirectToAction("Login", "User");
+                    return RedirectToAction("Profile", "User");
+                }
+                else if (entities.Tbl_Users.Any(r => r.Email_Id == user.Email))
+                {
+                    ModelState.AddModelError("", "Account with email address already exists. Login instead.");
                 }
                 else
                 {
                     ModelState.AddModelError("", "Registration data is incorrect!");
                 }
+            }
+            else
+            {
+                var errors = ModelState.Select(x => x.Value.Errors)
+                           .Where(y => y.Count > 0)
+                           .ToList();
             }
             return View(user);
         }
@@ -78,5 +99,53 @@ namespace User_Login.Controllers
             else
                 return RedirectToAction("Login", "User");
         }
-	}
+
+        [HttpGet]
+        public ActionResult Profile()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                //var entities = new Job_Candidate_Application_Entities();
+
+                //var name = Membership.GetUser().UserName;
+
+                //var email = Membership.GetUser().Email;
+
+                //var model = (from r in entities.Tbl_Users
+                //             where r.Email_Id == Membership.GetUser().Email
+                //             select r);
+
+                //return View(entities.Tbl_Users);
+                return View();
+            }
+            else
+                return RedirectToAction("Login", "User");
+           
+            //return View();
+        } 
+
+        //[HttpPost]
+        //public ActionResult EditProfile(Models.User user)
+        //{
+        //    if (User.Identity.IsAuthenticated)
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            if (user.UserProfile(user.FirstName, user.LastName, user.Street, user.City, user.Street, user.Country, user.Experience_Years, user.Skills))
+        //            {
+        //                FormsAuthentication.SetAuthCookie(user.UserName, user.RememberMe);
+        //                //return RedirectToAction("Login", "User");
+        //                return RedirectToAction("Dashboard", "User");
+        //            }
+        //            else
+        //            {
+        //                ModelState.AddModelError("", "Registration data is incorrect!");
+        //            }
+        //        }
+        //        return View(user);
+        //    }
+        //    else
+        //        return RedirectToAction("Login", "User");
+        //}
+    }
 }

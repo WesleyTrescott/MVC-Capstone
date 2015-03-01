@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="EnhancedJobCandidateApp" Class="EnhancedJobCandidateAppDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\EnhancedJobCandidateApp.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="EnhancedJobCandidateAppConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Tbl_Admin" Member="Tbl_Admins">
+    <Type Name="Tbl_Admin">
+      <Column Name="Admin_Email_Id" Type="System.String" DbType="VarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Admin_First_Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Admin_Last_Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Admin_Password" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tbl_Customer" Member="Tbl_Customers">
+    <Type Name="Tbl_Customer">
+      <Column Name="Customer_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Customer_Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Customer_Contact_Name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Customer_Email" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Customer_Contact_Id" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Customer_Job_Id" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tbl_Job_Application" Member="Tbl_Job_Applications">
+    <Type Name="Tbl_Job_Application">
+      <Column Name="Job_Application_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Job_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Email_Id" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tbl_Jobs" Member="Tbl_Jobs">
+    <Type Name="Tbl_Job">
+      <Column Name="Job_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Position" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Customer" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Submit_Before" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Country_Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="State_Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="City_Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Profile_Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="[Required Skills]" Member="Required_Skills" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Pay_Rate" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Start_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="End_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Min_Exp_Required" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Max_Exp_Required" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tbl_Users" Member="Tbl_Users">
+    <Type Name="Tbl_User">
+      <Column Name="Email_Id" Type="System.String" DbType="VarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="User_First_Name" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="User_Last_Name" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="User_Street" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="User_City" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="User_State" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="User_Country" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Exp_Years" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Skills" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Resume_Upload" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Is_Active" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

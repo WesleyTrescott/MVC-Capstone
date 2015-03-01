@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="EnhancedJobCandidateApp">
+  <DataContextMoniker Name="/EnhancedJobCandidateAppDataContext" />
+  <nestedChildShapes>
+    <classShape Id="12f14c06-84da-4e1c-ba4c-e29e38460dcd" absoluteBounds="0.625, 1.125, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/EnhancedJobCandidateAppDataContext/Tbl_Admin" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a5d4acb1-e6f4-40e1-bfef-37e6750d1862" absoluteBounds="0.64000000000000012, 1.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="cbd15045-1136-4dd0-b213-a7cabbf0daaa" absoluteBounds="7.375, 0.75, 2, 1.9631982421875">
+      <DataClassMoniker Name="/EnhancedJobCandidateAppDataContext/Tbl_Customer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fea7e8ce-b3fb-4c86-af4b-42a4fb488b41" absoluteBounds="7.39, 1.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="08090cbf-9991-46e9-a69d-0676c055cfe4" absoluteBounds="3.875, 0.5, 2, 1.3862939453125">
+      <DataClassMoniker Name="/EnhancedJobCandidateAppDataContext/Tbl_Job_Application" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c42c3f0a-90a0-4c9f-8c7d-19cb36736dc5" absoluteBounds="3.8899999999999997, 0.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="48e79089-6eaa-4db5-8b0c-0c4ba651b27c" absoluteBounds="6, 3.125, 2, 3.6939111328124996">
+      <DataClassMoniker Name="/EnhancedJobCandidateAppDataContext/Tbl_Job" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5cda678e-a83e-439a-932a-014c9d955a9c" absoluteBounds="6.015, 3.585, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d0e6f89e-ddfc-4d0a-bb47-8aa0ff1614ca" absoluteBounds="2.25, 3.375, 2, 3.1170068359375">
+      <DataClassMoniker Name="/EnhancedJobCandidateAppDataContext/Tbl_User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="14d72ceb-4544-43b5-a21c-d310af850c06" absoluteBounds="2.265, 3.835, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

@@ -1,0 +1,31 @@
+.tableright{
+	margin-left: 750px;
+}
+
+.background-transparancy{
+    background: none;
+}
+
+.span2.description{
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+    padding: 15px 15px 10px 15px;
+    height: 190px;
+	width: 190px;
+    border: 1px #dadbdd solid;
+}
+
+.green{
+    background: #85c64b;
+}
+.orange{
+    background: #ff8838;
+}
+.blue{
+    background: #1aaef1;
+}
+
+.red{
+	background: #ff3232;
+}

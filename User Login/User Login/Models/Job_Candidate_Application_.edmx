@@ -1,0 +1,358 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Job_Candidate_ApplicationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Tbl_Admin">
+          <Key>
+            <PropertyRef Name="Admin_Email_Id" />
+          </Key>
+          <Property Name="Admin_Email_Id" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Admin_First_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Admin_Last_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Admin_Password" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Customer">
+          <Key>
+            <PropertyRef Name="Customer_Id" />
+          </Key>
+          <Property Name="Customer_Id" Type="int" Nullable="false" />
+          <Property Name="Customer_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Customer_Contact_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Customer_Email" Type="varchar" MaxLength="255" />
+          <Property Name="Customer_Contact_Id" Type="varchar" MaxLength="255" />
+          <Property Name="Customer_Job_Id" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Tbl_Job_Application">
+          <Key>
+            <PropertyRef Name="Job_Application_Id" />
+          </Key>
+          <Property Name="Job_Application_Id" Type="int" Nullable="false" />
+          <Property Name="Job_Id" Type="int" Nullable="false" />
+          <Property Name="Email_Id" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Jobs">
+          <Key>
+            <PropertyRef Name="Job_Id" />
+          </Key>
+          <Property Name="Job_Id" Type="int" Nullable="false" />
+          <Property Name="Position" Type="nvarchar" MaxLength="255" />
+          <Property Name="Customer" Type="nvarchar" MaxLength="255" />
+          <Property Name="Submit_Before" Type="datetime" />
+          <Property Name="Country_Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="State_Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="City_Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Profile_Description" Type="nvarchar(max)" />
+          <Property Name="Required Skills" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Pay_Rate" Type="nvarchar" MaxLength="255" />
+          <Property Name="Start_Date" Type="datetime" />
+          <Property Name="End_Date" Type="datetime" />
+          <Property Name="Min_Exp_Required" Type="nvarchar" MaxLength="255" />
+          <Property Name="Max_Exp_Required" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Tbl_Users">
+          <Key>
+            <PropertyRef Name="Email_Id" />
+          </Key>
+          <Property Name="Email_Id" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="User_First_Name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="User_Last_Name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="User_Street" Type="varchar" MaxLength="500" />
+          <Property Name="User_City" Type="varchar" MaxLength="255" />
+          <Property Name="User_State" Type="varchar" MaxLength="255" />
+          <Property Name="User_Country" Type="varchar" MaxLength="255" />
+          <Property Name="Exp_Years" Type="varchar" MaxLength="255" />
+          <Property Name="Skills" Type="varchar(max)" />
+          <Property Name="Resume_Upload" Type="varchar(max)" />
+          <Property Name="Is_Active" Type="int" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Tbl_Customer_Tbl_Customer">
+          <End Role="Tbl_Customer" Type="Self.Tbl_Customer" Multiplicity="1" />
+          <End Role="Tbl_Customer1" Type="Self.Tbl_Customer" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Customer">
+              <PropertyRef Name="Customer_Id" />
+            </Principal>
+            <Dependent Role="Tbl_Customer1">
+              <PropertyRef Name="Customer_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Job_Application_Tbl_Jobs">
+          <End Role="Tbl_Jobs" Type="Self.Tbl_Jobs" Multiplicity="1" />
+          <End Role="Tbl_Job_Application" Type="Self.Tbl_Job_Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Jobs">
+              <PropertyRef Name="Job_Id" />
+            </Principal>
+            <Dependent Role="Tbl_Job_Application">
+              <PropertyRef Name="Job_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Job_Application_Tbl_Users">
+          <End Role="Tbl_Users" Type="Self.Tbl_Users" Multiplicity="1" />
+          <End Role="Tbl_Job_Application" Type="Self.Tbl_Job_Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Users">
+              <PropertyRef Name="Email_Id" />
+            </Principal>
+            <Dependent Role="Tbl_Job_Application">
+              <PropertyRef Name="Email_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Job_Candidate_ApplicationModelStoreContainer">
+          <EntitySet Name="Tbl_Admin" EntityType="Self.Tbl_Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Customer" EntityType="Self.Tbl_Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Job_Application" EntityType="Self.Tbl_Job_Application" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Jobs" EntityType="Self.Tbl_Jobs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Users" EntityType="Self.Tbl_Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Tbl_Customer_Tbl_Customer" Association="Self.FK_Tbl_Customer_Tbl_Customer">
+            <End Role="Tbl_Customer" EntitySet="Tbl_Customer" />
+            <End Role="Tbl_Customer1" EntitySet="Tbl_Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Job_Application_Tbl_Jobs" Association="Self.FK_Tbl_Job_Application_Tbl_Jobs">
+            <End Role="Tbl_Jobs" EntitySet="Tbl_Jobs" />
+            <End Role="Tbl_Job_Application" EntitySet="Tbl_Job_Application" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Job_Application_Tbl_Users" Association="Self.FK_Tbl_Job_Application_Tbl_Users">
+            <End Role="Tbl_Users" EntitySet="Tbl_Users" />
+            <End Role="Tbl_Job_Application" EntitySet="Tbl_Job_Application" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Job_Candidate_ApplicationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Tbl_Admin">
+          <Key>
+            <PropertyRef Name="Admin_Email_Id" />
+          </Key>
+          <Property Name="Admin_Email_Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Admin_First_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Admin_Last_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Admin_Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Customer">
+          <Key>
+            <PropertyRef Name="Customer_Id" />
+          </Key>
+          <Property Name="Customer_Id" Type="Int32" Nullable="false" />
+          <Property Name="Customer_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Customer_Contact_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Customer_Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Customer_Contact_Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Customer_Job_Id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Customer1" Relationship="Self.FK_Tbl_Customer_Tbl_Customer" FromRole="Tbl_Customer" ToRole="Tbl_Customer1" />
+          <NavigationProperty Name="Tbl_Customer2" Relationship="Self.FK_Tbl_Customer_Tbl_Customer" FromRole="Tbl_Customer1" ToRole="Tbl_Customer" />
+        </EntityType>
+        <EntityType Name="Tbl_Job_Application">
+          <Key>
+            <PropertyRef Name="Job_Application_Id" />
+          </Key>
+          <Property Name="Job_Application_Id" Type="Int32" Nullable="false" />
+          <Property Name="Job_Id" Type="Int32" Nullable="false" />
+          <Property Name="Email_Id" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Tbl_Jobs" Relationship="Self.FK_Tbl_Job_Application_Tbl_Jobs" FromRole="Tbl_Job_Application" ToRole="Tbl_Jobs" />
+          <NavigationProperty Name="Tbl_Users" Relationship="Self.FK_Tbl_Job_Application_Tbl_Users" FromRole="Tbl_Job_Application" ToRole="Tbl_Users" />
+        </EntityType>
+        <EntityType Name="Tbl_Jobs">
+          <Key>
+            <PropertyRef Name="Job_Id" />
+          </Key>
+          <Property Name="Job_Id" Type="Int32" Nullable="false" />
+          <Property Name="Position" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Customer" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Submit_Before" Type="DateTime" Precision="3" />
+          <Property Name="Country_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="State_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="City_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Profile_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Required_Skills" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Pay_Rate" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Start_Date" Type="DateTime" Precision="3" />
+          <Property Name="End_Date" Type="DateTime" Precision="3" />
+          <Property Name="Min_Exp_Required" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Max_Exp_Required" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tbl_Job_Application" Relationship="Self.FK_Tbl_Job_Application_Tbl_Jobs" FromRole="Tbl_Jobs" ToRole="Tbl_Job_Application" />
+        </EntityType>
+        <EntityType Name="Tbl_Users">
+          <Key>
+            <PropertyRef Name="Email_Id" />
+          </Key>
+          <Property Name="Email_Id" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_First_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_Last_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_Street" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="User_City" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="User_State" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="User_Country" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Exp_Years" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Skills" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Resume_Upload" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Is_Active" Type="Int32" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Tbl_Job_Application" Relationship="Self.FK_Tbl_Job_Application_Tbl_Users" FromRole="Tbl_Users" ToRole="Tbl_Job_Application" />
+        </EntityType>
+        <Association Name="FK_Tbl_Customer_Tbl_Customer">
+          <End Role="Tbl_Customer" Type="Self.Tbl_Customer" Multiplicity="1" />
+          <End Role="Tbl_Customer1" Type="Self.Tbl_Customer" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Customer">
+              <PropertyRef Name="Customer_Id" />
+            </Principal>
+            <Dependent Role="Tbl_Customer1">
+              <PropertyRef Name="Customer_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Job_Application_Tbl_Jobs">
+          <End Role="Tbl_Jobs" Type="Self.Tbl_Jobs" Multiplicity="1" />
+          <End Role="Tbl_Job_Application" Type="Self.Tbl_Job_Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Jobs">
+              <PropertyRef Name="Job_Id" />
+            </Principal>
+            <Dependent Role="Tbl_Job_Application">
+              <PropertyRef Name="Job_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Job_Application_Tbl_Users">
+          <End Role="Tbl_Users" Type="Self.Tbl_Users" Multiplicity="1" />
+          <End Role="Tbl_Job_Application" Type="Self.Tbl_Job_Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Users">
+              <PropertyRef Name="Email_Id" />
+            </Principal>
+            <Dependent Role="Tbl_Job_Application">
+              <PropertyRef Name="Email_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Job_Candidate_Application_Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Tbl_Admin" EntityType="Self.Tbl_Admin" />
+          <EntitySet Name="Tbl_Customer" EntityType="Self.Tbl_Customer" />
+          <EntitySet Name="Tbl_Job_Application" EntityType="Self.Tbl_Job_Application" />
+          <EntitySet Name="Tbl_Jobs" EntityType="Self.Tbl_Jobs" />
+          <EntitySet Name="Tbl_Users" EntityType="Self.Tbl_Users" />
+          <AssociationSet Name="FK_Tbl_Customer_Tbl_Customer" Association="Self.FK_Tbl_Customer_Tbl_Customer">
+            <End Role="Tbl_Customer" EntitySet="Tbl_Customer" />
+            <End Role="Tbl_Customer1" EntitySet="Tbl_Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Job_Application_Tbl_Jobs" Association="Self.FK_Tbl_Job_Application_Tbl_Jobs">
+            <End Role="Tbl_Jobs" EntitySet="Tbl_Jobs" />
+            <End Role="Tbl_Job_Application" EntitySet="Tbl_Job_Application" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Job_Application_Tbl_Users" Association="Self.FK_Tbl_Job_Application_Tbl_Users">
+            <End Role="Tbl_Users" EntitySet="Tbl_Users" />
+            <End Role="Tbl_Job_Application" EntitySet="Tbl_Job_Application" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Job_Candidate_ApplicationModelStoreContainer" CdmEntityContainer="Job_Candidate_Application_Entities">
+          <EntitySetMapping Name="Tbl_Admin">
+            <EntityTypeMapping TypeName="Job_Candidate_ApplicationModel.Tbl_Admin">
+              <MappingFragment StoreEntitySet="Tbl_Admin">
+                <ScalarProperty Name="Admin_Email_Id" ColumnName="Admin_Email_Id" />
+                <ScalarProperty Name="Admin_First_Name" ColumnName="Admin_First_Name" />
+                <ScalarProperty Name="Admin_Last_Name" ColumnName="Admin_Last_Name" />
+                <ScalarProperty Name="Admin_Password" ColumnName="Admin_Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Customer">
+            <EntityTypeMapping TypeName="Job_Candidate_ApplicationModel.Tbl_Customer">
+              <MappingFragment StoreEntitySet="Tbl_Customer">
+                <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+                <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
+                <ScalarProperty Name="Customer_Contact_Name" ColumnName="Customer_Contact_Name" />
+                <ScalarProperty Name="Customer_Email" ColumnName="Customer_Email" />
+                <ScalarProperty Name="Customer_Contact_Id" ColumnName="Customer_Contact_Id" />
+                <ScalarProperty Name="Customer_Job_Id" ColumnName="Customer_Job_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Job_Application">
+            <EntityTypeMapping TypeName="Job_Candidate_ApplicationModel.Tbl_Job_Application">
+              <MappingFragment StoreEntitySet="Tbl_Job_Application">
+                <ScalarProperty Name="Job_Application_Id" ColumnName="Job_Application_Id" />
+                <ScalarProperty Name="Job_Id" ColumnName="Job_Id" />
+                <ScalarProperty Name="Email_Id" ColumnName="Email_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Jobs">
+            <EntityTypeMapping TypeName="Job_Candidate_ApplicationModel.Tbl_Jobs">
+              <MappingFragment StoreEntitySet="Tbl_Jobs">
+                <ScalarProperty Name="Job_Id" ColumnName="Job_Id" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="Submit_Before" ColumnName="Submit_Before" />
+                <ScalarProperty Name="Country_Name" ColumnName="Country_Name" />
+                <ScalarProperty Name="State_Name" ColumnName="State_Name" />
+                <ScalarProperty Name="City_Name" ColumnName="City_Name" />
+                <ScalarProperty Name="Profile_Description" ColumnName="Profile_Description" />
+                <ScalarProperty Name="Required_Skills" ColumnName="Required Skills" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Pay_Rate" ColumnName="Pay_Rate" />
+                <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+                <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+                <ScalarProperty Name="Min_Exp_Required" ColumnName="Min_Exp_Required" />
+                <ScalarProperty Name="Max_Exp_Required" ColumnName="Max_Exp_Required" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Users">
+            <EntityTypeMapping TypeName="Job_Candidate_ApplicationModel.Tbl_Users">
+              <MappingFragment StoreEntitySet="Tbl_Users">
+                <ScalarProperty Name="Email_Id" ColumnName="Email_Id" />
+                <ScalarProperty Name="User_First_Name" ColumnName="User_First_Name" />
+                <ScalarProperty Name="User_Last_Name" ColumnName="User_Last_Name" />
+                <ScalarProperty Name="User_Street" ColumnName="User_Street" />
+                <ScalarProperty Name="User_City" ColumnName="User_City" />
+                <ScalarProperty Name="User_State" ColumnName="User_State" />
+                <ScalarProperty Name="User_Country" ColumnName="User_Country" />
+                <ScalarProperty Name="Exp_Years" ColumnName="Exp_Years" />
+                <ScalarProperty Name="Skills" ColumnName="Skills" />
+                <ScalarProperty Name="Resume_Upload" ColumnName="Resume_Upload" />
+                <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

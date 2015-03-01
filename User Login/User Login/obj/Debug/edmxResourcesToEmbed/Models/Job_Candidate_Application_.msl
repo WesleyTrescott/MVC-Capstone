@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Job_Candidate_ApplicationModelStoreContainer" CdmEntityContainer="Job_Candidate_Application_Entities">
+    <EntitySetMapping Name="Tbl_Admin">
+      <EntityTypeMapping TypeName="Job_Candidate_ApplicationModel.Tbl_Admin">
+        <MappingFragment StoreEntitySet="Tbl_Admin">
+          <ScalarProperty Name="Admin_Email_Id" ColumnName="Admin_Email_Id" />
+          <ScalarProperty Name="Admin_First_Name" ColumnName="Admin_First_Name" />
+          <ScalarProperty Name="Admin_Last_Name" ColumnName="Admin_Last_Name" />
+          <ScalarProperty Name="Admin_Password" ColumnName="Admin_Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Customer">
+      <EntityTypeMapping TypeName="Job_Candidate_ApplicationModel.Tbl_Customer">
+        <MappingFragment StoreEntitySet="Tbl_Customer">
+          <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
+          <ScalarProperty Name="Customer_Name" ColumnName="Customer_Name" />
+          <ScalarProperty Name="Customer_Contact_Name" ColumnName="Customer_Contact_Name" />
+          <ScalarProperty Name="Customer_Email" ColumnName="Customer_Email" />
+          <ScalarProperty Name="Customer_Contact_Id" ColumnName="Customer_Contact_Id" />
+          <ScalarProperty Name="Customer_Job_Id" ColumnName="Customer_Job_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Job_Application">
+      <EntityTypeMapping TypeName="Job_Candidate_ApplicationModel.Tbl_Job_Application">
+        <MappingFragment StoreEntitySet="Tbl_Job_Application">
+          <ScalarProperty Name="Job_Application_Id" ColumnName="Job_Application_Id" />
+          <ScalarProperty Name="Job_Id" ColumnName="Job_Id" />
+          <ScalarProperty Name="Email_Id" ColumnName="Email_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Jobs">
+      <EntityTypeMapping TypeName="Job_Candidate_ApplicationModel.Tbl_Jobs">
+        <MappingFragment StoreEntitySet="Tbl_Jobs">
+          <ScalarProperty Name="Job_Id" ColumnName="Job_Id" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Customer" ColumnName="Customer" />
+          <ScalarProperty Name="Submit_Before" ColumnName="Submit_Before" />
+          <ScalarProperty Name="Country_Name" ColumnName="Country_Name" />
+          <ScalarProperty Name="State_Name" ColumnName="State_Name" />
+          <ScalarProperty Name="City_Name" ColumnName="City_Name" />
+          <ScalarProperty Name="Profile_Description" ColumnName="Profile_Description" />
+          <ScalarProperty Name="Required_Skills" ColumnName="Required Skills" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Pay_Rate" ColumnName="Pay_Rate" />
+          <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+          <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+          <ScalarProperty Name="Min_Exp_Required" ColumnName="Min_Exp_Required" />
+          <ScalarProperty Name="Max_Exp_Required" ColumnName="Max_Exp_Required" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Users">
+      <EntityTypeMapping TypeName="Job_Candidate_ApplicationModel.Tbl_Users">
+        <MappingFragment StoreEntitySet="Tbl_Users">
+          <ScalarProperty Name="Email_Id" ColumnName="Email_Id" />
+          <ScalarProperty Name="User_First_Name" ColumnName="User_First_Name" />
+          <ScalarProperty Name="User_Last_Name" ColumnName="User_Last_Name" />
+          <ScalarProperty Name="User_Street" ColumnName="User_Street" />
+          <ScalarProperty Name="User_City" ColumnName="User_City" />
+          <ScalarProperty Name="User_State" ColumnName="User_State" />
+          <ScalarProperty Name="User_Country" ColumnName="User_Country" />
+          <ScalarProperty Name="Exp_Years" ColumnName="Exp_Years" />
+          <ScalarProperty Name="Skills" ColumnName="Skills" />
+          <ScalarProperty Name="Resume_Upload" ColumnName="Resume_Upload" />
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

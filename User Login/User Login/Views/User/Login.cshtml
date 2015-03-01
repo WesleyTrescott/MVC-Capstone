@@ -1,33 +1,51 @@
-﻿@model User_Login.Models.User
+﻿@model User_Login.Models.LoginUser
 @{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using (Html.BeginForm())
 {
-    @Html.ValidationSummary(true, "Login failed. Check your login credentials.");
-    <div>
+    @*@Html.ValidationSummary(true, "Login failed. Check your login credentials.", new { class });*@
+    @Html.ValidationSummary("Login failed.", new { @class = "alert alert-danger centered" });
+
+    <div id="test" style="margin:5% auto; width:350px;top:200px;">    @* modified by Simul *@
         <fieldset>
-            <legend>Login</legend>
-            <div class="editor-label">
-                @Html.LabelFor(u => u.UserName)
+            <legend style="text-align:center;color:forestgreen">Login</legend> @*modified by Simul*@  
+            @*<div class="editor-label">
+                @Html.LabelFor(u => u.Email)
+            </div>*@
+            <div class="editor-field" title="Enter email address">
+                @Html.TextBoxFor(u => u.Email, new { @class = "form-control", @placeholder = "Email address" })
             </div>
-            <div class="editor-field">
-                @Html.TextBoxFor(u => u.UserName)
-            </div>
-            <div class="editor-label">
+            @*<div class="editor-label">
                 @Html.LabelFor(u => u.Password)
-            </div>
-            <div class="editor-field">
-                @Html.PasswordFor(u => u.Password)
+            </div>*@
+            <div class="editor-field" title="Enter password">
+                @Html.PasswordFor(u => u.Password, new { @class = "form-control", @placeholder = "Password" })
                 @Html.ValidationMessageFor(u => u.Password)
             </div>
-            <div class="editor-label">
+            <div class="checkbox" style="left:20px;" title="Remember me on this computer">
                 @Html.CheckBoxFor(u => u.RememberMe)
                 @Html.LabelFor(u => u.RememberMe)
             </div>
-            <input type="submit" value="Log In" />
+            <div style="text-align:center" title="Click to log in">
+                <input type="submit" value="Log In" class="btn btn-danger"/>      @*modified by Simul*@  
+            </div>
         </fieldset>
     </div>
 }
 
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#btnSubmit').click(){
+            if ($(this).valid()){
+            }
+            else
+            {
+                $('#test').effect(shake);
+            };
+        };
+    });
+</script>
