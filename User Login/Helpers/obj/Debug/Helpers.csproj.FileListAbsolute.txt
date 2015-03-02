@@ -2,10 +2,6 @@ C:\Users\Wesley\Documents\Visual Studio 2013\Projects\User Login\Helpers\bin\Deb
 C:\Users\Wesley\Documents\Visual Studio 2013\Projects\User Login\Helpers\bin\Debug\Helpers.pdb
 C:\Users\Wesley\Documents\Visual Studio 2013\Projects\User Login\Helpers\obj\Debug\Helpers.dll
 C:\Users\Wesley\Documents\Visual Studio 2013\Projects\User Login\Helpers\obj\Debug\Helpers.pdb
-C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\Helpers\bin\Debug\Helpers.dll
-C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\Helpers\bin\Debug\Helpers.pdb
-C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\Helpers\obj\Debug\Helpers.dll
-C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\Helpers\obj\Debug\Helpers.pdb
 C:\Users\Simul\Desktop\Winter 2015\CSC 4996\MVC App\User Login\Helpers\bin\Debug\Helpers.dll
 C:\Users\Simul\Desktop\Winter 2015\CSC 4996\MVC App\User Login\Helpers\bin\Debug\Helpers.pdb
 C:\Users\Simul\Desktop\Winter 2015\CSC 4996\MVC App\User Login\Helpers\bin\Debug\AweSome.dll
@@ -28,3 +24,7 @@ C:\SeniorProject\Prototype1_Final\MVC-Capstone-master\User Login\Helpers\bin\Deb
 C:\SeniorProject\Prototype1_Final\MVC-Capstone-master\User Login\Helpers\bin\Debug\Helpers.pdb
 C:\SeniorProject\Prototype1_Final\MVC-Capstone-master\User Login\Helpers\obj\Debug\Helpers.dll
 C:\SeniorProject\Prototype1_Final\MVC-Capstone-master\User Login\Helpers\obj\Debug\Helpers.pdb
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\Helpers\bin\Debug\Helpers.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\Helpers\bin\Debug\Helpers.pdb
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\Helpers\obj\Debug\Helpers.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\Helpers\obj\Debug\Helpers.pdb

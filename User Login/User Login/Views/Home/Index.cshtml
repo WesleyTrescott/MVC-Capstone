@@ -25,7 +25,18 @@
                            iterator.MoveNext();
                            User_Login.Models.Tbl_Jobs current = iterator.Current;
                            string position = current.Position;
-                           @Html.Encode(position);
+                           <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
+                           <br />
+                           string description = current.Description;
+                           if(description.Length > 75)
+                           {
+                               description = description.Substring(0, 75);
+                               description = description + "...";
+                           }
+                           int id = current.Job_Id;
+                           @Html.Encode(description)
+                           <br />
+                           <strong>@Html.ActionLink("Details...", "Details", id, new { @style = "color:white;" })</strong>
                        }
                     </p>
                 </div>
@@ -38,7 +49,18 @@
                             iterator.MoveNext();
                             User_Login.Models.Tbl_Jobs current = iterator.Current;
                             string position = current.Position;
-                            @Html.Encode(position);
+                            <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
+                           <br />
+                           string description = current.Description;
+                           if(description.Length > 75)
+                           {
+                               description = description.Substring(0, 75);
+                               description = description + "...";
+                           }
+                           int id = current.Job_Id;
+                           @Html.Encode(description)
+                           <br />
+                           <strong>@Html.ActionLink("Details...", "Details", id, new { @style = "color:white;" })</strong>
                         }
                     </p>
                 </div>
@@ -54,7 +76,18 @@
                             iterator.MoveNext();
                             User_Login.Models.Tbl_Jobs current = iterator.Current;
                             string position = current.Position;
-                            @Html.Encode(position);
+                            <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
+                           <br />
+                           string description = current.Description;
+                           if(description.Length > 75)
+                           {
+                               description = description.Substring(0, 75);
+                               description = description + "...";
+                           }
+                           int id = current.Job_Id;
+                           @Html.Encode(description)
+                           <br />
+                           <strong>@Html.ActionLink("Details...", "Details", id, new { @style = "color:white;" })</strong>
                         }
                     </p>
                 </div>
@@ -69,7 +102,18 @@
                             iterator.MoveNext();
                             User_Login.Models.Tbl_Jobs current = iterator.Current;
                             string position = current.Position;
-                            @Html.Encode(position);
+                            <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
+                           <br />
+                           string description = current.Description;
+                           if(description.Length > 75)
+                           {
+                               description = description.Substring(0, 75);
+                               description = description + "...";
+                           }
+                           int id = current.Job_Id;
+                           @Html.Encode(description)
+                           <br />
+                           <strong>@Html.ActionLink("Details...", "Details", id, new { @style = "color:white;" })</strong>
                         }
                     </p>
                 </div>
@@ -87,7 +131,18 @@
                             iterator.MoveNext();
                             User_Login.Models.Tbl_Jobs current = iterator.Current;
                             string position = current.Position;
-                            @Html.Encode(position);
+                            <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
+                           <br />
+                           string description = current.Description;
+                           if(description.Length > 75)
+                           {
+                               description = description.Substring(0, 75);
+                               description = description + "...";
+                           }
+                           int id = current.Job_Id;
+                           @Html.Encode(description)
+                           <br />
+                           <strong>@Html.ActionLink("Details...", "Details", id, new { @style = "color:white;" })</strong>
                         }
                     </p>
                 </div>
@@ -104,7 +159,18 @@
                             iterator.MoveNext();
                             User_Login.Models.Tbl_Jobs current = iterator.Current;
                             string position = current.Position;
-                            @Html.Encode(position);
+                            <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
+                           <br />
+                           string description = current.Description;
+                           if(description.Length > 75)
+                           {
+                               description = description.Substring(0, 75);
+                               description = description + "...";
+                           }
+                           int id = current.Job_Id;
+                           @Html.Encode(description)
+                           <br />
+                           <strong>@Html.ActionLink("Details...", "Details", id, new { @style = "color:white;" })</strong>
                         }
                     </p>
                 </div>
