@@ -1,88 +1,185 @@
-﻿@{
+﻿@model IEnumerable<User_Login.Models.Tbl_Jobs>
+@{
     ViewBag.Title = "Job Search Site";
 }
 
-<h2>Welcome to the Job Search Site!</h2>
+@*<br />
+    <input type="button" value="Search For Jobs!" onclick="location.href = '@Url.Action("Index", "JobSearch")'" />*@
 
-<img src="~/Content/Images/computech logo.png" alt="Computech Logo" />
-<br />
-<br />
-<br />
-<br />
-
-<button id="btnSearch" class="btn btn-search" value="Search for Jobs" onclick="location.href='@Url.Action("Index","JobSearch")'">
-    Search for Jobs
-    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-</button>
-
-@*<div class="container">
-    <div class="row">*@
-<div class="tableright">
-    <table>
-        <tr>
-            <td class="span2 description blue">
-                <h3> Test </h3>
-                <p>
-                    <strong>Detroit MI</strong><br />
-                </p>
-            </td>
-            <td class="span2 description red">
-                <h3> Test 2 </h3>
-                <p>
-                    <strong>Detroit MI</strong>
-                    <br />
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td class="span2 description orange">
-                <h3> Test 2 </h3>
-                <p>
-                    <strong>Detroit MI</strong>
-                    <br />
-                </p>
-            </td>
-            <td class="span2 description green">
-                <h3> Test 2 </h3>
-                <p>
-                    <strong>Detroit MI</strong>
-                    <br />
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td class="span2 description blue">
-                <h3> Test 2 </h3>
-                <p>
-                    <strong>Detroit MI</strong>
-                    <br />
-                </p>
-            </td>
-            <td class="span2 description red">
-                <h3> Test 2 </h3>
-                <p>
-                    <strong>Detroit MI</strong>
-                    <br />
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td class="span2 description orange">
-                <h3> Test 2 </h3>
-                <p>
-                    <strong>Detroit MI</strong>
-                    <br />
-                </p>
-            </td>
-            <td class="span2 description green">
-                <h3> Test 2 </h3>
-                <p>
-                    <strong>Detroit MI</strong>
-                    <br />
-                </p>
-            </td>
-        </tr>
-    </table>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>Job Search</h1>
+            <input type="button" value="Search For Jobs!" class="btn btn-success" onclick="location.href = '@Url.Action("Index", "JobSearch")'" />
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="page-header">Featured Jobs</h4>
+                </div>
+                <div class="col-md-6 span2 description blue">
+                    <span class="glyphicon glyphicon-pushpin btn-lg"></span>
+                    <p>
+                       @using(IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.GetEnumerator())
+                       {
+                           iterator.MoveNext();
+                           User_Login.Models.Tbl_Jobs current = iterator.Current;
+                           string position = current.Position;
+                           @Html.Encode(position);
+                       }
+                    </p>
+                </div>
+                <div class="col-md-6 span2 description red">
+                    <span class="glyphicon glyphicon-pushpin btn-lg"></span>
+                    <p>
+                        @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.GetEnumerator())
+                        {
+                            iterator.MoveNext();
+                            iterator.MoveNext();
+                            User_Login.Models.Tbl_Jobs current = iterator.Current;
+                            string position = current.Position;
+                            @Html.Encode(position);
+                        }
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 span2 description green">
+                    <span class="glyphicon glyphicon-pushpin btn-lg"></span>
+                    <p>
+                        @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.GetEnumerator())
+                        {
+                            iterator.MoveNext();
+                            iterator.MoveNext();
+                            iterator.MoveNext();
+                            User_Login.Models.Tbl_Jobs current = iterator.Current;
+                            string position = current.Position;
+                            @Html.Encode(position);
+                        }
+                    </p>
+                </div>
+                <div class="col-md-6 span2 description orange">
+                    <span class="glyphicon glyphicon-pushpin btn-lg"></span>
+                    <p>
+                        @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.GetEnumerator())
+                        {
+                            iterator.MoveNext();
+                            iterator.MoveNext();
+                            iterator.MoveNext();
+                            iterator.MoveNext();
+                            User_Login.Models.Tbl_Jobs current = iterator.Current;
+                            string position = current.Position;
+                            @Html.Encode(position);
+                        }
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 span2 description red">
+                    <span class="glyphicon glyphicon-pushpin btn-lg"></span>
+                    <p>
+                        @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.GetEnumerator())
+                        {
+                            iterator.MoveNext();
+                            iterator.MoveNext();
+                            iterator.MoveNext();
+                            iterator.MoveNext();
+                            iterator.MoveNext();
+                            User_Login.Models.Tbl_Jobs current = iterator.Current;
+                            string position = current.Position;
+                            @Html.Encode(position);
+                        }
+                    </p>
+                </div>
+                <div class="col-md-6 span2 description blue">
+                    <span class="glyphicon glyphicon-pushpin btn-lg"></span>
+                    <p>
+                        @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.GetEnumerator())
+                        {
+                            iterator.MoveNext();
+                            iterator.MoveNext();
+                            iterator.MoveNext();
+                            iterator.MoveNext();
+                            iterator.MoveNext();
+                            iterator.MoveNext();
+                            User_Login.Models.Tbl_Jobs current = iterator.Current;
+                            string position = current.Position;
+                            @Html.Encode(position);
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-@*</div>
+
+<br />
+<br />
+
+@*<div class="tableright">
+        <table>
+            <tr>
+                <td class="span2 description blue">
+                    <h3> Test </h3>
+                    <p>
+                        <strong>Detroit MI</strong><br />
+                    </p>
+                </td>
+                <td class="span2 description red">
+                    <h3> Test 2 </h3>
+                    <p>
+                        <strong>Detroit MI</strong>
+                        <br />
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td class="span2 description orange">
+                    <h3> Test 2 </h3>
+                    <p>
+                        <strong>Detroit MI</strong>
+                        <br />
+                    </p>
+                </td>
+                <td class="span2 description green">
+                    <h3> Test 2 </h3>
+                    <p>
+                        <strong>Detroit MI</strong>
+                        <br />
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td class="span2 description blue">
+                    <h3> Test 2 </h3>
+                    <p>
+                        <strong>Detroit MI</strong>
+                        <br />
+                    </p>
+                </td>
+                <td class="span2 description red">
+                    <h3> Test 2 </h3>
+                    <p>
+                        <strong>Detroit MI</strong>
+                        <br />
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td class="span2 description orange">
+                    <h3> Test 2 </h3>
+                    <p>
+                        <strong>Detroit MI</strong>
+                        <br />
+                    </p>
+                </td>
+                <td class="span2 description green">
+                    <h3> Test 2 </h3>
+                    <p>
+                        <strong>Detroit MI</strong>
+                        <br />
+                    </p>
+                </td>
+            </tr>
+        </table>
     </div>*@
