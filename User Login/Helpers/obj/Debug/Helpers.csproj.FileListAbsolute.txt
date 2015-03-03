@@ -28,4 +28,3 @@ C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\Helpers\bin\Debug\Helpe
 C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\Helpers\bin\Debug\Helpers.pdb
 C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\Helpers\obj\Debug\Helpers.dll
 C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\Helpers\obj\Debug\Helpers.pdb
-C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\Helpers\obj\Debug\Helpers.csprojResolveAssemblyReference.cache
