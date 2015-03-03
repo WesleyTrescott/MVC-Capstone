@@ -39,160 +39,173 @@
         <div class="col-md-12">
             <h4 class="page-header">Featured Jobs</h4>
         </div>
-        <div class="col-md-4 span2 description blue">
-            <span class="glyphicon glyphicon-pushpin btn-lg"></span>
-            <p>
-                @using(IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.GetEnumerator())
-                {
-                    iterator.MoveNext();
-                    User_Login.Models.Tbl_Jobs current = iterator.Current;
-                    string position = current.Position;
-                    <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
-                    <br />
-                    string description = current.Description;
-                    if(description.Length > 75)
+        <div class="col-md-4">
+            <div class="span2 description blue">
+                <span class="glyphicon glyphicon-pushpin btn-lg"></span>
+                <p>
+                    @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.GetEnumerator())
                     {
-                        description = description.Substring(0, 75);
-                        description = description + "...";
+                        iterator.MoveNext();
+                        User_Login.Models.Tbl_Jobs current = iterator.Current;
+                        string position = current.Position;
+                        <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
+                        <br />
+                        string description = current.Description;
+                        if (description.Length > 150)
+                        {
+                            description = description.Substring(0, 150);
+                            description = description + "...";
+                        }
+                        int id = current.Job_Id;
+                        @Html.Encode(description)
+                        <br />
+                        <strong>@Html.ActionLink("Details...", "Details", "JobSearch", new { id }, new { @style = "color:white;" })</strong>
                     }
-                    int id = current.Job_Id;
-                    @Html.Encode(description)
-                    <br />
-                    <strong>@Html.ActionLink("Details...", "Details", "JobSearch", new { id }, new { @style = "color:white;" })</strong>
-                }
-            </p>
+                </p>
+            </div>
         </div>
-        <div class="col-md-4 span2 description red">
-            <span class="glyphicon glyphicon-pushpin btn-lg"></span>
-            <p>
-                @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.GetEnumerator())
-                {
-                    iterator.MoveNext();
-                    iterator.MoveNext();
-                    User_Login.Models.Tbl_Jobs current = iterator.Current;
-                    string position = current.Position;
-                    <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
-                    <br />
-                    string description = current.Description;
-                    if(description.Length > 75)
+        <div class="col-md-4">
+            <div class="span2 description yellow">
+                <span class="glyphicon glyphicon-pushpin btn-lg"></span>
+                <p>
+                    @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.GetEnumerator())
                     {
-                        description = description.Substring(0, 75);
-                        description = description + "...";
+                        iterator.MoveNext();
+                        iterator.MoveNext();
+                        User_Login.Models.Tbl_Jobs current = iterator.Current;
+                        string position = current.Position;
+                        <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
+                        <br />
+                        string description = current.Description;
+                        if (description.Length > 150)
+                        {
+                            description = description.Substring(0, 150);
+                            description = description + "...";
+                        }
+                        int id = current.Job_Id;
+                        @Html.Encode(description)
+                        <br />
+                        <strong>@Html.ActionLink("Details...", "Details", "JobSearch", new { id }, new { @style = "color:white;" })</strong>
                     }
-                    int id = current.Job_Id;
-                    @Html.Encode(description)
-                    <br />
-                    <strong>@Html.ActionLink("Details...", "Details", "JobSearch", new { id }, new { @style = "color:white;" })</strong>
-                }
-            </p>
+                </p>
+            </div>
         </div>
-        <div class="col-md-4 span2 description green">
-            <span class="glyphicon glyphicon-pushpin btn-lg"></span>
-            <p>
-                @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.GetEnumerator())
-                {
-                    iterator.MoveNext();
-                    iterator.MoveNext();
-                    iterator.MoveNext();
-                    User_Login.Models.Tbl_Jobs current = iterator.Current;
-                    string position = current.Position;
-                    <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
-                    <br />
-                    string description = current.Description;
-                    if (description.Length > 75)
+        <div class="col-md-4">
+            <div class="span2 description green">
+                <span class="glyphicon glyphicon-pushpin btn-lg"></span>
+                <p>
+                    @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.GetEnumerator())
                     {
-                        description = description.Substring(0, 75);
-                        description = description + "...";
+                        iterator.MoveNext();
+                        iterator.MoveNext();
+                        iterator.MoveNext();
+                        User_Login.Models.Tbl_Jobs current = iterator.Current;
+                        string position = current.Position;
+                        <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
+                        <br />
+                        string description = current.Description;
+                        if (description.Length > 150)
+                        {
+                            description = description.Substring(0, 150);
+                            description = description + "...";
+                        }
+                        int id = current.Job_Id;
+                        @Html.Encode(description)
+                        <br />
+                        <strong>@Html.ActionLink("Details...", "Details", "JobSearch", new { id }, new { @style = "color:white;" })</strong>
                     }
-                    int id = current.Job_Id;
-                    @Html.Encode(description)
-                    <br />
-                    <strong>@Html.ActionLink("Details...", "Details", "JobSearch", new { id }, new { @style = "color:white;" })</strong>
-                }
-            </p>
+                </p>
+            </div>
         </div>
     </div>
+    <br />
     <div class="row">
-        <div class="col-md-4 span2 description orange">
-            <span class="glyphicon glyphicon-pushpin btn-lg"></span>
-            <p>
-                @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.GetEnumerator())
-                {
-                    iterator.MoveNext();
-                    iterator.MoveNext();
-                    iterator.MoveNext();
-                    iterator.MoveNext();
-                    User_Login.Models.Tbl_Jobs current = iterator.Current;
-                    string position = current.Position;
-                    <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
-                    <br />
-                    string description = current.Description;
-                    if(description.Length > 75)
+        <div class="col-md-4">
+            <div class="span2 description orange">
+                <span class="glyphicon glyphicon-pushpin btn-lg"></span>
+                <p>
+                    @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.GetEnumerator())
                     {
-                        description = description.Substring(0, 75);
-                        description = description + "...";
+                        iterator.MoveNext();
+                        iterator.MoveNext();
+                        iterator.MoveNext();
+                        iterator.MoveNext();
+                        User_Login.Models.Tbl_Jobs current = iterator.Current;
+                        string position = current.Position;
+                        <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
+                        <br />
+                        string description = current.Description;
+                        if (description.Length > 150)
+                        {
+                            description = description.Substring(0, 150);
+                            description = description + "...";
+                        }
+                        int id = current.Job_Id;
+                        @Html.Encode(description)
+                        <br />
+                        <strong>@Html.ActionLink("Details...", "Details", "JobSearch", new { id }, new { @style = "color:white;" })</strong>
                     }
-                    int id = current.Job_Id;
-                    @Html.Encode(description)
-                    <br />
-                    <strong>@Html.ActionLink("Details...", "Details", "JobSearch", new { id }, new { @style = "color:white;" })</strong>
-                }
-            </p>
+                </p>
+            </div>
         </div>
-        <div class="col-md-4 span2 description red">
-            <span class="glyphicon glyphicon-pushpin btn-lg"></span>
-            <p>
-                @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.GetEnumerator())
-                {
-                    iterator.MoveNext();
-                    iterator.MoveNext();
-                    iterator.MoveNext();
-                    iterator.MoveNext();
-                    iterator.MoveNext();
-                    User_Login.Models.Tbl_Jobs current = iterator.Current;
-                    string position = current.Position;
-                    <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
-                    <br />
-                    string description = current.Description;
-                    if (description.Length > 75)
+        <div class="col-md-4">
+            <div class="span2 description red">
+                <span class="glyphicon glyphicon-pushpin btn-lg"></span>
+                <p>
+                    @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.GetEnumerator())
                     {
-                        description = description.Substring(0, 75);
-                        description = description + "...";
+                        iterator.MoveNext();
+                        iterator.MoveNext();
+                        iterator.MoveNext();
+                        iterator.MoveNext();
+                        iterator.MoveNext();
+                        User_Login.Models.Tbl_Jobs current = iterator.Current;
+                        string position = current.Position;
+                        <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
+                        <br />
+                        string description = current.Description;
+                        if (description.Length > 150)
+                        {
+                            description = description.Substring(0, 150);
+                            description = description + "...";
+                        }
+                        int id = current.Job_Id;
+                        @Html.Encode(description)
+                        <br />
+                        <strong>@Html.ActionLink("Details...", "Details", "JobSearch", new { id }, new { @style = "color:white;" })</strong>
                     }
-                    int id = current.Job_Id;
-                    @Html.Encode(description)
-                    <br />
-                    <strong>@Html.ActionLink("Details...", "Details", "JobSearch", new { id }, new { @style = "color:white;" })</strong>
-                }
-            </p>
+                </p>
+            </div>
         </div>
-        <div class="col-md-6 span2 description blue">
-            <span class="glyphicon glyphicon-pushpin btn-lg"></span>
-            <p>
-                @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.GetEnumerator())
-                {
-                    iterator.MoveNext();
-                    iterator.MoveNext();
-                    iterator.MoveNext();
-                    iterator.MoveNext();
-                    iterator.MoveNext();
-                    iterator.MoveNext();
-                    User_Login.Models.Tbl_Jobs current = iterator.Current;
-                    string position = current.Position;
-                    <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
-                    <br />
-                    string description = current.Description;
-                    if (description.Length > 75)
+        <div class="col-md-4">
+            <div class="span2 description blue">
+                <span class="glyphicon glyphicon-pushpin btn-lg"></span>
+                <p>
+                    @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.GetEnumerator())
                     {
-                        description = description.Substring(0, 75);
-                        description = description + "...";
+                        iterator.MoveNext();
+                        iterator.MoveNext();
+                        iterator.MoveNext();
+                        iterator.MoveNext();
+                        iterator.MoveNext();
+                        iterator.MoveNext();
+                        User_Login.Models.Tbl_Jobs current = iterator.Current;
+                        string position = current.Position;
+                        <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
+                        <br />
+                        string description = current.Description;
+                        if (description.Length > 150)
+                        {
+                            description = description.Substring(0, 150);
+                            description = description + "...";
+                        }
+                        int id = current.Job_Id;
+                        @Html.Encode(description)
+                        <br />
+                        <strong>@Html.ActionLink("Details...", "Details", "JobSearch", new { id }, new { @style = "color:white;" })</strong>
                     }
-                    int id = current.Job_Id;
-                    @Html.Encode(description)
-                    <br />
-                    <strong>@Html.ActionLink("Details...", "Details", "JobSearch", new { id }, new { @style = "color:white;" })</strong>
-                }
-            </p>
+                </p>
+            </div>
         </div>
     </div>
 </div>

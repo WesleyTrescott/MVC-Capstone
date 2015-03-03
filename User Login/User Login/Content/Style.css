@@ -10,10 +10,11 @@
     color: #fff;
     text-align: center;
     font-size: 12px;
-    /*padding: 15px 15px 10px 15px;*/
+    padding: 15px 15px 10px 15px;
     height: 190px;
-	width: 190px;
+	width: 300px;
     border: 1px #dadbdd solid;
+    padding-left: 15px;
 }
 
 .green{
@@ -28,6 +29,10 @@
 
 .red{
 	background: #ff3232;
+}
+
+.yellow{
+    background: #ffcc00;
 }
 
 
