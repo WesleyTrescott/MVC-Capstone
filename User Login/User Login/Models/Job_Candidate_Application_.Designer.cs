@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Simul\Desktop\Winter 2015\CSC 4996\MVC App\User Login\User Login\Models\Job_Candidate_Application_.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\User Login\Models\Job_Candidate_Application_.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

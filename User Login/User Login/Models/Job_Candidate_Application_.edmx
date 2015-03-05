@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Job_Candidate_ApplicationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Job_Candidate_ApplicationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Tbl_Admin">
           <Key>
             <PropertyRef Name="Admin_Email_Id" />
@@ -64,11 +64,12 @@
           <Property Name="User_City" Type="varchar" MaxLength="255" />
           <Property Name="User_State" Type="varchar" MaxLength="255" />
           <Property Name="User_Country" Type="varchar" MaxLength="255" />
-          <Property Name="Exp_Years" Type="varchar" MaxLength="255" />
+          <Property Name="Exp_Years" Type="int" />
           <Property Name="Skills" Type="varchar(max)" />
           <Property Name="Resume_Upload" Type="varchar(max)" />
           <Property Name="Is_Active" Type="int" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="User_Phone_Number" Type="int" />
         </EntityType>
         <Association Name="FK_Tbl_Customer_Tbl_Customer">
           <End Role="Tbl_Customer" Type="Self.Tbl_Customer" Multiplicity="1" />
@@ -125,8 +126,7 @@
             <End Role="Tbl_Job_Application" EntitySet="Tbl_Job_Application" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Job_Candidate_ApplicationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -194,12 +194,13 @@
           <Property Name="User_City" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="User_State" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="User_Country" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Exp_Years" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Exp_Years" Type="Int32" />
           <Property Name="Skills" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Resume_Upload" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Is_Active" Type="Int32" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Tbl_Job_Application" Relationship="Self.FK_Tbl_Job_Application_Tbl_Users" FromRole="Tbl_Users" ToRole="Tbl_Job_Application" />
+          <Property Name="User_Phone_Number" Type="Int32" />
         </EntityType>
         <Association Name="FK_Tbl_Customer_Tbl_Customer">
           <End Role="Tbl_Customer" Type="Self.Tbl_Customer" Multiplicity="1" />
@@ -317,6 +318,7 @@
           <EntitySetMapping Name="Tbl_Users">
             <EntityTypeMapping TypeName="Job_Candidate_ApplicationModel.Tbl_Users">
               <MappingFragment StoreEntitySet="Tbl_Users">
+                <ScalarProperty Name="User_Phone_Number" ColumnName="User_Phone_Number" />
                 <ScalarProperty Name="Email_Id" ColumnName="Email_Id" />
                 <ScalarProperty Name="User_First_Name" ColumnName="User_First_Name" />
                 <ScalarProperty Name="User_Last_Name" ColumnName="User_Last_Name" />

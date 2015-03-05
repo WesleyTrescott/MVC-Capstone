@@ -26,11 +26,12 @@ namespace User_Login.Models
         public string User_City { get; set; }
         public string User_State { get; set; }
         public string User_Country { get; set; }
-        public string Exp_Years { get; set; }
+        public Nullable<int> Exp_Years { get; set; }
         public string Skills { get; set; }
         public string Resume_Upload { get; set; }
         public int Is_Active { get; set; }
         public string Password { get; set; }
+        public Nullable<int> User_Phone_Number { get; set; }
     
         public virtual ICollection<Tbl_Job_Application> Tbl_Job_Application { get; set; }
     }

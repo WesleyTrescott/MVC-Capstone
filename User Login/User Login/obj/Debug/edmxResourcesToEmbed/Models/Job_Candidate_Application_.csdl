@@ -64,12 +64,13 @@
     <Property Name="User_City" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="User_State" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="User_Country" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Name="Exp_Years" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Exp_Years" Type="Int32" />
     <Property Name="Skills" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Resume_Upload" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Is_Active" Type="Int32" Nullable="false" />
     <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Tbl_Job_Application" Relationship="Self.FK_Tbl_Job_Application_Tbl_Users" FromRole="Tbl_Users" ToRole="Tbl_Job_Application" />
+    <Property Name="User_Phone_Number" Type="Int32" />
   </EntityType>
   <Association Name="FK_Tbl_Customer_Tbl_Customer">
     <End Role="Tbl_Customer" Type="Self.Tbl_Customer" Multiplicity="1" />

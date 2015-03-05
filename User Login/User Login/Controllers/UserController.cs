@@ -31,20 +31,25 @@ namespace User_Login.Controllers
             {
                 if (user.IsValid(user.Email, user.Password))
                 {
+                    //login successful
                     FormsAuthentication.SetAuthCookie(user.Email, user.RememberMe);
                     return RedirectToAction("LoggedIn", "User");
                 }
                 else
                 {
+                    //incorrect login information
                     ModelState.AddModelError("", "Login data is incorrect!");
                 }
             }
-            else
-            {
-                var errors = ModelState.Select(x => x.Value.Errors)
-                           .Where(y => y.Count > 0)
-                           .ToList();
-            }
+            /*
+             * ****error tracing*****
+            */
+            //else
+            //{
+            //    var errors = ModelState.Select(x => x.Value.Errors)
+            //               .Where(y => y.Count > 0)
+            //               .ToList();
+            //}
             return View(user);
         }
 
@@ -69,24 +74,20 @@ namespace User_Login.Controllers
             {
                 if (user.Email != null && user.RegisterUser(user.FirstName, user.LastName, user.Password, user.Email))
                 {
+                    //user registration successful
                     FormsAuthentication.SetAuthCookie(user.Email, user.RememberMe);
-                    //return RedirectToAction("Login", "User");
                     return RedirectToAction("Profile", "User");
                 }
+                //check for duplicate email address
                 else if (entities.Tbl_Users.Any(r => r.Email_Id == user.Email))
                 {
                     ModelState.AddModelError("", "Account with email address already exists. Login instead.");
                 }
+                //incorrect information in one or more fields
                 else
                 {
                     ModelState.AddModelError("", "Registration data is incorrect!");
                 }
-            }
-            else
-            {
-                var errors = ModelState.Select(x => x.Value.Errors)
-                           .Where(y => y.Count > 0)
-                           .ToList();
             }
             return View(user);
         }
@@ -105,47 +106,64 @@ namespace User_Login.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                //var entities = new Job_Candidate_Application_Entities();
+                UserProfile user = new UserProfile();
 
-                //var name = Membership.GetUser().UserName;
+                var entities = new Job_Candidate_Application_Entities();
 
-                //var email = Membership.GetUser().Email;
+                //logged in user email
+                var email = User.Identity.Name;
 
-                //var model = (from r in entities.Tbl_Users
-                //             where r.Email_Id == Membership.GetUser().Email
-                //             select r);
+                var model = entities.Tbl_Users.Find(email);
 
-                //return View(entities.Tbl_Users);
-                return View();
+                //store user information in UserProfile class
+                user.FirstName = model.User_First_Name;
+                user.LastName = model.User_Last_Name;
+                user.Street = model.User_Street;
+                user.City = model.User_City;
+                user.State = model.User_State;
+                user.Country = model.User_Country;
+                user.phone_number = model.User_Phone_Number;
+                user.Skills = model.Skills;
+                user.Experience_Years = model.Exp_Years;
+
+                return View(user);
             }
             else
+                //user not authenticated
                 return RedirectToAction("Login", "User");
-           
-            //return View();
         } 
 
-        //[HttpPost]
-        //public ActionResult EditProfile(Models.User user)
-        //{
-        //    if (User.Identity.IsAuthenticated)
-        //    {
-        //        if (ModelState.IsValid)
-        //        {
-        //            if (user.UserProfile(user.FirstName, user.LastName, user.Street, user.City, user.Street, user.Country, user.Experience_Years, user.Skills))
-        //            {
-        //                FormsAuthentication.SetAuthCookie(user.UserName, user.RememberMe);
-        //                //return RedirectToAction("Login", "User");
-        //                return RedirectToAction("Dashboard", "User");
-        //            }
-        //            else
-        //            {
-        //                ModelState.AddModelError("", "Registration data is incorrect!");
-        //            }
-        //        }
-        //        return View(user);
-        //    }
-        //    else
-        //        return RedirectToAction("Login", "User");
-        //}
+        [HttpPost]
+        public ActionResult Profile(Models.UserProfile user)
+        {
+            //logged in user email
+            string email = User.Identity.Name;
+
+            if (User.Identity.IsAuthenticated)
+            {
+                if (ModelState.IsValid)
+                {
+                    if (user.UpdateProfile(email, user.FirstName, user.LastName, user.Street, user.City, user.State, user.Country, user.phone_number, user.Experience_Years, user.Skills))
+                    {
+                        //update successful
+                        FormsAuthentication.SetAuthCookie(User.Identity.Name,true);
+                        TempData["success"] = "Profile successfully updated!";
+                        return RedirectToAction("Profile", "User");
+                    }
+                    else
+                    {
+                        //update failed
+                        //invalid data in one or more fields
+                        TempData["success"] = null;
+                        ModelState.AddModelError("", "Registration data is incorrect!");
+                    }
+                }
+
+                return View(user);
+            }
+            else
+                //user not authenticated
+                return RedirectToAction("Login", "User");
+        }
     }
 }
