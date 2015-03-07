@@ -154,7 +154,7 @@ namespace User_Login.Controllers
                     {
                         //update failed
                         //invalid data in one or more fields
-                        TempData["success"] = null;
+                        //TempData["success"] = null;
                         ModelState.AddModelError("", "Registration data is incorrect!");
                     }
                 }

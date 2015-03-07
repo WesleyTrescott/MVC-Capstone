@@ -14,21 +14,27 @@ namespace User_Login.Models
 {
     public class UserProfile
     {
+        [Required]
         [Display(Name = "FirstName")]
         public string FirstName { get; set; }
 
+        [Required]
         [Display(Name = "LastName")]
         public string LastName { get; set; }
 
+        [Required]
         [Display(Name = "Street")]
         public string Street { get; set; }
 
+        [Required]
         [Display(Name = "City")]
         public string City { get; set; }
 
+        [Required]
         [Display(Name = "State")]
         public string State { get; set; }
 
+        [Required]
         [Display(Name = "Country")]
         public string Country { get; set; }
 
@@ -53,14 +59,41 @@ namespace User_Login.Models
                 command.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar)).Value = email;
                 command.Parameters.Add(new SqlParameter("@firstName", SqlDbType.VarChar)).Value = firstName;
                 command.Parameters.Add(new SqlParameter("@lastName", SqlDbType.VarChar)).Value = lastName;
-                command.Parameters.Add(new SqlParameter("@street", SqlDbType.NVarChar)).Value = street;
-                command.Parameters.Add(new SqlParameter("@city", SqlDbType.NVarChar)).Value = city;
-                command.Parameters.Add(new SqlParameter("@state", SqlDbType.NVarChar)).Value = state;
-                command.Parameters.Add(new SqlParameter("@country", SqlDbType.NVarChar)).Value = country;
-                command.Parameters.Add(new SqlParameter("@phone_number", SqlDbType.NVarChar)).Value = phone_number;
-                command.Parameters.Add(new SqlParameter("@skills", SqlDbType.NVarChar)).Value = skills;
-                command.Parameters.Add(new SqlParameter("@experience", SqlDbType.NVarChar)).Value = experience_years;
-                
+                command.Parameters.Add(new SqlParameter("@street", SqlDbType.VarChar)).Value = street;
+                command.Parameters.Add(new SqlParameter("@city", SqlDbType.VarChar)).Value = city;
+                command.Parameters.Add(new SqlParameter("@state", SqlDbType.VarChar)).Value = state;
+                command.Parameters.Add(new SqlParameter("@country", SqlDbType.VarChar)).Value = country;
+
+                command.Parameters.Add(new SqlParameter("@phone_number", SqlDbType.Int));
+                if (phone_number != null)
+                {
+                    command.Parameters["@phone_number"].Value = phone_number;
+                }
+                else
+                {
+                    command.Parameters["@phone_number"].Value = DBNull.Value;
+                }
+
+                command.Parameters.Add(new SqlParameter("@skills", SqlDbType.VarChar));
+                if (skills != null)
+                {
+                    command.Parameters["@skills"].Value = skills;
+                }
+                else
+                {
+                    command.Parameters["@skills"].Value = DBNull.Value;
+                }
+
+                command.Parameters.Add(new SqlParameter("@experience", SqlDbType.Int));
+                if (experience_years != null)
+                {
+                    command.Parameters["@experience"].Value = experience_years;
+                }
+                else
+                {
+                    command.Parameters["@experience"].Value = DBNull.Value;
+                }
+
                 cn.Open();
                 command.ExecuteNonQuery();
                 command.Dispose();
