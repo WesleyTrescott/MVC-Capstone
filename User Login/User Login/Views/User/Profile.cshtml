@@ -18,6 +18,7 @@ else
     <label class="label label-info center-block" style="font-size:x-large">
         Tell us more about you!
     </label>
+    @Html.ValidationSummary("Profile information could not be saved.", new { @class = "alert alert-danger centered" })
 }
 
 @using (Html.BeginForm())
