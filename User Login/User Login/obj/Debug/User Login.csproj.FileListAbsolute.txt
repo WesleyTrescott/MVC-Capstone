@@ -322,3 +322,12 @@ C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\User L
 C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\User Login\obj\Debug\User Login.csprojResolveAssemblyReference.cache
 C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\User Login\obj\Debug\User Login.dll
 C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\User Login\obj\Debug\User Login.pdb
+C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\User Login\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\User Login\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\User Login\bin\Microsoft.Owin.dll
+C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\User Login\bin\Microsoft.Owin.Security.dll
+C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\User Login\bin\Owin.dll
+C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\User Login\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\User Login\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\User Login\bin\Microsoft.Owin.xml
+C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\User Login\bin\Microsoft.Owin.Security.xml

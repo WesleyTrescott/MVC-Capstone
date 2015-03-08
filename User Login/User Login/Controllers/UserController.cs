@@ -65,6 +65,7 @@ namespace User_Login.Controllers
             return View();
         }
 
+        
         [HttpPost]
         public ActionResult Register(Models.User user)
         {
@@ -75,8 +76,10 @@ namespace User_Login.Controllers
                 if (user.Email != null && user.RegisterUser(user.FirstName, user.LastName, user.Password, user.Email))
                 {
                     //user registration successful
-                    FormsAuthentication.SetAuthCookie(user.Email, user.RememberMe);
-                    return RedirectToAction("Profile", "User");
+                    Manager.EmailManager.SendConfirmationEmail(user.FirstName, user.Email);
+                    return RedirectToAction("Confirmation", "User");
+                    //FormsAuthentication.SetAuthCookie(user.Email, user.RememberMe);
+                    //return RedirectToAction("Profile", "User");
                 }
                 //check for duplicate email address
                 else if (entities.Tbl_Users.Any(r => r.Email_Id == user.Email))
@@ -90,6 +93,11 @@ namespace User_Login.Controllers
                 }
             }
             return View(user);
+        }
+
+        public ActionResult Confirmation()
+        {
+            return View();
         }
 
         [HttpGet]

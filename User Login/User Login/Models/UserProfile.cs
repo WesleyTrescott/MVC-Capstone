@@ -50,7 +50,7 @@ namespace User_Login.Models
 
         //public bool UpdateProfile(string email, string firstName, string lastName, string street, string city, string state, string country, string phone_number, int? experience_years ,string skills)
         public bool UpdateProfile(string email, string firstName, string lastName, string street, string city, string state, string country, int? phone_number, int? experience_years, string skills)    
-    {
+        {
             using (var cn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='|DataDirectory|\Job_Candidate_Application.mdf';Integrated Security=True"))
             {
                 string sqlStmt = @"UPDATE [Tbl_Users] set [User_First_Name] = @firstName, [User_Last_Name] = @lastName, [User_Street] = @street, [User_City] = @city, [User_State] = @state, [User_Country] = @country, [User_Phone_Number]=@phone_number, [Exp_Years]=@experience, [Skills]=@skills where [Email_Id] = @email";
