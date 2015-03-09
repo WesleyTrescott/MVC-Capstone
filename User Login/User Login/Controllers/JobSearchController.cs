@@ -57,7 +57,13 @@ namespace User_Login.Controllers
         public ActionResult Apply(int? id = 0)
         {
             if (User.Identity.IsAuthenticated)
+            {
+                var entities = new Job_Candidate_Application_Entities();
+
+                var job = entities.Tbl_Jobs.Find(id);
                 return View();
+
+            }
             else
                 return RedirectToAction("Login", "User");
         }

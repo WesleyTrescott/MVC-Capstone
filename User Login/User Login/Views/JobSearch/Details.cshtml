@@ -238,7 +238,7 @@
     <br />
     @*<pre style="border:none; background-color:white;">*@
     @*<form class="Apply">*@
-    <input type="button" class="btn btn-default" value="Apply" onclick="window.location.href='@Url.Action("Apply", "JobSearch")'" />       |     <input type="button" class="btn btn-default" value="Back" onclick="window.location.href='@Url.Action("Index", "JobSearch")'" />
+    <input type="button" class="btn btn-default" value="Apply" onclick="window.location.href='@Url.Action("Apply", "JobSearch", new { id = @Model.Job_Id  })'" />       |     <input type="button" class="btn btn-default" value="Back" onclick="window.location.href='@Url.Action("Index", "JobSearch")'" />
 
       @*  </form>*@
     @*</pre>*@

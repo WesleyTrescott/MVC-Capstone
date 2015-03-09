@@ -56,6 +56,7 @@
     <EntitySetMapping Name="Tbl_Users">
       <EntityTypeMapping TypeName="Job_Candidate_ApplicationModel.Tbl_Users">
         <MappingFragment StoreEntitySet="Tbl_Users">
+          <ScalarProperty Name="User_Guid" ColumnName="User_Guid" />
           <ScalarProperty Name="User_Phone_Number" ColumnName="User_Phone_Number" />
           <ScalarProperty Name="Email_Id" ColumnName="Email_Id" />
           <ScalarProperty Name="User_First_Name" ColumnName="User_First_Name" />

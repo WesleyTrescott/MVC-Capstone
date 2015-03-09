@@ -76,26 +76,25 @@ namespace User_Login.Models
             }
         }
 
-        //public bool RegisterUser(string username, string password, string email)
-        public bool RegisterUser(string firstName, string lastName, string password, string email)
+        public bool RegisterUser(string firstName, string lastName, string password, string email, string guid)
         {
             try
             {
-                //if (!IsValid(username, password))
                 if (!IsValid(email, password))
                 {
-                    //using (var cn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='c:\users\wesley\documents\visual studio 2013\Projects\User Login\User Login\App_Data\Database1.mdf';Integrated Security=True"))
-                    //using (var cn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='|DataDirectory|\Login.mdf';Integrated Security=True"))
                     using (var cn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='|DataDirectory|\Job_Candidate_Application.mdf';Integrated Security=True"))
                     {
-                        //string sqlStmt = @"INSERT INTO [dbo].[Tbl_User_Login] (Username, Password, Email) VALUES (@u, @p, @e)"; 
-                        string sqlStmt = @"INSERT INTO [DBO].[Tbl_Users] (User_First_Name, User_Last_Name, Email_Id, Password) values (@firstName, @lastName, @email, @password)";
+                        //store Is_Active = 0 until user has verified the email
+                        //store global unique id (guid) in database which will used to verify the email
+                        string sqlStmt = @"INSERT INTO [DBO].[Tbl_Users] (User_First_Name, User_Last_Name, Email_Id, Password, Is_Active, User_Guid) values (@firstName, @lastName, @email, @password,0, @guid)";
                         var command = new SqlCommand(sqlStmt, cn);
-                        //command.Parameters.Add(new SqlParameter("@u", SqlDbType.NVarChar)).Value = username;
+
                         command.Parameters.Add(new SqlParameter("@password", SqlDbType.NVarChar)).Value = Helpers.SHA1.Encode(password);
                         command.Parameters.Add(new SqlParameter("@email", SqlDbType.NVarChar)).Value = email;
                         command.Parameters.Add(new SqlParameter("@firstName", SqlDbType.NVarChar)).Value = firstName;
                         command.Parameters.Add(new SqlParameter("@lastName", SqlDbType.NVarChar)).Value = lastName;
+                        command.Parameters.Add(new SqlParameter("@guid", SqlDbType.NVarChar)).Value = guid;
+                        
                         cn.Open();
                         command.ExecuteNonQuery();
                         command.Dispose();
@@ -109,6 +108,31 @@ namespace User_Login.Models
             {
                 return false;
             }
-        } 
+        }
+ 
+        //user has confirmed the email
+        public bool Confirmed(string email)
+        {
+            try 
+            {
+                using (var cn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='|DataDirectory|\Job_Candidate_Application.mdf';Integrated Security=True"))
+                {
+                    //user has verified the email. Update Is_Active to 1
+                    string sqlStmt = @"UPDATE [Tbl_Users] set [Is_Active] = 1 where [Email_Id] = @email";
+                    
+                    var command = new SqlCommand(sqlStmt, cn);
+                    command.Parameters.Add(new SqlParameter("@email", SqlDbType.NVarChar)).Value = email;
+                    
+                    cn.Open();
+                    command.ExecuteNonQuery();
+                    command.Dispose();
+                    return true;
+                }   
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

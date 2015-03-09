@@ -351,6 +351,7 @@
     <Content Include="Views\User\Profile.cshtml" />
     <Content Include="Views\JobSearch\Apply.cshtml" />
     <Content Include="Views\User\Confirmation.cshtml" />
+    <Content Include="Views\User\Verify.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

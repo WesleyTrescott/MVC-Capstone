@@ -65,6 +65,7 @@
     <Property Name="Is_Active" Type="int" Nullable="false" />
     <Property Name="Password" Type="varchar" MaxLength="150" Nullable="false" />
     <Property Name="User_Phone_Number" Type="int" />
+    <Property Name="User_Guid" Type="varchar" MaxLength="50" />
   </EntityType>
   <Association Name="FK_Tbl_Customer_Tbl_Customer">
     <End Role="Tbl_Customer" Type="Self.Tbl_Customer" Multiplicity="1" />

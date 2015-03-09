@@ -70,6 +70,7 @@
           <Property Name="Is_Active" Type="int" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="User_Phone_Number" Type="int" />
+          <Property Name="User_Guid" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Tbl_Customer_Tbl_Customer">
           <End Role="Tbl_Customer" Type="Self.Tbl_Customer" Multiplicity="1" />
@@ -201,6 +202,7 @@
           <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Tbl_Job_Application" Relationship="Self.FK_Tbl_Job_Application_Tbl_Users" FromRole="Tbl_Users" ToRole="Tbl_Job_Application" />
           <Property Name="User_Phone_Number" Type="Int32" />
+          <Property Name="User_Guid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Tbl_Customer_Tbl_Customer">
           <End Role="Tbl_Customer" Type="Self.Tbl_Customer" Multiplicity="1" />
@@ -318,6 +320,7 @@
           <EntitySetMapping Name="Tbl_Users">
             <EntityTypeMapping TypeName="Job_Candidate_ApplicationModel.Tbl_Users">
               <MappingFragment StoreEntitySet="Tbl_Users">
+                <ScalarProperty Name="User_Guid" ColumnName="User_Guid" />
                 <ScalarProperty Name="User_Phone_Number" ColumnName="User_Phone_Number" />
                 <ScalarProperty Name="Email_Id" ColumnName="Email_Id" />
                 <ScalarProperty Name="User_First_Name" ColumnName="User_First_Name" />

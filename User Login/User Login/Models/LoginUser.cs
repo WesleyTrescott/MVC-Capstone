@@ -25,12 +25,11 @@ namespace User_Login.Models
 
         public bool IsValid(string email, string password)
         {
-            //using (var cn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='c:\users\wesley\documents\visual studio 2013\Projects\User Login\User Login\App_Data\Database1.mdf';Integrated Security=True"))
-            // using (var cn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='|DataDirectory|\Login.mdf';Integrated Security=True"))
             using (var cn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='|DataDirectory|\Job_Candidate_Application.mdf';Integrated Security=True"))
             {
-                string _sql = @"SELECT [Email_Id] FROM [Tbl_Users] WHERE [Email_Id] = @u AND [Password] = @p";
-                //    string _sql = @"SELECT [EmailId] 
+                // user needs to verify email before they can log in. 
+                // Verifying email changes Is_Active to 1
+                string _sql = @"SELECT [Email_Id] FROM [Tbl_Users] WHERE [Email_Id] = @u AND [Password] = @p AND [Is_Active] = 1";
                 var cmd = new SqlCommand(_sql, cn);
                 cmd.Parameters.Add(new SqlParameter("@u", SqlDbType.NVarChar)).Value = email;
                 cmd.Parameters.Add(new SqlParameter("@p", SqlDbType.NVarChar)).Value = Helpers.SHA1.Encode(password);

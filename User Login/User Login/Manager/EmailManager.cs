@@ -9,23 +9,24 @@ namespace User_Login.Manager
     {
         private const string EmailFrom = "computech_capstone@yahoo.com";
 
-        public static void SendConfirmationEmail(string firstName, string email)
+        public static void SendConfirmationEmail(string firstName, string email, string guid)
         {
-           // var user = Membership.GetUser();
-
-            //var confirmationGuid = user.ProviderUserKey.ToString();
+            var user = new Models.User();
             var verifyUrl = HttpContext.Current.Request.Url.GetLeftPart
-                (UriPartial.Authority) + "/User/Verify/"; // +confirmationGuid;
+                (UriPartial.Authority) + "/User/Verify?email=" + email + "&id=" + guid;
 
             using (var client = new SmtpClient())
-            {
-                using (var message = new MailMessage(EmailFrom, email))
+            { 
+                using (var message = new MailMessage(
+                    new MailAddress(EmailFrom, "Computech Corporation"),
+                    new MailAddress(email)
+                    ))
                 {
-                    message.Subject = "Please Verify your Account";
+                    message.Subject = "Please Verify Your Computech Account";
                     message.Body = "<html><head><meta content=\"text/html; charset=utf-8\" /></head><body><p>Dear " + firstName +
                         ", </p><p>To verify your account, please click the following link:</p>"
                         + "<p><a href=\"" + verifyUrl + "\" target=\"_blank\">" + verifyUrl
-                        + "</a></p><div>Best regards,</div><div>Someone</div><p>Do not forward "
+                        + "</a></p><div>Best regards,</div><div>Computech Corporation Human Resources</div><p>Do not forward "
                         + "this email. The verify link is private.</p></body></html>";
 
                     message.IsBodyHtml = true;

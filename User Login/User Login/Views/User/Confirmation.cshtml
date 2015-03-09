@@ -13,6 +13,15 @@
 <br />
 <text class="text-danger" style="font-size:large">
     Thank you for registering. You have one more step to complete registration. 
-    We have sent you an email with registration link. Please check your email account 
-    (that you used when registering) and click on the link.
+
+    <br />
+    We have sent you an email with registration link. Please check your email account and click on the link to verify your email address.
+
+
+<br />
+<br />
+<br />
+    You will be redirected to home page within soon.
+@{Response.AddHeader("REFRESH", "10;URL=/Home/Index");}
+    
 </text>

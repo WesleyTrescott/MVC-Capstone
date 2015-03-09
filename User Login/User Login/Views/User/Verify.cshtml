@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Verify";
+}
+
+<h2>Thank you for verifying your email</h2>
+
+<br />
+<br />
+<br />
+<label class="label label-primary center-block" style="font-size:x-large">Email verification</label>
+
+<br />
+<br />
+<text class="text-danger" style="font-size:large">
+    @*Thank you for verifying your email. You can now log in to the account, set up your profile and apply to jobs.
+    The distance between you and your career has never been closer.*@
+    
+    <div class="text-danger">
+        @Session["verify"].ToString()
+    </div>
+    <br />
+    <br />
+
+    You will be redirected to login page soon.
+    @{Response.AddHeader("REFRESH", "10;URL=/User/Login");}
+
+</text>

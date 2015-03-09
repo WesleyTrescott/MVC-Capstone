@@ -11,6 +11,8 @@ namespace User_Login.Controllers
 {
     public class UserController : Controller
     {
+        //create unique key for user
+        private static Guid guid = Guid.NewGuid();
         //
         // GET: /User/
         public ActionResult Index()
@@ -73,10 +75,11 @@ namespace User_Login.Controllers
 
             if (ModelState.IsValid)
             {
-                if (user.Email != null && user.RegisterUser(user.FirstName, user.LastName, user.Password, user.Email))
+                if (user.Email != null && user.RegisterUser(user.FirstName, user.LastName, user.Password, user.Email, guid.ToString()))
                 {
                     //user registration successful
-                    Manager.EmailManager.SendConfirmationEmail(user.FirstName, user.Email);
+                    //Guid guid = Guid.NewGuid();
+                    Manager.EmailManager.SendConfirmationEmail(user.FirstName, user.Email, guid.ToString());
                     return RedirectToAction("Confirmation", "User");
                     //FormsAuthentication.SetAuthCookie(user.Email, user.RememberMe);
                     //return RedirectToAction("Profile", "User");
@@ -95,9 +98,65 @@ namespace User_Login.Controllers
             return View(user);
         }
 
+        [AllowAnonymous]
         public ActionResult Confirmation()
         {
             return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult Verify()
+        {
+            try
+            {
+                string guidToTest = Request["id"];
+                string email = Request["email"];
+                var entities = new Job_Candidate_Application_Entities();
+
+                var model = entities.Tbl_Users.Find(email);
+                var is_active = model.Is_Active;
+
+                //user has not confirmed yet
+                if (is_active == 0)
+                {
+                    if (email != null && guidToTest != null)
+                    {
+                        var user = new Models.User();
+
+                        var guid = model.User_Guid;
+
+
+                        if (guidToTest == guid.ToString() && is_active == 0)
+                        {
+                            //email confirmed
+                            if (user.Confirmed(email) == true)
+                            {
+                                Session["verify"] = "Thank you for verifying your email. You can now log in to the account, set up your profile and apply to jobs. The distance between you and your career has never been closer.";
+                                return View();
+                            }
+                            //FormsAuthentication.SetAuthCookie(user.Email, true);
+                            //return RedirectToAction("LogIn", "User");
+                        }
+                        else
+                        {
+                            Session["verify"] = "Error in verifying your email. Please try again!";
+                            return View();
+                        }
+                    }
+                }
+                else
+                {
+                    Session["verify"] = "Email has already been confirmed. Please try to login.";
+                    return View();
+                }
+            }
+            catch (Exception ex)
+            {
+                Session["verify"] = ex.Message;
+            }
+
+            //something happened. redirect user to home screen
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
