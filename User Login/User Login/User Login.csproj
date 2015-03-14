@@ -272,7 +272,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Manager\EmailManager.cs" />
-    <Compile Include="Models\Apply.cs" />
     <Compile Include="Models\EnhancedJobCandidateApp.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -353,7 +352,6 @@
     <Content Include="Views\JobSearch\Apply.cshtml" />
     <Content Include="Views\User\Confirmation.cshtml" />
     <Content Include="Views\User\Verify.cshtml" />
-    <Content Include="Views\JobSearch\SubmitApplication.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

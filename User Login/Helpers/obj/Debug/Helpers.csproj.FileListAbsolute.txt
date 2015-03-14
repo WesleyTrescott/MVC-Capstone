@@ -31,5 +31,6 @@ C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\Helpers\obj\Debug\Helpe
 C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\Helpers\bin\Debug\Helpers.dll
 C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\Helpers\bin\Debug\Helpers.pdb
 C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\Helpers\bin\Debug\AweSome.dll
+C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\Helpers\obj\Debug\Helpers.csprojResolveAssemblyReference.cache
 C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\Helpers\obj\Debug\Helpers.dll
 C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\Helpers\obj\Debug\Helpers.pdb

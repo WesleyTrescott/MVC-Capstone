@@ -40,102 +40,34 @@ namespace User_Login.Controllers
             }
             //var entities = new JobDbEntities();
             var entities = new Job_Candidate_Application_Entities();
-            Session["hasApplied"] = "";
             //Job jobs = entities.Jobs.Where(x=>x.Job_Id == id).Select(x =>
             //    new Job
             //    )
 
             Tbl_Jobs jobs = entities.Tbl_Jobs.Find(id);
-            var user = new Models.Apply();
-            var email = User.Identity.Name;
 
             if (jobs == null)
             {
                 return HttpNotFound();
             }
-            else if (user.hasApplied(email,jobs.Job_Id) == true)
-            {
-                Session["hasApplied"] = "You have applied for this job";
-            }
 
             return View(jobs);
         }
 
-        [HttpGet]
         public ActionResult Apply(int? id = 0)
         {
-            if (id == null)
-                return RedirectToAction("Index", "JobSearch");
-
             if (User.Identity.IsAuthenticated)
             {
-                var applyJob = new Models.Apply();
-                var email = User.Identity.Name;
-
                 var entities = new Job_Candidate_Application_Entities();
 
                 var job = entities.Tbl_Jobs.Find(id);
-                var userInfo = entities.Tbl_Users.Find(email);
+                return View();
 
-                if (applyJob.hasApplied(email, job.Job_Id) == false)
-                {
-                    applyJob.JobPosition = job.Position;
-                    applyJob.JobId = job.Job_Id;
-                    applyJob.EmailId = userInfo.Email_Id;
-                    applyJob.FirstName = userInfo.User_First_Name;
-                    applyJob.LastName = userInfo.User_Last_Name;
-                    applyJob.Street = userInfo.User_Street;
-                    applyJob.City = userInfo.User_City;
-                    applyJob.State = userInfo.User_State;
-                    applyJob.Country = userInfo.User_Country;
-                    applyJob.phone_number = userInfo.User_Phone_Number;
-                    applyJob.Skills = userInfo.Skills;
-                    applyJob.Experience_Years = userInfo.Exp_Years;
-
-                    //var errors = ModelState.Select(x => x.Value.Errors)
-                    //           .where(y => y.count > 0)
-                    //           .tolist();
-
-                    return View(applyJob);
-                }
-                else
-                {
-                    Session["submitApplication"] = "You have already applied for the job";
-                    return View("SubmitApplication");
-                }
             }
             else
                 return RedirectToAction("Login", "User");
         }
 
-        [HttpPost]
-        public ActionResult Apply(Models.Apply applyJob)
-        {
-            //var user = new Models.Apply();
-            string email = applyJob.EmailId;
-            int jobId = applyJob.JobId;
-
-            if (User.Identity.IsAuthenticated)
-            {
-                if (ModelState.IsValid)
-                {
-                    if (applyJob.submitApplication(email, jobId))
-                    {
-                        Session["submitApplication"] = "Application was submitted successfully. Thank you for your interest.";
-                    }
-                    else
-                    {
-                        Session["submitApplication"] = "There was an error in submitting your application. Please try again. Sorry for the inconvinience";
-                    }
-
-                    return View("SubmitApplication");
-                }
-            }
-            else
-                return RedirectToAction("Index", "JobSearch");
-
-            return RedirectToAction("Index", "JobSearch");
-        }
         //public ActionResult Details(int id = 0)
         //{
         //    if (id == 0)
