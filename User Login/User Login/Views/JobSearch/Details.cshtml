@@ -3,9 +3,17 @@
     ViewBag.Title = "Job Details";    
 }
 
-
-<h2 style="align-content:center">@Html.Encode(Model.Position)</h2>
-
+<br />
+<br />
+<h3 class="h3 text-center text-info bg-info" style="align-content:center">
+        @Html.Encode(Model.Position)
+</h3>
+@if (Session["hasApplied"] != null)
+{
+    <label class="label-danger" style="font-size:medium">
+            @Session["hasApplied"].ToString()
+    </label>
+}
 <br />
 <br />
 <br />
@@ -238,8 +246,10 @@
     <br />
     @*<pre style="border:none; background-color:white;">*@
     @*<form class="Apply">*@
-    <input type="button" class="btn btn-default" value="Apply" onclick="window.location.href='@Url.Action("Apply", "JobSearch", new { id = @Model.Job_Id  })'" />       |     <input type="button" class="btn btn-default" value="Back" onclick="window.location.href='@Url.Action("Index", "JobSearch")'" />
 
+    <div class="text-center">
+        <input type="button" class="btn btn-toolbar" value="Apply" onclick="window.location.href='@Url.Action("Apply", "JobSearch", new { id = @Model.Job_Id  })'" />&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-toolbar" value="Back" onclick="window.location.href='@Url.Action("Index", "JobSearch")'" />
+    </div>                                                                                                                                                           
       @*  </form>*@
     @*</pre>*@
 </div>

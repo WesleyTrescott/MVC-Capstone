@@ -272,6 +272,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Manager\EmailManager.cs" />
+    <Compile Include="Models\Apply.cs" />
     <Compile Include="Models\EnhancedJobCandidateApp.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
