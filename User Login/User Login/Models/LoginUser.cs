@@ -49,5 +49,29 @@ namespace User_Login.Models
                 }
             }
         }
+        public bool IsAdmin(string email, string password)
+        {
+            using (var cn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='|DataDirectory|\Job_Candidate_Application.mdf';Integrated Security=True"))
+            {
+                string _sql = @"SELECT [Admin_Email_Id] FROM [Tbl_Admin] WHERE [Admin_Email_Id] = @u AND [Admin_Password] = @p";
+                var cmd = new SqlCommand(_sql, cn);
+                cmd.Parameters.Add(new SqlParameter("@u", SqlDbType.NVarChar)).Value = email;
+                cmd.Parameters.Add(new SqlParameter("@p", SqlDbType.NVarChar)).Value = Helpers.SHA1.Encode(password);
+                cn.Open();
+                var reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    reader.Dispose();
+                    cmd.Dispose();
+                    return true;
+                }
+                else
+                {
+                    reader.Dispose();
+                    cmd.Dispose();
+                    return false;
+                }
+            }
+        }
     }
 }

@@ -31,7 +31,13 @@ namespace User_Login.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (user.IsValid(user.Email, user.Password))
+                if(user.IsAdmin(user.Email, user.Password))
+                {
+                    //Admin Login
+                    FormsAuthentication.SetAuthCookie(user.Email, user.RememberMe);
+                    return RedirectToAction("AdminLoggedIn", "User");
+                }
+                else if (user.IsValid(user.Email, user.Password))
                 {
                     //login successful
                     FormsAuthentication.SetAuthCookie(user.Email, user.RememberMe);
@@ -161,6 +167,15 @@ namespace User_Login.Controllers
 
         [HttpGet]
         public ActionResult LoggedIn()
+        {
+            if (User.Identity.IsAuthenticated)
+                return View();
+            else
+                return RedirectToAction("Login", "User");
+        }
+
+        [HttpGet]
+        public ActionResult AdminLoggedIn()
         {
             if (User.Identity.IsAuthenticated)
                 return View();
