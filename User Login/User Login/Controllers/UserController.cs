@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Threading;
+using PagedList;
 using User_Login.Models;
 
 namespace User_Login.Controllers
@@ -294,7 +295,7 @@ namespace User_Login.Controllers
         }
 
         [HttpGet]
-        public ActionResult LoggedIn(string city, string customer)
+        public ActionResult LoggedIn(string city, string customer, int? page)
         {
             var entities = new Job_Candidate_Application_Entities();
             ViewBag.Location = (from r in entities.Tbl_Jobs select r.City_Name).Distinct();
@@ -307,23 +308,28 @@ namespace User_Login.Controllers
                 if (city != "" && customer != "")
                 {
                     model = (from r in entities.Tbl_Jobs where r.Customer == customer && r.City_Name == city select r);
+                    model.OrderBy(r => r.Position);
                 }
                 else if (city != "")
                 {
                     model = (from r in entities.Tbl_Jobs where r.City_Name == city select r);
+                    model.OrderBy(r => r.Position);
                 }
                 else
                 {
                     model = (from r in entities.Tbl_Jobs where r.Customer == customer select r);
+                    model.OrderBy(r => r.Position);
                 }
             }
             else
             {
                 model = from r in entities.Tbl_Jobs where r.Position == "dkjfldjls" select r;
             }
-
+            model.OrderBy(r => r.Position);
+            int pageSize = 3;
+            int pageNum = (page ?? 1);
             if (User.Identity.IsAuthenticated)
-                return View(model);
+                return View(model.ToPagedList(pageNum, pageSize));
             else
                 return RedirectToAction("Login", "User");
         }

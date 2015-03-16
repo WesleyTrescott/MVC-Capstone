@@ -264,8 +264,6 @@ C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\CubedEle
 C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\CubedElement.DataTable.Contracts.xml
 C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\CubedElement.DataTable.Model.pdb
 C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\CubedElement.DataTable.Model.xml
-C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\EntityFramework.xml
-C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\EntityFramework.SqlServer.xml
 C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\Newtonsoft.Json.xml
 C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\System.Web.Optimization.xml
 C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\WebMatrix.Data.xml
@@ -371,3 +369,7 @@ C:\Data\Senior Project\Github\March13\MVC-Capstone-master\User Login\User Login\
 C:\Data\Senior Project\Github\March13\MVC-Capstone-master\User Login\User Login\obj\Debug\User Login.csprojResolveAssemblyReference.cache
 C:\Data\Senior Project\Github\March13\MVC-Capstone-master\User Login\User Login\obj\Debug\User Login.dll
 C:\Data\Senior Project\Github\March13\MVC-Capstone-master\User Login\User Login\obj\Debug\User Login.pdb
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\PagedList.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\PagedList.Mvc.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\PagedList.xml
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\PagedList.Mvc.xml

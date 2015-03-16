@@ -1,5 +1,8 @@
 ﻿@using System.Linq
-@model IEnumerable<User_Login.Models.Tbl_Jobs>
+@model PagedList.IPagedList<User_Login.Models.Tbl_Jobs>
+@using PagedList.Mvc;
+@*@model IEnumerable<User_Login.Models.Tbl_Jobs>*@
+
 
 @{
     ViewBag.Title = "LoggedIn";
@@ -246,16 +249,16 @@
                         {
                             <tr>
                                 <td>
-                                    @Html.Encode(item.Position)
+                                    @Html.DisplayFor(modelItem => item.Position)
                                 </td>
                                 <td>
-                                    @Html.Encode(item.Profile_Description)
+                                    @Html.DisplayFor(modelItem => item.Profile_Description)
                                 </td>
                                 <td>
-                                    @Html.Encode(item.City_Name) @Html.Encode(item.State_Name)
+                                    @Html.DisplayFor(modelItem => item.City_Name) @Html.DisplayFor(modelItem => item.State_Name)
                                 </td>
                                 <td>
-                                    @Html.Encode(item.Required_Skills)
+                                    @Html.DisplayFor(modelItem => item.Required_Skills)
                                 </td>
                                 <td>
                                     <input type="button" class="btn btn-default" value="Details" onclick="window.location.href='@Url.Action("Details", "JobSearch" , new { id=@item.Job_Id })'" />
@@ -263,6 +266,9 @@
                             </tr>
                         }
                     </table>
+                    <br />
+                    <p>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount </p>
+                    @Html.PagedListPager(Model, page => Url.Action("LoggedIn", new { page }))
                 }
                 <br />
             </div>
