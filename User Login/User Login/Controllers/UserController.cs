@@ -294,10 +294,36 @@ namespace User_Login.Controllers
         }
 
         [HttpGet]
-        public ActionResult LoggedIn()
+        public ActionResult LoggedIn(string city, string customer)
         {
+            var entities = new Job_Candidate_Application_Entities();
+            ViewBag.Location = (from r in entities.Tbl_Jobs select r.City_Name).Distinct();
+            ViewBag.Customer = (from r in entities.Tbl_Jobs select r.Customer).Distinct();
+
+            var model = from r in entities.Tbl_Jobs select r;
+
+            if (city != "" || customer != "")
+            {
+                if (city != "" && customer != "")
+                {
+                    model = (from r in entities.Tbl_Jobs where r.Customer == customer && r.City_Name == city select r);
+                }
+                else if (city != "")
+                {
+                    model = (from r in entities.Tbl_Jobs where r.City_Name == city select r);
+                }
+                else
+                {
+                    model = (from r in entities.Tbl_Jobs where r.Customer == customer select r);
+                }
+            }
+            else
+            {
+                model = from r in entities.Tbl_Jobs where r.Position == "dkjfldjls" select r;
+            }
+
             if (User.Identity.IsAuthenticated)
-                return View();
+                return View(model);
             else
                 return RedirectToAction("Login", "User");
         }

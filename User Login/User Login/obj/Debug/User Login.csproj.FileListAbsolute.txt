@@ -242,8 +242,6 @@ C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\User Log
 C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\Antlr3.Runtime.dll
 C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\CubedElement.DataTable.Contracts.dll
 C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\CubedElement.DataTable.Model.dll
-C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\EntityFramework.dll
-C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\EntityFramework.SqlServer.dll
 C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\Helpers.dll
 C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\Newtonsoft.Json.dll

@@ -1,14 +1,20 @@
-﻿@{
+﻿@using System.Linq
+@model IEnumerable<User_Login.Models.Tbl_Jobs>
+
+@{
     ViewBag.Title = "LoggedIn";
 }
 
 <br />
-<h2 class="page-header">Welcome, @User.Identity.Name!</h2>
+<br />
+<h2 class="page-header" style="padding-left:20px;">Welcome, @User.Identity.Name!</h2>
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h4 class="page-header">Recommended Jobs</h4>
+            <h4>Recommended Jobs</h4>
+            <p style="font-style:italic;">Check out these trending jobs you may qualify for.</p>
+            <hr />
         </div>
         <div class="col-md-4">
             <div class="span2 description blue">
@@ -185,13 +191,79 @@
     <div class="container" style="background-color:darkgray; width:100%;">
         <div class="row" style="width:100%;">
             <div class="col-md-12" style=" width:100%;">
-                <h2 style="text-align:center;">Computech Job Search</h2>
+                <h2 style="text-align:center; font-weight:600">Computech Job Search</h2>
+                <br />
+                <br />
+                @using (Html.BeginForm("LoggedIn", "User", FormMethod.Get))
+                {
+                    <div class="row row-centered">
+                        <div class="col-md-3">
+                            @Html.Label("Filter By Location")
+                            @Html.DropDownList("city", new SelectList(ViewBag.Location), "Select One", new { @class = "form-control", @style = "width:auto" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.Label("Filter By Customer")
+                            @Html.DropDownList("customer", new SelectList(ViewBag.Customer), "Select One", new { @class = "form-control", @style = "width:150px" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.Label("Filter By Required Skills")
+                            @Html.DropDownList("skills", Enumerable.Empty<SelectListItem>(), "Select One", new { @class = "form-control", @style = "width:auto" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.Label("Filter By Required Experience")
+                            @Html.DropDownList("experience", Enumerable.Empty<SelectListItem>(), "Select One", new { @class = "form-control", @style = "width:auto" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="col-md-8"></div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <button type="submit" class="btn btn-submit">Search Jobs   <span class="glyphicon glyphicon-search"></span></button>
+                            <span style="padding-left:30px"></span>
+                            <button type="submit" class="btn btn-submit">Reset Search   </button>
+                        </div>
+                    </div>
+                }
+
                 <br />
                 <br />
                 <br />
-                <br />
-                <p style="font-size:large; text-align:center">Coming Soon: Job Search Functionality!</p>
-                <br />
+
+                @if (!Model.Any())
+                {
+                    <p>No search results!</p>
+                }
+                else
+                {
+                    <table class="table table-hover table-condensed">
+                        <tr>
+                            <td class="col-md-2">Job Position</td>
+                            <td class="col-md-2">Job Description</td>
+                            <td class="col-md-2">Location</td>
+                            <td class="col-md-2">Skills</td>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.Encode(item.Position)
+                                </td>
+                                <td>
+                                    @Html.Encode(item.Profile_Description)
+                                </td>
+                                <td>
+                                    @Html.Encode(item.City_Name) @Html.Encode(item.State_Name)
+                                </td>
+                                <td>
+                                    @Html.Encode(item.Required_Skills)
+                                </td>
+                                <td>
+                                    <input type="button" class="btn btn-default" value="Details" onclick="window.location.href='@Url.Action("Details", "JobSearch" , new { id=@item.Job_Id })'" />
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                }
                 <br />
             </div>
         </div>
