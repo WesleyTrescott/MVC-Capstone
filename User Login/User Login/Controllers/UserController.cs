@@ -67,6 +67,7 @@ namespace User_Login.Controllers
         [HttpGet]
         public ActionResult ChangePasswordEmail()
         {
+            Session["changePassword"] = null;
             try
             {
                 string guid = Request["id"];
@@ -75,20 +76,26 @@ namespace User_Login.Controllers
 
                 var model = new Models.ChangePassword();
                 var verifyEmail = entities.Tbl_Users.Find(email);
+                string isGuidValid = verifyEmail.User_Guid;
 
-                if (verifyEmail != null)
+                if (guid != isGuidValid)
+                {
+                    ModelState.AddModelError("", "Link is not valid.");
+                    return View(model);
+                }
+                else if (verifyEmail != null)
                 {
                     //user has not confirmed yet
                     if (email != null && guid != null)
                     {
                         model.EmailId = email;
-                        return View();
+                        return View(model);
                     }
                 }
                 else
                 {
                     ModelState.AddModelError("", "Email ID could not be found!");
-                    return View();
+                    return View(model);
                 }
             }
             catch (Exception ex)
@@ -103,24 +110,40 @@ namespace User_Login.Controllers
         [HttpPost]
         public ActionResult ChangePasswordEmail(Models.ChangePassword model)
         {
-            string email = model.EmailId;
-            string password = model.Password;
-            try
+            string email = Request["email"];
+            if (ModelState.IsValid)
             {
-                if (model.UpdatePassword(email, password))
+                string password = model.Password;
+                guid = Guid.NewGuid();
+                try
                 {
-                    Session["changePassword"] = "Password was changed successfully";
-                    return View();
+                    //update password in the database
+                    //update guid to invalidate change password link in the email
+                    if (model.UpdatePassword(email, password, guid.ToString()))
+                    {
+                        model.EmailId = email;
+                        model.Password = null;
+                        model.ConfirmPassword = null;
+                        Session["changePassword"] = "Password was changed successfully";
+                        return View(model);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //Session["changePassword"] = ex.Message;
+                    ModelState.AddModelError("", "Error occured! Try again!");
+                    return View(model);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                Session["changePassword"] = ex.Message;
-                return View();
+               // ModelState.AddModelError("", "Error occured! Try again!");
+                model.EmailId = email;
+                return View(model);
             }
 
-            //something happened. redirect user to home screen
-            return RedirectToAction("Index", "Home");
+            //something happened. display page again
+            return View(model);
         }
 
         [HttpGet]

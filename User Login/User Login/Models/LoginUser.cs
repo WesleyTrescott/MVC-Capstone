@@ -31,8 +31,10 @@ namespace User_Login.Models
                 // Verifying email changes Is_Active to 1
                 string _sql = @"SELECT [Email_Id] FROM [Tbl_Users] WHERE [Email_Id] = @u AND [Password] = @p AND [Is_Active] = 1";
                 var cmd = new SqlCommand(_sql, cn);
+
                 cmd.Parameters.Add(new SqlParameter("@u", SqlDbType.NVarChar)).Value = email;
                 cmd.Parameters.Add(new SqlParameter("@p", SqlDbType.NVarChar)).Value = Helpers.SHA1.Encode(password);
+                
                 cn.Open();
                 var reader = cmd.ExecuteReader();
                 if (reader.HasRows)
@@ -49,6 +51,7 @@ namespace User_Login.Models
                 }
             }
         }
+
         public bool IsAdmin(string email, string password)
         {
             using (var cn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='|DataDirectory|\Job_Candidate_Application.mdf';Integrated Security=True"))
