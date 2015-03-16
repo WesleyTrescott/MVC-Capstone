@@ -15,12 +15,116 @@ namespace User_Login.Controllers
         private static Guid guid = Guid.NewGuid();
         //
         // GET: /User/
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View();
         }
 
         [HttpGet]
+        [AllowAnonymous]
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ForgotPassword(Models.ForgotPassword forgotPassword)
+        {
+            string email = forgotPassword.EmailId;
+
+            if (email != null)
+            {
+                var model = new Job_Candidate_Application_Entities();
+                Session["forgotPassword"] = "We sent an email with link to change the password. Please check your email.";
+
+                var user = model.Tbl_Users.Find(email);
+
+                if (user != null)
+                {
+                    var guid = Guid.NewGuid();              //create unique global id
+                    string firstName = user.User_First_Name;
+                    if (forgotPassword.updateGuid(email, guid.ToString()))
+                    {
+                        //guid was updated in database, send email to user
+                        Manager.EmailManager.SendForgotPasswordEmail(firstName, email, guid.ToString());
+                    }
+                    return View();
+                }
+                else
+                    return View();
+            }
+            else
+            {
+                ModelState.AddModelError("", "Error occurred. Try again!!");
+                return View();
+            }
+
+            //something happened, send user back to home page
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public ActionResult ChangePasswordEmail()
+        {
+            try
+            {
+                string guid = Request["id"];
+                string email = Request["email"];
+                var entities = new Job_Candidate_Application_Entities();
+
+                var model = new Models.ChangePassword();
+                var verifyEmail = entities.Tbl_Users.Find(email);
+
+                if (verifyEmail != null)
+                {
+                    //user has not confirmed yet
+                    if (email != null && guid != null)
+                    {
+                        model.EmailId = email;
+                        return View();
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Email ID could not be found!");
+                    return View();
+                }
+            }
+            catch (Exception ex)
+            {
+                Session["verify"] = ex.Message;
+            }
+
+            //something happened. redirect user to home screen
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public ActionResult ChangePasswordEmail(Models.ChangePassword model)
+        {
+            string email = model.EmailId;
+            string password = model.Password;
+            try
+            {
+                if (model.UpdatePassword(email, password))
+                {
+                    Session["changePassword"] = "Password was changed successfully";
+                    return View();
+                }
+            }
+            catch (Exception ex)
+            {
+                Session["changePassword"] = ex.Message;
+                return View();
+            }
+
+            //something happened. redirect user to home screen
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
         public ActionResult Login()
         {
             return View();
@@ -68,6 +172,7 @@ namespace User_Login.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult Register()
         {
             return View();

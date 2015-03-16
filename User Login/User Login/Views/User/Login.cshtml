@@ -35,20 +35,9 @@
                 <input type="submit" value="Log In" class="btn btn-danger"/>      @*modified by Simul*@  
             </div>
         </fieldset>
+
+    <br />
+    <br />
+    @Html.ActionLink("Click here if you forgot your password", "ForgotPassword", "User")
     </div>
 }
-
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
-<script type="text/javascript">
-    $(function () {
-        $('#btnSubmit').click(){
-            if ($(this).valid()){
-            }
-            else
-            {
-                $('#test').effect(shake);
-            };
-        };
-    });
-</script>

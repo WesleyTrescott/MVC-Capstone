@@ -36,5 +36,33 @@ namespace User_Login.Manager
                 };
             };
         }
+
+        public static void SendForgotPasswordEmail(string firstName, string email, string guid)
+        {
+            var user = new Models.User();
+            var forgotPasswordUrl = HttpContext.Current.Request.Url.GetLeftPart
+                (UriPartial.Authority) + "/User/ChangePasswordEmail?email=" + email + "&id=" + guid;
+
+            using (var client = new SmtpClient())
+            {
+                using (var message = new MailMessage(
+                    new MailAddress(EmailFrom, "Computech Corporation"),
+                    new MailAddress(email)
+                    ))
+                {
+                    message.Subject = "Computech Corporation - Forgot Password";
+                    message.Body = "<html><head><meta content=\"text/html; charset=utf-8\" /></head><body><p>Dear " + firstName +
+                        ", </p><p>To change your password, please click the following link:</p>"
+                        + "<p><a href=\"" + forgotPasswordUrl + "\" target=\"_blank\">" + forgotPasswordUrl
+                        + "</a></p><div>Best regards,</div><div>Computech Corporation Human Resources</div><p>Do not forward "
+                        + "this email. The link is private.</p></body></html>";
+
+                    message.IsBodyHtml = true;
+
+                    client.EnableSsl = true;
+                    client.Send(message);
+                };
+            };
+        }
 } 
 }

@@ -273,6 +273,7 @@
     </Compile>
     <Compile Include="Manager\EmailManager.cs" />
     <Compile Include="Models\Apply.cs" />
+    <Compile Include="Models\ChangePassword.cs" />
     <Compile Include="Models\EnhancedJobCandidateApp.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -288,6 +289,7 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Include="Models\ForgotPassword.cs" />
     <Compile Include="Models\Job.cs">
       <DependentUpon>JobsDbModel.tt</DependentUpon>
     </Compile>
@@ -354,6 +356,8 @@
     <Content Include="Views\User\Confirmation.cshtml" />
     <Content Include="Views\User\Verify.cshtml" />
     <Content Include="Views\User\AdminLoggedIn.cshtml" />
+    <Content Include="Views\User\ForgotPassword.cshtml" />
+    <Content Include="Views\User\ChangePasswordEmail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
