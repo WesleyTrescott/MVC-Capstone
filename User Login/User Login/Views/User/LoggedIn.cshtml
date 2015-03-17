@@ -8,6 +8,15 @@
     ViewBag.Title = "LoggedIn";
 }
 
+<style type="text/css">
+    .mytable tbody tr td {
+        max-width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+
 <br />
 <br />
 <h2 class="page-header" style="padding-left:20px;">Welcome, @User.Identity.Name!</h2>
@@ -202,11 +211,16 @@
                     <div class="row row-centered">
                         <div class="col-md-3">
                             @Html.Label("Filter By Location")
-                            @Html.DropDownList("city", new SelectList(ViewBag.Location), "Select One", new { @class = "form-control", @style = "width:auto" })
+                            @Html.DropDownList("city", new SelectList(ViewBag.Location), ViewBag.LocationLabel as string, new { @class = "form-control", @style = "width:auto" })
+                            @*<script type="text/javascript">
+                                var e = document.getElementById("city");
+                                var strUser = e.options[e.selectedIndex].text;
+                                ViewBag.Location = strUser;
+                            </script>*@
                         </div>
                         <div class="col-md-3">
                             @Html.Label("Filter By Customer")
-                            @Html.DropDownList("customer", new SelectList(ViewBag.Customer), "Select One", new { @class = "form-control", @style = "width:150px" })
+                            @Html.DropDownList("customer", new SelectList(ViewBag.Customer), ViewBag.CustomerLabel as string, new { @class = "form-control", @style = "width:150px" })
                         </div>
                         <div class="col-md-3">
                             @Html.Label("Filter By Required Skills")
@@ -238,7 +252,7 @@
                 }
                 else
                 {
-                    <table class="table table-hover table-condensed">
+                    <table class="table table-hover table-condensed mytable">
                         <tr>
                             <td class="col-md-2">Job Position</td>
                             <td class="col-md-2">Job Description</td>
@@ -268,7 +282,7 @@
                     </table>
                     <br />
                     <p>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount </p>
-                    @Html.PagedListPager(Model, page => Url.Action("LoggedIn", new { page }))
+                    @Html.PagedListPager(Model, page => Url.Action("LoggedIn", new { city = ViewBag.LocationLabel, customer = ViewBag.CustomerLabel, page }))
                 }
                 <br />
             </div>

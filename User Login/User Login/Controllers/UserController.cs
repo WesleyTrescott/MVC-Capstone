@@ -298,8 +298,38 @@ namespace User_Login.Controllers
         public ActionResult LoggedIn(string city, string customer, int? page)
         {
             var entities = new Job_Candidate_Application_Entities();
-            ViewBag.Location = (from r in entities.Tbl_Jobs select r.City_Name).Distinct();
-            ViewBag.Customer = (from r in entities.Tbl_Jobs select r.Customer).Distinct();
+
+
+            if (city != null && (city != "" || city != "Select One"))
+            {
+                ViewBag.LocationLabel = city;
+                ViewBag.Location = (from r in entities.Tbl_Jobs select r.City_Name).Distinct();
+            }
+            if (customer != null && (customer != "" || customer != "Select One"))
+            {
+                ViewBag.CustomerLabel = customer;
+                ViewBag.Customer = (from r in entities.Tbl_Jobs select r.Customer).Distinct();
+            }
+
+            if (page == null && city == null && customer == null)
+            {
+                ViewBag.Location = (from r in entities.Tbl_Jobs select r.City_Name).Distinct();
+                ViewBag.Customer = (from r in entities.Tbl_Jobs select r.Customer).Distinct();
+                ViewBag.LocationLabel = "Select One";
+                ViewBag.CustomerLabel = "Select One";
+            }
+            else if ((city == "" || city == "Select One"))
+            {
+                ViewBag.Location = (from r in entities.Tbl_Jobs select r.City_Name).Distinct();
+                ViewBag.LocationLabel = "Select One";
+                city = "";
+            }
+            else if ((customer == "" || customer == "Select One"))
+            {
+                ViewBag.Customer = (from r in entities.Tbl_Jobs select r.Customer).Distinct();
+                ViewBag.CustomerLabel = "Select One";
+                customer = "";
+            }
 
             var model = from r in entities.Tbl_Jobs select r;
 
@@ -308,28 +338,25 @@ namespace User_Login.Controllers
                 if (city != "" && customer != "")
                 {
                     model = (from r in entities.Tbl_Jobs where r.Customer == customer && r.City_Name == city select r);
-                    model.OrderBy(r => r.Position);
                 }
                 else if (city != "")
                 {
                     model = (from r in entities.Tbl_Jobs where r.City_Name == city select r);
-                    model.OrderBy(r => r.Position);
                 }
                 else
                 {
                     model = (from r in entities.Tbl_Jobs where r.Customer == customer select r);
-                    model.OrderBy(r => r.Position);
                 }
             }
             else
             {
                 model = from r in entities.Tbl_Jobs where r.Position == "dkjfldjls" select r;
             }
-            model.OrderBy(r => r.Position);
+
             int pageSize = 3;
             int pageNum = (page ?? 1);
             if (User.Identity.IsAuthenticated)
-                return View(model.ToPagedList(pageNum, pageSize));
+                return View(model.OrderBy(p => p.Position).ToPagedList(pageNum, pageSize));
             else
                 return RedirectToAction("Login", "User");
         }
