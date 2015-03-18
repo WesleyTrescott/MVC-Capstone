@@ -373,3 +373,7 @@ C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\PagedLis
 C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\PagedList.Mvc.dll
 C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\PagedList.xml
 C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\PagedList.Mvc.xml
+C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\User Login\bin\PagedList.dll
+C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\User Login\bin\PagedList.Mvc.dll
+C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\User Login\bin\PagedList.xml
+C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\User Login\bin\PagedList.Mvc.xml

@@ -41,7 +41,7 @@ namespace User_Login.Manager
         {
             var user = new Models.User();
             var forgotPasswordUrl = HttpContext.Current.Request.Url.GetLeftPart
-                (UriPartial.Authority) + "/User/ChangePasswordEmail?email=" + email + "&id=" + guid;
+                (UriPartial.Authority) + "/User/ChangePassword?email=" + email + "&id=" + guid;
 
             using (var client = new SmtpClient())
             {

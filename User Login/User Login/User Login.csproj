@@ -364,7 +364,7 @@
     <Content Include="Views\User\Verify.cshtml" />
     <Content Include="Views\User\AdminLoggedIn.cshtml" />
     <Content Include="Views\User\ForgotPassword.cshtml" />
-    <Content Include="Views\User\ChangePasswordEmail.cshtml" />
+    <Content Include="Views\User\ChangePassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -26,6 +26,7 @@ namespace User_Login.Controllers
         [AllowAnonymous]
         public ActionResult ForgotPassword()
         {
+            Session["forgotPassword"] = null;
             return View();
         }
 
@@ -33,6 +34,7 @@ namespace User_Login.Controllers
         public ActionResult ForgotPassword(Models.ForgotPassword forgotPassword)
         {
             string email = forgotPassword.EmailId;
+            Session["forgotPassword"] = null;
 
             if (email != null)
             {
@@ -66,8 +68,18 @@ namespace User_Login.Controllers
         }
 
         [HttpGet]
-        public ActionResult ChangePasswordEmail()
+        public ActionResult ChangeLogInPassword()
         {
+            if (User.Identity.IsAuthenticated)
+                return View();
+            else
+                return RedirectToAction("Index","Home");
+        }
+
+        [HttpGet]
+        public ActionResult ChangePassword()
+        {
+            
             Session["changePassword"] = null;
             try
             {
@@ -75,29 +87,38 @@ namespace User_Login.Controllers
                 string email = Request["email"];
                 var entities = new Job_Candidate_Application_Entities();
 
-                var model = new Models.ChangePassword();
-                var verifyEmail = entities.Tbl_Users.Find(email);
-                string isGuidValid = verifyEmail.User_Guid;
+                if (!User.Identity.IsAuthenticated && guid != null && email != null)
+                {
+                    var model = new Models.ChangePassword();
+                    var verifyEmail = entities.Tbl_Users.Find(email);
+                    string isGuidValid = verifyEmail.User_Guid;
 
-                if (guid != isGuidValid)
-                {
-                    ModelState.AddModelError("", "Link is not valid.");
-                    return View(model);
-                }
-                else if (verifyEmail != null)
-                {
-                    //user has not confirmed yet
-                    if (email != null && guid != null)
+                    if (guid != isGuidValid)
                     {
-                        model.EmailId = email;
+                        ModelState.AddModelError("", "Link is not valid.");
+                        return View(model);
+                    }
+                    else if (verifyEmail != null)
+                    {
+                        //user has not confirmed yet
+                        if (email != null && guid != null)
+                        {
+                            model.EmailId = email;
+                            return View(model);
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Email ID could not be found!");
                         return View(model);
                     }
                 }
-                else
+                else if (User.Identity.IsAuthenticated)
                 {
-                    ModelState.AddModelError("", "Email ID could not be found!");
-                    return View(model);
+                    return View();
                 }
+                else
+                    return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
             {
@@ -109,37 +130,54 @@ namespace User_Login.Controllers
         }
 
         [HttpPost]
-        public ActionResult ChangePasswordEmail(Models.ChangePassword model)
+        public ActionResult ChangePassword(Models.ChangePassword model)
         {
-            string email = Request["email"];
-            if (ModelState.IsValid)
+            try
             {
-                string password = model.Password;
-                guid = Guid.NewGuid();
-                try
+                var entities = new Job_Candidate_Application_Entities();
+                string email = Request["email"];
+                if (ModelState.IsValid)
                 {
+                    string currentPassword = null;
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        email = User.Identity.Name;
+                        currentPassword = model.CurrentPassword;
+
+                        var verifyCurrentPassword = entities.Tbl_Users.Find(email).Password;
+
+                        if (verifyCurrentPassword != Helpers.SHA1.Encode(currentPassword))
+                        {
+                            ModelState.AddModelError("", "Current password is incorrect! Try again");
+                            return View(model);
+                        }
+                    }
+                    string password = model.Password;
+                    guid = Guid.NewGuid();      //update change to invalidate change password link in the email
+                    
                     //update password in the database
-                    //update guid to invalidate change password link in the email
-                    if (model.UpdatePassword(email, password, guid.ToString()))
+                    if (model.UpdatePassword(email, currentPassword, password, guid.ToString()))
                     {
                         model.EmailId = email;
+                        model.CurrentPassword = null;
                         model.Password = null;
                         model.ConfirmPassword = null;
                         Session["changePassword"] = "Password was changed successfully";
                         return View(model);
                     }
+                    
                 }
-                catch (Exception ex)
+                else
                 {
-                    //Session["changePassword"] = ex.Message;
-                    ModelState.AddModelError("", "Error occured! Try again!");
+                    // ModelState.AddModelError("", "Error occured! Try again!");
+                    model.EmailId = email;
                     return View(model);
                 }
             }
-            else
+            catch (Exception ex)
             {
-               // ModelState.AddModelError("", "Error occured! Try again!");
-                model.EmailId = email;
+                //Session["changePassword"] = ex.Message;
+                ModelState.AddModelError("", "Error occured! Try again!");
                 return View(model);
             }
 
