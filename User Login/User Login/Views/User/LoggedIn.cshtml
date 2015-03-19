@@ -199,6 +199,42 @@
     </div>
 </div>
 
+<header id="myCarousel" class="carousel slide">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <div class="carousel-inner">
+        <div class="item active">
+            <div class="fill"></div>
+            <div class="carousel-caption">
+                <h2>Caption 1</h2>
+            </div>
+        </div>
+        <div class="item active">
+            <div class="fill"></div>
+            <div class="carousel-caption">
+                <h2>Caption 2</h2>
+            </div>
+        </div>
+        <div class="item active">
+            <div class="fill"></div>
+            <div class="carousel-caption">
+                <h2>Caption 3</h2>
+            </div>
+        </div>
+    </div>
+
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="icon-prev"></span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="icon-next"></span>
+    </a>
+</header>
+
 <div style="width:100%; padding-top:53px;">
     <div class="container" style="background-color:darkgray; width:100%;">
         <div class="row" style="width:100%;">
@@ -212,11 +248,6 @@
                         <div class="col-md-3">
                             @Html.Label("Filter By Location")
                             @Html.DropDownList("city", new SelectList(ViewBag.Location), ViewBag.LocationLabel as string, new { @class = "form-control", @style = "width:auto" })
-                            @*<script type="text/javascript">
-                                var e = document.getElementById("city");
-                                var strUser = e.options[e.selectedIndex].text;
-                                ViewBag.Location = strUser;
-                            </script>*@
                         </div>
                         <div class="col-md-3">
                             @Html.Label("Filter By Customer")
