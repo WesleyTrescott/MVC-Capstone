@@ -7,6 +7,7 @@ using System.Web.Security;
 using System.Threading;
 using PagedList;
 using User_Login.Models;
+using System.IO;
 
 namespace User_Login.Controllers
 {
@@ -21,170 +22,7 @@ namespace User_Login.Controllers
         {
             return View();
         }
-
-        [HttpGet]
-        [AllowAnonymous]
-        public ActionResult ForgotPassword()
-        {
-            Session["forgotPassword"] = null;
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult ForgotPassword(Models.ForgotPassword forgotPassword)
-        {
-            string email = forgotPassword.EmailId;
-            Session["forgotPassword"] = null;
-
-            if (email != null)
-            {
-                var model = new Job_Candidate_Application_Entities();
-                Session["forgotPassword"] = "We sent an email with link to change the password. Please check your email.";
-
-                var user = model.Tbl_Users.Find(email);
-
-                if (user != null)
-                {
-                    var guid = Guid.NewGuid();              //create unique global id
-                    string firstName = user.User_First_Name;
-                    if (forgotPassword.updateGuid(email, guid.ToString()))
-                    {
-                        //guid was updated in database, send email to user
-                        Manager.EmailManager.SendForgotPasswordEmail(firstName, email, guid.ToString());
-                    }
-                    return View();
-                }
-                else
-                    return View();
-            }
-            else
-            {
-                ModelState.AddModelError("", "Error occurred. Try again!!");
-                return View();
-            }
-
-            //something happened, send user back to home page
-            return RedirectToAction("Index", "Home");
-        }
-
-        [HttpGet]
-        public ActionResult ChangeLogInPassword()
-        {
-            if (User.Identity.IsAuthenticated)
-                return View();
-            else
-                return RedirectToAction("Index","Home");
-        }
-
-        [HttpGet]
-        public ActionResult ChangePassword()
-        {
-            
-            Session["changePassword"] = null;
-            try
-            {
-                string guid = Request["id"];
-                string email = Request["email"];
-                var entities = new Job_Candidate_Application_Entities();
-
-                if (!User.Identity.IsAuthenticated && guid != null && email != null)
-                {
-                    var model = new Models.ChangePassword();
-                    var verifyEmail = entities.Tbl_Users.Find(email);
-                    string isGuidValid = verifyEmail.User_Guid;
-
-                    if (guid != isGuidValid)
-                    {
-                        ModelState.AddModelError("", "Link is not valid.");
-                        return View(model);
-                    }
-                    else if (verifyEmail != null)
-                    {
-                        //user has not confirmed yet
-                        if (email != null && guid != null)
-                        {
-                            model.EmailId = email;
-                            return View(model);
-                        }
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("", "Email ID could not be found!");
-                        return View(model);
-                    }
-                }
-                else if (User.Identity.IsAuthenticated)
-                {
-                    return View();
-                }
-                else
-                    return RedirectToAction("Index", "Home");
-            }
-            catch (Exception ex)
-            {
-                Session["verify"] = ex.Message;
-            }
-
-            //something happened. redirect user to home screen
-            return RedirectToAction("Index", "Home");
-        }
-
-        [HttpPost]
-        public ActionResult ChangePassword(Models.ChangePassword model)
-        {
-            try
-            {
-                var entities = new Job_Candidate_Application_Entities();
-                string email = Request["email"];
-                if (ModelState.IsValid)
-                {
-                    string currentPassword = null;
-                    if (User.Identity.IsAuthenticated)
-                    {
-                        email = User.Identity.Name;
-                        currentPassword = model.CurrentPassword;
-
-                        var verifyCurrentPassword = entities.Tbl_Users.Find(email).Password;
-
-                        if (verifyCurrentPassword != Helpers.SHA1.Encode(currentPassword))
-                        {
-                            ModelState.AddModelError("", "Current password is incorrect! Try again");
-                            return View(model);
-                        }
-                    }
-                    string password = model.Password;
-                    guid = Guid.NewGuid();      //update change to invalidate change password link in the email
-                    
-                    //update password in the database
-                    if (model.UpdatePassword(email, currentPassword, password, guid.ToString()))
-                    {
-                        model.EmailId = email;
-                        model.CurrentPassword = null;
-                        model.Password = null;
-                        model.ConfirmPassword = null;
-                        Session["changePassword"] = "Password was changed successfully";
-                        return View(model);
-                    }
-                    
-                }
-                else
-                {
-                    // ModelState.AddModelError("", "Error occured! Try again!");
-                    model.EmailId = email;
-                    return View(model);
-                }
-            }
-            catch (Exception ex)
-            {
-                //Session["changePassword"] = ex.Message;
-                ModelState.AddModelError("", "Error occured! Try again!");
-                return View(model);
-            }
-
-            //something happened. display page again
-            return View(model);
-        }
-
+        
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Login()
@@ -471,6 +309,235 @@ namespace User_Login.Controllers
             else
                 //user not authenticated
                 return RedirectToAction("Login", "User");
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult ForgotPassword()
+        {
+            Session["forgotPassword"] = null;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ForgotPassword(Models.ForgotPassword forgotPassword)
+        {
+            string email = forgotPassword.EmailId;
+            Session["forgotPassword"] = null;
+
+            if (email != null)
+            {
+                var model = new Job_Candidate_Application_Entities();
+                Session["forgotPassword"] = "We sent an email with link to change the password. Please check your email.";
+
+                var user = model.Tbl_Users.Find(email);
+
+                if (user != null)
+                {
+                    var guid = Guid.NewGuid();              //create unique global id
+                    string firstName = user.User_First_Name;
+                    if (forgotPassword.updateGuid(email, guid.ToString()))
+                    {
+                        //guid was updated in database, send email to user
+                        Manager.EmailManager.SendForgotPasswordEmail(firstName, email, guid.ToString());
+                    }
+                    return View();
+                }
+                else
+                    return View();
+            }
+            else
+            {
+                ModelState.AddModelError("", "Error occurred. Try again!!");
+                return View();
+            }
+
+            //something happened, send user back to home page
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public ActionResult ChangeLogInPassword()
+        {
+            if (User.Identity.IsAuthenticated)
+                return View();
+            else
+                return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public ActionResult ChangePassword()
+        {
+
+            Session["changePassword"] = null;
+            try
+            {
+                string guid = Request["id"];
+                string email = Request["email"];
+                var entities = new Job_Candidate_Application_Entities();
+
+                if (!User.Identity.IsAuthenticated && guid != null && email != null)
+                {
+                    var model = new Models.ChangePassword();
+                    var verifyEmail = entities.Tbl_Users.Find(email);
+                    string isGuidValid = verifyEmail.User_Guid;
+
+                    if (guid != isGuidValid)
+                    {
+                        ModelState.AddModelError("", "Link is not valid.");
+                        return View(model);
+                    }
+                    else if (verifyEmail != null)
+                    {
+                        //user has not confirmed yet
+                        if (email != null && guid != null)
+                        {
+                            model.EmailId = email;
+                            return View(model);
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Email ID could not be found!");
+                        return View(model);
+                    }
+                }
+                else if (User.Identity.IsAuthenticated)
+                {
+                    return View();
+                }
+                else
+                    return RedirectToAction("Index", "Home");
+            }
+            catch (Exception ex)
+            {
+                Session["verify"] = ex.Message;
+            }
+
+            //something happened. redirect user to home screen
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword(Models.ChangePassword model)
+        {
+            try
+            {
+                var entities = new Job_Candidate_Application_Entities();
+                string email = Request["email"];
+                if (ModelState.IsValid)
+                {
+                    string currentPassword = null;
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        email = User.Identity.Name;
+                        currentPassword = model.CurrentPassword;
+
+                        var verifyCurrentPassword = entities.Tbl_Users.Find(email).Password;
+
+                        if (verifyCurrentPassword != Helpers.SHA1.Encode(currentPassword))
+                        {
+                            ModelState.AddModelError("", "Current password is incorrect! Try again");
+                            return View(model);
+                        }
+                    }
+                    string password = model.Password;
+                    guid = Guid.NewGuid();      //update change to invalidate change password link in the email
+
+                    //update password in the database
+                    if (model.UpdatePassword(email, currentPassword, password, guid.ToString()))
+                    {
+                        model.EmailId = email;
+                        model.CurrentPassword = null;
+                        model.Password = null;
+                        model.ConfirmPassword = null;
+                        Session["changePassword"] = "Password was changed successfully";
+                        return View(model);
+                    }
+
+                }
+                else
+                {
+                    // ModelState.AddModelError("", "Error occured! Try again!");
+                    model.EmailId = email;
+                    return View(model);
+                }
+            }
+            catch (Exception ex)
+            {
+                //Session["changePassword"] = ex.Message;
+                ModelState.AddModelError("", "Error occured! Try again!");
+                return View(model);
+            }
+
+            //something happened. display page again
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult UploadResume()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                UploadResume model = new Models.UploadResume();
+                string email = User.Identity.Name;
+                model.EmailId = email;
+                return View();
+            }
+            else
+                return View("Login");
+        }
+
+        [HttpPost]
+        public ActionResult UploadResume(HttpPostedFileBase resume)
+        {
+            try
+            {
+                if (User.Identity.IsAuthenticated)
+                {
+                    if (resume != null && resume.ContentLength > 0)
+                    {
+                        var allowedExtension = new[] { ".pdf", ".txt", ".doc", ".docx" };
+                        var model = new Models.UploadResume();
+
+                        string email = User.Identity.Name;
+
+                        //name of uploaded document
+                        string fileName = Path.GetFileName(resume.FileName);
+                        string extension = Path.GetExtension(fileName);
+                        
+                        if (!allowedExtension.Contains(extension))
+                        {
+                            ModelState.AddModelError("", "Document not supported. Only upload pdf, txt, doc or docx documents only!");
+                            return View();
+                        }
+
+                        string path = Path.Combine(Server.MapPath("~/App_Data/Applicant's Resumes"), Path.GetFileName(resume.FileName));
+                        resume.SaveAs(path);
+
+                        if (model.StoreResumePath(email, path))
+                        {
+                            ViewBag.Message = "File uploaded successfully";
+                            return View();
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("","No file uploaded!");
+                        return View();
+                    }
+                }
+                else
+                    return View("Login");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Error occurred! Try again!");
+                return View();
+            }
+
+            //something happened, redirect user back to home page.
+            return RedirectToAction("Index", "Home");
         }
     }
 }

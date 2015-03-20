@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "UploadResume";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h5 class="h5">Upload Your Resume Here</h5>
+
+@using (Html.BeginForm("UploadResume",
+                        "User",
+                        FormMethod.Post,
+                        new { enctype = "multipart/form-data" }))
+{
+    <br />
+    <br />
+    <br />
+    @Html.ValidationSummary("Operation failed.", new { @class = "alert alert-danger centered" })
+
+    if (Session["changePassword"] != null && !System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+    {
+        <label class="label label-success center-block" style="font-size:medium">
+            @Session["changePassword"].ToString()
+        </label>
+
+        <label class="label label-success center-block" style="font-size:medium">
+            <br />
+            You will be redirected to login page soon.
+            @{Response.AddHeader("REFRESH", "5;URL=/User/Login");}
+        </label>
+    }
+    <br />
+    <br />
+    <br />
+
+    <div style="margin:5% auto; width:350px;top:200px;">
+        @* modified by Simul *@
+        <fieldset>
+            <legend style="text-align:center;color:forestgreen">Upload your resume</legend>
+
+            <div class="editor-field" title="Upload your resume">
+                @*@Html.TextBoxFor(u => u.EmailId, new { @class = "form-control", @placeholder = "Email address" })*@
+                <input type="file" id="resumeUpload" name="resume" />
+            </div>
+
+        </fieldset>
+
+        <br />
+        <br />
+        <br />
+
+
+        <div style="text-align:center" title="Click to send email to change password">
+            <input type="submit" value="Upload Resume" class="btn btn-danger" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" class="btn btn-danger" value="Cancel" title="Go to Profile Page" onclick="window.location.href='@Url.Action("Profile","User")'" />
+        </div>
+    </div>
+}
+

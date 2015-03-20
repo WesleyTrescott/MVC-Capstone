@@ -34,7 +34,7 @@ namespace User_Login.Models
                 {
                     string sqlStmt = null;
 
-                    //user has verified the email. Update Is_Active to 1
+                    //update password
                     if (currentPassword == null && !System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
                         //forgot password
                         sqlStmt = @"UPDATE [Tbl_Users] set [Password] = @password, [User_Guid] = @guid where [Email_Id] = @email";
