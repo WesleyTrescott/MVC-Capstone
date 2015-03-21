@@ -125,7 +125,7 @@ namespace User_Login.Controllers
                     }
                     else
                     {
-                        Session["submitApplication"] = "There was an error in submitting your application. Please try again. Sorry for the inconvinience";
+                        Session["submitApplication"] = "There was an error in submitting your application. Please try again. Sorry for the inconvenience";
                     }
 
                     return View("SubmitApplication");
