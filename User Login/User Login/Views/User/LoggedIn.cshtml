@@ -20,16 +20,16 @@
 <link href="~/Content/modern-businesss.css" rel="stylesheet">
 <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
 
-<div class="container" style="padding-bottom:0px;">
+<div class="container" style="padding-bottom:0px;" id="jsHome">
     <div class="jumbotron list-group-item-success">
         <div class="row">
             <div class="col-md-7">
                 <h1 style="color:black;">Welcome, <strong>@Model.name</strong>!</h1>
-                <p>@DateTime.Now.DayOfWeek, @DateTime.Now.Month/@DateTime.Now.Day/@DateTime.Now.Year, @DateTime.Now.Hour:@DateTime.Now.Minute @string.Format("{0:tt}", DateTime.Now)</p>
+                <p>@DateTime.Now.DayOfWeek, @DateTime.Now.Month/@DateTime.Now.Day/@DateTime.Now.Year, @(((DateTime.Now.Hour + 11) % 12) + 1):@string.Format("{0:mm}", DateTime.Now) @string.Format("{0:tt}", DateTime.Now)</p>
                 <ol class="breadcrumb" style="text-align:center;">
-                    <li><a href="#">Dashboard Home</a></li>
-                    <li><a href="#">Recommended Jobs</a></li>
-                    <li><a href="#">Job Search</a></li>
+                    <li><a href="#jsHome">Dashboard Home</a></li>
+                    <li><a href="#myCarousel">Recommended Jobs</a></li>
+                    <li><a href="#jobSearch">Job Search</a></li>
                 </ol>
             </div>
             <div class="col-md-1"></div>
@@ -450,15 +450,12 @@
 </header>
 
 <br />
-<div style="width:100%;">
-    <div class="container btn-success" style="width:100%;">
-        <div class="row" style="width:100%;">
-            <div class="col-md-12" style=" width:100%;">
-                <h4 style="text-align:center;">Didn't find what you're looking for?</h4>
-                <p style="font-style:italic;">Try running a custom job search!</p>
-                <hr />
-            </div>
-        </div>
+<br />
+<div class="container">
+    <div class="text-center">
+            <img class="img-circle" src="~/Content/Images/question.jpg" alt="Generic placeholder image" width="140" height="140">
+            <h2>Didn't find what you're looking for?</h2>
+            <p>Run a custom job search below:</p>
     </div>
 </div>
 <br />
@@ -645,7 +642,7 @@
         </div>
     </div>*@
 
-<div class="container-fluid">
+<div class="container-fluid" id="jobSearch">
     <div class="well">
         @using (Html.BeginForm("LoggedIn", "User", FormMethod.Get))
         {

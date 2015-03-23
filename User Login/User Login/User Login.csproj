@@ -162,6 +162,7 @@
     <Content Include="Content\Images\block2.jpg" />
     <Content Include="Content\Images\computech bldg.png" />
     <Content Include="Content\Images\future.jpg" />
+    <Content Include="Content\Images\question.jpg" />
     <Content Include="Content\modern-businesss.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
