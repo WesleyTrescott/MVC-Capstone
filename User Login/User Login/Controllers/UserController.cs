@@ -8,6 +8,7 @@ using System.Threading;
 using PagedList;
 using User_Login.Models;
 using System.IO;
+using User_Login.View_Models;
 
 namespace User_Login.Controllers
 {
@@ -231,10 +232,37 @@ namespace User_Login.Controllers
 
             int pageSize = 3;
             int pageNum = (page ?? 1);
+
+            LoggedInViewModel viewModel = new LoggedInViewModel();
+
+            string userName = User.Identity.Name;
+            viewModel.recJobs = getRecommendedJobs(userName, viewModel);
+
             if (User.Identity.IsAuthenticated)
-                return View(model.OrderBy(p => p.Position).ToPagedList(pageNum, pageSize));
+            {
+                viewModel.pagedList = model.OrderBy(p => p.Position).ToPagedList(pageNum, pageSize);
+                return View(viewModel);
+            }
             else
                 return RedirectToAction("Login", "User");
+        }
+
+        private static IEnumerable<Tbl_Jobs> getRecommendedJobs(string userName, LoggedInViewModel viewModel)
+        {
+            var entities = new Job_Candidate_Application_Entities();
+            Tbl_Users user = entities.Tbl_Users.Find(userName);
+            if (user != null)
+            {
+                string skills = user.Skills;
+                var results = from r in entities.Tbl_Jobs where r.Required_Skills.Contains("skills") select r;
+                IList<Tbl_Jobs> recJobsList = results.ToList();
+                int numresults = recJobsList.Count;
+                int numpages = numresults / 6;
+                viewModel.numPagesRecJobs = numpages;
+                var randomFoos = recJobsList.OrderBy(x => Guid.NewGuid()).Take((numpages * 6));
+                return randomFoos;
+            }
+            return null;
         }
 
         [HttpGet]

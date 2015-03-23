@@ -14,7 +14,7 @@ namespace User_Login.Controllers
         public ActionResult Index()
         {
             var entities = new Job_Candidate_Application_Entities();
-            IEnumerable<Tbl_Jobs> mylist = entities.Tbl_Jobs.ToList();
+            IList<Tbl_Jobs> mylist = entities.Tbl_Jobs.ToList();
             var sixRandomFoos = mylist.OrderBy(x => Guid.NewGuid()).Take(6);
             return View(sixRandomFoos);
         }

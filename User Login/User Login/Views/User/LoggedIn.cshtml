@@ -1,6 +1,6 @@
 ﻿@using System.Linq
-@model PagedList.IPagedList<User_Login.Models.Tbl_Jobs>
-@using PagedList.Mvc;
+@using PagedList.Mvc
+@model User_Login.View_Models.LoggedInViewModel
 
 
 
@@ -325,7 +325,7 @@
                 </div>
             </div>
         }
-        @if (!Model.Any())
+        @if (!Model.pagedList.Any())
         {
             <p>No search results!</p>
         }
@@ -338,7 +338,7 @@
                     <td class="col-md-2">Location</td>
                     <td class="col-md-2">Skills</td>
                 </tr>
-                @foreach (var item in Model)
+                @foreach (var item in Model.pagedList)
                 {
                     <tr>
                         <td>
@@ -360,8 +360,8 @@
                 }
             </table>
             <br />
-            <p>Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount </p>
-            @Html.PagedListPager(Model, page => Url.Action("LoggedIn", new { city = ViewBag.LocationLabel, customer = ViewBag.CustomerLabel, page }))
+            <p>Page @(Model.pagedList.PageCount < Model.pagedList.PageNumber ? 0 : Model.pagedList.PageNumber) of @Model.pagedList.PageCount </p>
+            @Html.PagedListPager(Model.pagedList, page => Url.Action("LoggedIn", new { city = ViewBag.LocationLabel, customer = ViewBag.CustomerLabel, page }))
         }
     </div>
 
