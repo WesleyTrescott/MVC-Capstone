@@ -26,8 +26,13 @@
     <!-- Indicators -->
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        @for (int i = 1; i < Model.numPagesRecJobs; i++)
+        {
+            <li data-target="#myCarousel" data-slide-to="@i"></li>
+        }
+        @*<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>*@
     </ol>
 
     <!-- Wrapper for slides -->
@@ -43,16 +48,88 @@
                         <div class="col-md-4">
                             <div class="span2 description blue">
                                 <span class="glyphicon glyphicon-pushpin btn-lg"></span>
+                                <p>
+                                    @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.recJobs.GetEnumerator())
+                                    {
+                                        for (int j = 0; j < 1; j++)
+                                        {
+                                            iterator.MoveNext();
+                                        }
+                                        iterator.MoveNext();
+                                        User_Login.Models.Tbl_Jobs current = iterator.Current;
+                                        string position = current.Position;
+                                        <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
+                                        <br />
+                                        string description = current.Description;
+                                        if (description.Length > 150)
+                                        {
+                                            description = description.Substring(0, 150);
+                                            description = description + "...";
+                                        }
+                                        int id = current.Job_Id;
+                                        @Html.Encode(description)
+                                        <br />
+                                        <strong>@Html.ActionLink("Details...", "Details", "JobSearch", new { id }, new { @style = "color:white;" })</strong>
+                                    }
+                                </p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="span2 description yellow">
                                 <span class="glyphicon glyphicon-pushpin btn-lg"></span>
+                                <p>
+                                    @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.recJobs.GetEnumerator())
+                                    {
+                                        for (int j = 0; j < 2; j++)
+                                        {
+                                            iterator.MoveNext();
+                                        }
+                                        iterator.MoveNext();
+                                        User_Login.Models.Tbl_Jobs current = iterator.Current;
+                                        string position = current.Position;
+                                        <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
+                                        <br />
+                                        string description = current.Description;
+                                        if (description.Length > 150)
+                                        {
+                                            description = description.Substring(0, 150);
+                                            description = description + "...";
+                                        }
+                                        int id = current.Job_Id;
+                                        @Html.Encode(description)
+                                        <br />
+                                        <strong>@Html.ActionLink("Details...", "Details", "JobSearch", new { id }, new { @style = "color:white;" })</strong>
+                                    }
+                                </p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="span2 description green">
                                 <span class="glyphicon glyphicon-pushpin btn-lg"></span>
+                                <p>
+                                    @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.recJobs.GetEnumerator())
+                                    {
+                                        for (int j = 0; j < 3; j++)
+                                        {
+                                            iterator.MoveNext();
+                                        }
+                                        iterator.MoveNext();
+                                        User_Login.Models.Tbl_Jobs current = iterator.Current;
+                                        string position = current.Position;
+                                        <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
+                                        <br />
+                                        string description = current.Description;
+                                        if (description.Length > 150)
+                                        {
+                                            description = description.Substring(0, 150);
+                                            description = description + "...";
+                                        }
+                                        int id = current.Job_Id;
+                                        @Html.Encode(description)
+                                        <br />
+                                        <strong>@Html.ActionLink("Details...", "Details", "JobSearch", new { id }, new { @style = "color:white;" })</strong>
+                                    }
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -60,16 +137,88 @@
                         <div class="col-md-4">
                             <div class="span2 description orange">
                                 <span class="glyphicon glyphicon-pushpin btn-lg"></span>
+                                <p>
+                                    @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.recJobs.GetEnumerator())
+                                    {
+                                        for (int j = 0; j < 4; j++)
+                                        {
+                                            iterator.MoveNext();
+                                        }
+                                        iterator.MoveNext();
+                                        User_Login.Models.Tbl_Jobs current = iterator.Current;
+                                        string position = current.Position;
+                                        <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
+                                        <br />
+                                        string description = current.Description;
+                                        if (description.Length > 150)
+                                        {
+                                            description = description.Substring(0, 150);
+                                            description = description + "...";
+                                        }
+                                        int id = current.Job_Id;
+                                        @Html.Encode(description)
+                                        <br />
+                                        <strong>@Html.ActionLink("Details...", "Details", "JobSearch", new { id }, new { @style = "color:white;" })</strong>
+                                    }
+                                </p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="span2 description red">
                                 <span class="glyphicon glyphicon-pushpin btn-lg"></span>
+                                <p>
+                                    @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.recJobs.GetEnumerator())
+                                    {
+                                        for (int j = 0; j < 5; j++)
+                                        {
+                                            iterator.MoveNext();
+                                        }
+                                        iterator.MoveNext();
+                                        User_Login.Models.Tbl_Jobs current = iterator.Current;
+                                        string position = current.Position;
+                                        <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
+                                        <br />
+                                        string description = current.Description;
+                                        if (description.Length > 150)
+                                        {
+                                            description = description.Substring(0, 150);
+                                            description = description + "...";
+                                        }
+                                        int id = current.Job_Id;
+                                        @Html.Encode(description)
+                                        <br />
+                                        <strong>@Html.ActionLink("Details...", "Details", "JobSearch", new { id }, new { @style = "color:white;" })</strong>
+                                    }
+                                </p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="span2 description blue">
                                 <span class="glyphicon glyphicon-pushpin btn-lg"></span>
+                                <p>
+                                    @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.recJobs.GetEnumerator())
+                                    {
+                                        for (int j = 0; j < 6; j++)
+                                        {
+                                            iterator.MoveNext();
+                                        }
+                                        iterator.MoveNext();
+                                        User_Login.Models.Tbl_Jobs current = iterator.Current;
+                                        string position = current.Position;
+                                        <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
+                                        <br />
+                                        string description = current.Description;
+                                        if (description.Length > 150)
+                                        {
+                                            description = description.Substring(0, 150);
+                                            description = description + "...";
+                                        }
+                                        int id = current.Job_Id;
+                                        @Html.Encode(description)
+                                        <br />
+                                        <strong>@Html.ActionLink("Details...", "Details", "JobSearch", new { id }, new { @style = "color:white;" })</strong>
+                                    }
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -77,18 +226,198 @@
                 </div>
             </div>
         </div>
-        <div class="item">
-            <div class="fill"><img src="~/Content/Images/block.jpg" /></div>
-            <div class="carousel-caption">
-                <h2>Caption 2</h2>
+        @for (int i = 1; i < Model.numPagesRecJobs; i++)
+        { 
+            <div class="item">
+                <div class="fill"><img src="~/Content/Images/block2.jpg" /></div>
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1 class="featurette-heading" style="text-align:left; font-weight:600;">Recommended Jobs</h1>
+                        <p style="font-style:italic; text-align:left;">Check out these trending jobs you may qualify for.</p>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="span2 description blue">
+                                    <span class="glyphicon glyphicon-pushpin btn-lg"></span>
+                                    <p>
+                                        @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.recJobs.GetEnumerator())
+                                        {
+                                            for (int j = 0; j < (6 * i) + 1; j++)
+                                            {
+                                                iterator.MoveNext();
+                                            }
+                                            iterator.MoveNext();
+                                            User_Login.Models.Tbl_Jobs current = iterator.Current;
+                                            string position = current.Position;
+                                            <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
+                                            <br />
+                                            string description = current.Description;
+                                            if (description.Length > 150)
+                                            {
+                                                description = description.Substring(0, 150);
+                                                description = description + "...";
+                                            }
+                                            int id = current.Job_Id;
+                                            @Html.Encode(description)
+                                            <br />
+                                            <strong>@Html.ActionLink("Details...", "Details", "JobSearch", new { id }, new { @style = "color:white;" })</strong>
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="span2 description yellow">
+                                    <span class="glyphicon glyphicon-pushpin btn-lg"></span>
+                                    <p>
+                                        @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.recJobs.GetEnumerator())
+                                        {
+                                            for (int j = 0; j < (6 * i) + 2; j++)
+                                            {
+                                                iterator.MoveNext();
+                                            }
+                                            iterator.MoveNext();
+                                            User_Login.Models.Tbl_Jobs current = iterator.Current;
+                                            string position = current.Position;
+                                            <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
+                                            <br />
+                                            string description = current.Description;
+                                            if (description.Length > 150)
+                                            {
+                                                description = description.Substring(0, 150);
+                                                description = description + "...";
+                                            }
+                                            int id = current.Job_Id;
+                                            @Html.Encode(description)
+                                            <br />
+                                            <strong>@Html.ActionLink("Details...", "Details", "JobSearch", new { id }, new { @style = "color:white;" })</strong>
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="span2 description green">
+                                    <span class="glyphicon glyphicon-pushpin btn-lg"></span>
+                                    <p>
+                                        @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.recJobs.GetEnumerator())
+                                        {
+                                            for (int j = 0; j < (6 * i) + 3; j++)
+                                            {
+                                                iterator.MoveNext();
+                                            }
+                                            iterator.MoveNext();
+                                            User_Login.Models.Tbl_Jobs current = iterator.Current;
+                                            string position = current.Position;
+                                            <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
+                                            <br />
+                                            string description = current.Description;
+                                            if (description.Length > 150)
+                                            {
+                                                description = description.Substring(0, 150);
+                                                description = description + "...";
+                                            }
+                                            int id = current.Job_Id;
+                                            @Html.Encode(description)
+                                            <br />
+                                            <strong>@Html.ActionLink("Details...", "Details", "JobSearch", new { id }, new { @style = "color:white;" })</strong>
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="span2 description orange">
+                                    <span class="glyphicon glyphicon-pushpin btn-lg"></span>
+                                    <p>
+                                        @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.recJobs.GetEnumerator())
+                                        {
+                                            for (int j = 0; j < (6 * i) + 4; j++)
+                                            {
+                                                iterator.MoveNext();
+                                            }
+                                            iterator.MoveNext();
+                                            User_Login.Models.Tbl_Jobs current = iterator.Current;
+                                            string position = current.Position;
+                                            <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
+                                            <br />
+                                            string description = current.Description;
+                                            if (description.Length > 150)
+                                            {
+                                                description = description.Substring(0, 150);
+                                                description = description + "...";
+                                            }
+                                            int id = current.Job_Id;
+                                            @Html.Encode(description)
+                                            <br />
+                                            <strong>@Html.ActionLink("Details...", "Details", "JobSearch", new { id }, new { @style = "color:white;" })</strong>
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="span2 description red">
+                                    <span class="glyphicon glyphicon-pushpin btn-lg"></span>
+                                    <p>
+                                        @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.recJobs.GetEnumerator())
+                                        {
+                                            for (int j = 0; j < (6 * i) + 5; j++)
+                                            {
+                                                iterator.MoveNext();
+                                            }
+                                            iterator.MoveNext();
+                                            User_Login.Models.Tbl_Jobs current = iterator.Current;
+                                            string position = current.Position;
+                                            <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
+                                            <br />
+                                            string description = current.Description;
+                                            if (description.Length > 150)
+                                            {
+                                                description = description.Substring(0, 150);
+                                                description = description + "...";
+                                            }
+                                            int id = current.Job_Id;
+                                            @Html.Encode(description)
+                                            <br />
+                                            <strong>@Html.ActionLink("Details...", "Details", "JobSearch", new { id }, new { @style = "color:white;" })</strong>
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="span2 description blue">
+                                    <span class="glyphicon glyphicon-pushpin btn-lg"></span>
+                                    <p>
+                                        @using (IEnumerator<User_Login.Models.Tbl_Jobs> iterator = Model.recJobs.GetEnumerator())
+                                        {
+                                            for (int j = 0; j < (6 * i) + 6; j++)
+                                            {
+                                                iterator.MoveNext();
+                                            }
+                                            iterator.MoveNext();
+                                            User_Login.Models.Tbl_Jobs current = iterator.Current;
+                                            string position = current.Position;
+                                            <strong style="text-decoration: underline; font-size:medium;">@Html.Encode(position)</strong>
+                                            <br />
+                                            string description = current.Description;
+                                            if (description.Length > 150)
+                                            {
+                                                description = description.Substring(0, 150);
+                                                description = description + "...";
+                                            }
+                                            int id = current.Job_Id;
+                                            @Html.Encode(description)
+                                            <br />
+                                            <strong>@Html.ActionLink("Details...", "Details", "JobSearch", new { id }, new { @style = "color:white;" })</strong>
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="item">
-            <div class="fill"><img src="~/Content/Images/block.jpg" /></div>
-            <div class="carousel-caption">
-                <h2>Caption 3</h2>
-            </div>
-        </div>
+        }
     </div>
 
     <!-- Controls -->

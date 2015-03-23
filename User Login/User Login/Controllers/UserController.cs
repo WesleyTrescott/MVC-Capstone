@@ -238,6 +238,14 @@ namespace User_Login.Controllers
             string userName = User.Identity.Name;
             viewModel.recJobs = getRecommendedJobs(userName, viewModel);
 
+            if (viewModel.numPagesRecJobs == 0)
+            {
+                var jobentities = new Job_Candidate_Application_Entities();
+                IList<Tbl_Jobs> mylist = jobentities.Tbl_Jobs.ToList();
+                var sixRandomFoos = mylist.OrderBy(x => Guid.NewGuid()).Take(6);
+                viewModel.recJobs = sixRandomFoos;
+            }
+
             if (User.Identity.IsAuthenticated)
             {
                 viewModel.pagedList = model.OrderBy(p => p.Position).ToPagedList(pageNum, pageSize);
@@ -258,6 +266,7 @@ namespace User_Login.Controllers
                 IList<Tbl_Jobs> recJobsList = results.ToList();
                 int numresults = recJobsList.Count;
                 int numpages = numresults / 6;
+                viewModel.numRecJobs = 6 * numpages;
                 viewModel.numPagesRecJobs = numpages;
                 var randomFoos = recJobsList.OrderBy(x => Guid.NewGuid()).Take((numpages * 6));
                 return randomFoos;

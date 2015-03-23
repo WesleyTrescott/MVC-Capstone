@@ -10,8 +10,11 @@ namespace User_Login.View_Models
     public class LoggedInViewModel
     {
         public IPagedList<Tbl_Jobs> pagedList { get; set; }
+
         public IEnumerable<Tbl_Jobs> recJobs { get; set; }
 
         public int numPagesRecJobs { get; set; }
+
+        public int numRecJobs { get; set; }
     }
 }
