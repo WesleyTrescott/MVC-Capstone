@@ -16,5 +16,7 @@ namespace User_Login.View_Models
         public int numPagesRecJobs { get; set; }
 
         public int numRecJobs { get; set; }
+
+        public string name { get; set; }
     }
 }

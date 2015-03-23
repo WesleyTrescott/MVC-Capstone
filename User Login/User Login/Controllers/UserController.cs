@@ -261,6 +261,7 @@ namespace User_Login.Controllers
             Tbl_Users user = entities.Tbl_Users.Find(userName);
             if (user != null)
             {
+                viewModel.name = user.User_First_Name;
                 string skills = user.Skills;
                 var results = from r in entities.Tbl_Jobs where r.Required_Skills.Contains("skills") select r;
                 IList<Tbl_Jobs> recJobsList = results.ToList();

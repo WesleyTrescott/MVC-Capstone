@@ -20,9 +20,32 @@
 <link href="~/Content/modern-businesss.css" rel="stylesheet">
 <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
 
-<h2 class="page-header" style="padding-left:20px;">Welcome, @User.Identity.Name!</h2>
+<div class="container" style="padding-bottom:0px;">
+    <div class="jumbotron list-group-item-success">
+        <div class="row">
+            <div class="col-md-7">
+                <h1 style="color:black;">Welcome, <strong>@Model.name</strong>!</h1>
+                <p>@DateTime.Now.DayOfWeek, @DateTime.Now.Month/@DateTime.Now.Day/@DateTime.Now.Year, @DateTime.Now.Hour:@DateTime.Now.Minute @string.Format("{0:tt}", DateTime.Now)</p>
+                <ol class="breadcrumb" style="text-align:center;">
+                    <li><a href="#">Dashboard Home</a></li>
+                    <li><a href="#">Recommended Jobs</a></li>
+                    <li><a href="#">Job Search</a></li>
+                </ol>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-2" style="text-align:right;">
+                <br />
+                <br />
+                <p style="font-style: italic; font-weight: 900; text-align: right; font-family: 'Agency FB'; font-size:30px; color:black;">Get ready to Accelerate Your Career</p>
+            </div>
+            <div class="col-md-2">
+                <span class="glyphicon glyphicon-forward" style="font-size: 200px; text-align: right;"></span>
+            </div>
+        </div>
+    </div>
+</div>
 
-<header id="myCarousel" class="carousel slide" style="height:600px;">
+<header id="myCarousel" class="carousel slide" style="height:600px; padding-top:0px;">
     <!-- Indicators -->
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -30,9 +53,6 @@
         {
             <li data-target="#myCarousel" data-slide-to="@i"></li>
         }
-        @*<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>*@
     </ol>
 
     <!-- Wrapper for slides -->
