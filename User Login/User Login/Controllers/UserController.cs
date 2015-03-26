@@ -520,6 +520,7 @@ namespace User_Login.Controllers
                 UploadResume model = new Models.UploadResume();
                 string email = User.Identity.Name;
                 model.EmailId = email;
+                Session["uploadResume"] = null;
                 return View();
             }
             else
@@ -535,11 +536,19 @@ namespace User_Login.Controllers
                 {
                     if (resume != null && resume.ContentLength > 0)
                     {
+                        var entities = new Job_Candidate_Application_Entities();
                         var allowedExtension = new[] { ".pdf", ".txt", ".doc", ".docx" };
                         var model = new Models.UploadResume();
 
                         string email = User.Identity.Name;
+                        var user = entities.Tbl_Users.Find(email);
 
+                        string lastName = user.User_Last_Name;                  //user last name
+                        string firstName = user.User_First_Name[0].ToString();  //user first name initial
+                        string date = DateTime.Now.ToString();
+
+                        date = date.Replace('/', '-');
+                        date = date.Replace(':', '.');
                         //name of uploaded document
                         string fileName = Path.GetFileName(resume.FileName);
                         string extension = Path.GetExtension(fileName);
@@ -547,21 +556,25 @@ namespace User_Login.Controllers
                         if (!allowedExtension.Contains(extension))
                         {
                             ModelState.AddModelError("", "Document not supported. Only upload pdf, txt, doc or docx documents only!");
+                            Session["uploadResume"] = null;
                             return View();
                         }
+                        string tempFileName = fileName;
 
-                        string path = Path.Combine(Server.MapPath("~/App_Data/Applicant's Resumes"), Path.GetFileName(resume.FileName));
+                        fileName = lastName + "_" + firstName + "_" + date + "_" + tempFileName;
+                        string path = Path.Combine(Server.MapPath("~/App_Data/Applicant's Resumes"), fileName);
                         resume.SaveAs(path);
 
                         if (model.StoreResumePath(email, path))
                         {
-                            ViewBag.Message = "File uploaded successfully";
+                            Session["uploadResume"] = "File uploaded successfully";
                             return View();
                         }
                     }
                     else
                     {
                         ModelState.AddModelError("","No file uploaded!");
+                        Session["uploadResume"] = null;
                         return View();
                     }
                 }
