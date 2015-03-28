@@ -44,11 +44,14 @@ namespace User_Login.Models
         public string Skills { get; set; }
 
         [Display(Name = "Years of Experience")]
-        public int? Experience_Years { get; set; }
+        public int? ExperienceYears { get; set; }
 
         [Display(Name = "Phone Number")]
         [DataType(DataType.PhoneNumber)]
-        public int? phone_number { get; set; }
+        public int? PhoneNumber { get; set; }
+
+        public string UseExistingResume { get; set; }
+        public string ResumePath { get; set; }
 
         public bool hasApplied(string email, int jobID)
         {
@@ -57,9 +60,12 @@ namespace User_Login.Models
                 //check if user has applied for job
                 string _sql = @"SELECT * FROM [Tbl_Job_Application] WHERE [Job_Id] = @jobID AND [Email_Id] = @emailID";
                 var cmd = new SqlCommand(_sql, cn);
-                cmd.Parameters.Add(new SqlParameter("@jobID", SqlDbType.Int)).Value = jobID;
-                cmd.Parameters.Add(new SqlParameter("@emailID", SqlDbType.NVarChar)).Value = email;
+                //cmd.Parameters.Add(new SqlParameter("@jobID", SqlDbType.Int)).Value = jobID;
+                //cmd.Parameters.Add(new SqlParameter("@emailID", SqlDbType.NVarChar)).Value = email;
                 
+                cmd.Parameters.AddWithValue("@jobID", jobID);
+                cmd.Parameters.AddWithValue("@emailID", email);
+
                 cn.Open();
                 var reader = cmd.ExecuteReader();
                 
@@ -78,20 +84,31 @@ namespace User_Login.Models
             }
         }
 
-        public bool submitApplication(string email, int jobID)
+        public bool submitApplication(string email, int jobID, string firstName, string lastName, string street, string city, string state, string country, int? phoneNumber, string skills, int? experienceYears)
         {
             try
             {
                 using (var cn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='|DataDirectory|\Job_Candidate_Application.mdf';Integrated Security=True"))
                 {
                     //check if user has applied for job
-                    string _sql = @"INSERT INTO [Tbl_Job_Application] (Job_Id, Email_Id) values (@jobId, @emailId)";
+                    string _sql = @"INSERT INTO [Tbl_Job_Application] (Job_Id, Email_Id, User_First_Name, User_Last_Name, User_Street, User_City, User_State, User_Country, User_Phone_Number, Skills, Exp_Years) values (@jobId, @emailId, @firstName, @lastName, @street, @city, @state, @country, @phoneNumber, @skills, @expYears)";
 
                     var cmd = new SqlCommand(_sql, cn);
                     //cmd.Parameters.Add(new SqlParameter("@jobID", SqlDbType.Int)).Value = jobID;
                     //cmd.Parameters.Add(new SqlParameter("@emailID", SqlDbType.VarChar)).Value = email;
                     cmd.Parameters.AddWithValue("@jobId", jobID);
                     cmd.Parameters.AddWithValue("@emailId", email);
+                    cmd.Parameters.AddWithValue("@firstName", firstName);
+                    cmd.Parameters.AddWithValue("@lastName", lastName);
+                    cmd.Parameters.AddWithValue("@street", street);
+                    cmd.Parameters.AddWithValue("@city", city);
+                    cmd.Parameters.AddWithValue("@state", state);
+                    cmd.Parameters.AddWithValue("@country", country);
+                    cmd.Parameters.AddWithValue("@phoneNumber", phoneNumber);
+                    cmd.Parameters.AddWithValue("@skills", skills);
+                    cmd.Parameters.AddWithValue("@expYears", experienceYears);
+                    //cmd.Parameters.AddWithValue("@resumeUpload", resumeUpload);
+                    
 
                     cn.Open();
                     cmd.ExecuteNonQuery();
