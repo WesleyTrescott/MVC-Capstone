@@ -54,49 +54,49 @@ namespace User_Login.Models
             using (var cn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='|DataDirectory|\Job_Candidate_Application.mdf';Integrated Security=True"))
             {
                 string sqlStmt = @"UPDATE [Tbl_Users] set [User_First_Name] = @firstName, [User_Last_Name] = @lastName, [User_Street] = @street, [User_City] = @city, [User_State] = @state, [User_Country] = @country, [User_Phone_Number]=@phone_number, [Exp_Years]=@experience, [Skills]=@skills where [Email_Id] = @email";
-                var command = new SqlCommand(sqlStmt, cn);
+                var cmd = new SqlCommand(sqlStmt, cn);
 
-                command.Parameters.Add(new SqlParameter("@email", SqlDbType.VarChar)).Value = email;
-                command.Parameters.Add(new SqlParameter("@firstName", SqlDbType.VarChar)).Value = firstName;
-                command.Parameters.Add(new SqlParameter("@lastName", SqlDbType.VarChar)).Value = lastName;
-                command.Parameters.Add(new SqlParameter("@street", SqlDbType.VarChar)).Value = street;
-                command.Parameters.Add(new SqlParameter("@city", SqlDbType.VarChar)).Value = city;
-                command.Parameters.Add(new SqlParameter("@state", SqlDbType.VarChar)).Value = state;
-                command.Parameters.Add(new SqlParameter("@country", SqlDbType.VarChar)).Value = country;
+                cmd.Parameters.AddWithValue("@email", email);
+                cmd.Parameters.AddWithValue("@firstName", firstName);
+                cmd.Parameters.AddWithValue("@lastName", lastName);
+                cmd.Parameters.AddWithValue("@street", street);
+                cmd.Parameters.AddWithValue("@city", city);
+                cmd.Parameters.AddWithValue("@state", state);
+                cmd.Parameters.AddWithValue("@country", country);
 
-                command.Parameters.Add(new SqlParameter("@phone_number", SqlDbType.Int));
+                cmd.Parameters.Add(new SqlParameter("@phone_number", SqlDbType.Int));
                 if (phone_number != null)
                 {
-                    command.Parameters["@phone_number"].Value = phone_number;
+                    cmd.Parameters["@phone_number"].Value = phone_number;
                 }
                 else
                 {
-                    command.Parameters["@phone_number"].Value = DBNull.Value;
+                    cmd.Parameters["@phone_number"].Value = DBNull.Value;
                 }
 
-                command.Parameters.Add(new SqlParameter("@skills", SqlDbType.VarChar));
+                cmd.Parameters.Add(new SqlParameter("@skills", SqlDbType.VarChar));
                 if (skills != null)
                 {
-                    command.Parameters["@skills"].Value = skills;
+                    cmd.Parameters["@skills"].Value = skills;
                 }
                 else
                 {
-                    command.Parameters["@skills"].Value = DBNull.Value;
+                    cmd.Parameters["@skills"].Value = DBNull.Value;
                 }
 
-                command.Parameters.Add(new SqlParameter("@experience", SqlDbType.Int));
+                cmd.Parameters.Add(new SqlParameter("@experience", SqlDbType.Int));
                 if (experience_years != null)
                 {
-                    command.Parameters["@experience"].Value = experience_years;
+                    cmd.Parameters["@experience"].Value = experience_years;
                 }
                 else
                 {
-                    command.Parameters["@experience"].Value = DBNull.Value;
+                    cmd.Parameters["@experience"].Value = DBNull.Value;
                 }
 
                 cn.Open();
-                command.ExecuteNonQuery();
-                command.Dispose();
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
             }
             return true;
         }

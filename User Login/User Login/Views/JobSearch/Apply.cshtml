@@ -106,7 +106,7 @@
                     </label>
                 </td>
                 <td>
-                    @Html.TextBoxFor(u => u.phone_number, new { @class = "form-control", @placeholder = "Phone Number" })
+                    @Html.TextBoxFor(u => u.PhoneNumber, new { @class = "form-control", @placeholder = "Phone Number" })
                 </td>
             </tr>
 
@@ -124,14 +124,24 @@
             <tr>
                 <td>
                     <label class="label label-default" style="font-size:small">
-                        Years of Experience
+                        Total Years of Experience
                     </label>
                 </td>
                 <td>
-                    @Html.TextBoxFor(u => u.Experience_Years, new { @class = "form-control", @placeholder = "Years of Experience" })
+                    @Html.TextBoxFor(u => u.ExperienceYears, new { @class = "form-control", @placeholder = "Years of Experience" })
                 </td>
             </tr>
 
+            <tr>
+                <td>
+                    <label class="label label-default" style="font-size:small">
+                        Use Existing Resume
+                    </label>
+                </td>
+                <td>
+                    @Html.RadioButtonFor(u => u.UseExistingResume, true, "Yes")Yes
+                </td>
+            </tr>
 
         </table>
         

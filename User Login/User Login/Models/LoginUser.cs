@@ -13,7 +13,7 @@ namespace User_Login.Models
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
-        [StringLength(20, ErrorMessage = "The {0} must be {2} - {1} characters long", MinimumLength = 6)]
+        //[StringLength(20, ErrorMessage = "The {0} must be {2} - {1} characters long", MinimumLength = 6)]
         public string Password { get; set; }
 
         [Required]

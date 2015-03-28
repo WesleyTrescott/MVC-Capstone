@@ -14,7 +14,35 @@ namespace User_Login.Models
 
         public string ResumePath { get; set; }
 
-        public bool StoreResumePath(string email, string resumePath)
+        public bool StoreResumePathInUserProfile(string email, string resumePath)
+        {
+            try
+            {
+                using (var cn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='|DataDirectory|\Job_Candidate_Application.mdf';Integrated Security=True"))
+                {
+                    string sqlStmt = null;
+
+                    sqlStmt = @"UPDATE [Tbl_Users] set [Resume_Upload] = @resumePath where [Email_Id] = @email";           
+                    
+                    var cmd = new SqlCommand(sqlStmt, cn);
+
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cmd.Parameters.AddWithValue("@resumePath", resumePath);
+
+                    cn.Open();
+                    cmd.ExecuteNonQuery();
+                    cn.Close();
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool StoreResumePathInJobApplicationProfile(string email, string resumePath)
         {
             try
             {
@@ -23,9 +51,9 @@ namespace User_Login.Models
                     string sqlStmt = null;
 
 
-                    sqlStmt = @"UPDATE [Tbl_Users] set [Resume_Upload] = @resumePath where [Email_Id] = @email";
-                    
-                    
+                    sqlStmt = @"UPDATE [Tbl_Job_Application] set [Resume_Upload] = @resumePath where [Email_Id] = @email";
+
+
                     var cmd = new SqlCommand(sqlStmt, cn);
 
                     // cmd.Parameters.Add(new SqlParameter("@email", SqlDbType.NVarChar)).Value = email;

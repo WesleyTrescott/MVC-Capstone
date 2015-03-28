@@ -88,9 +88,9 @@ namespace User_Login.Controllers
                     applyJob.City = userInfo.User_City;
                     applyJob.State = userInfo.User_State;
                     applyJob.Country = userInfo.User_Country;
-                    applyJob.phone_number = userInfo.User_Phone_Number;
+                    applyJob.PhoneNumber = userInfo.User_Phone_Number;
                     applyJob.Skills = userInfo.Skills;
-                    applyJob.Experience_Years = userInfo.Exp_Years;
+                    applyJob.ExperienceYears = userInfo.Exp_Years;
 
                     //var errors = ModelState.Select(x => x.Value.Errors)
                     //           .where(y => y.count > 0)
@@ -114,12 +114,21 @@ namespace User_Login.Controllers
             //var user = new Models.Apply();
             string email = applyJob.EmailId;
             int jobId = applyJob.JobId;
+            string firstName = applyJob.FirstName;
+            string lastName = applyJob.LastName;
+            string street = applyJob.Street;
+            string city = applyJob.City;
+            string state = applyJob.State;
+            string country = applyJob.Country;
+            int? phoneNumber = applyJob.PhoneNumber;
+            string skills = applyJob.Skills;
+            int? experienceYears = applyJob.ExperienceYears;
 
             if (User.Identity.IsAuthenticated)
             {
                 if (ModelState.IsValid)
                 {
-                    if (applyJob.submitApplication(email, jobId))
+                    if (applyJob.submitApplication(email, jobId, firstName, lastName, street, city, state, country, phoneNumber, skills, experienceYears))
                     {
                         Session["submitApplication"] = "Application was submitted successfully. Thank you for your interest.";
                     }

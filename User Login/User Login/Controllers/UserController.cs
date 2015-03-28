@@ -459,6 +459,7 @@ namespace User_Login.Controllers
         [HttpPost]
         public ActionResult ChangePassword(Models.ChangePassword model)
         {
+            Session["changePassword"] = null;
             try
             {
                 var entities = new Job_Candidate_Application_Entities();
@@ -565,7 +566,7 @@ namespace User_Login.Controllers
                         string path = Path.Combine(Server.MapPath("~/App_Data/Applicant's Resumes"), fileName);
                         resume.SaveAs(path);
 
-                        if (model.StoreResumePath(email, path))
+                        if (model.StoreResumePathInUserProfile(email, path))
                         {
                             Session["uploadResume"] = "File uploaded successfully";
                             return View();
