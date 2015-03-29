@@ -50,7 +50,7 @@ namespace User_Login.Models
         [DataType(DataType.PhoneNumber)]
         public int? PhoneNumber { get; set; }
 
-        public string UseExistingResume { get; set; }
+        public bool UseExistingResume { get; set; }
         public string ResumePath { get; set; }
 
         public bool hasApplied(string email, int jobID)
@@ -84,14 +84,14 @@ namespace User_Login.Models
             }
         }
 
-        public bool submitApplication(string email, int jobID, string firstName, string lastName, string street, string city, string state, string country, int? phoneNumber, string skills, int? experienceYears)
+        public bool submitApplication(string email, int jobID, string firstName, string lastName, string street, string city, string state, string country, int? phoneNumber, string skills, int? experienceYears, string resumePath)
         {
             try
             {
                 using (var cn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='|DataDirectory|\Job_Candidate_Application.mdf';Integrated Security=True"))
                 {
                     //check if user has applied for job
-                    string _sql = @"INSERT INTO [Tbl_Job_Application] (Job_Id, Email_Id, User_First_Name, User_Last_Name, User_Street, User_City, User_State, User_Country, User_Phone_Number, Skills, Exp_Years) values (@jobId, @emailId, @firstName, @lastName, @street, @city, @state, @country, @phoneNumber, @skills, @expYears)";
+                    string _sql = @"INSERT INTO [Tbl_Job_Application] (Job_Id, Email_Id, User_First_Name, User_Last_Name, User_Street, User_City, User_State, User_Country, User_Phone_Number, Skills, Exp_Years, Resume_Upload) values (@jobId, @emailId, @firstName, @lastName, @street, @city, @state, @country, @phoneNumber, @skills, @expYears, @resumePath)";
 
                     var cmd = new SqlCommand(_sql, cn);
                     //cmd.Parameters.Add(new SqlParameter("@jobID", SqlDbType.Int)).Value = jobID;
@@ -107,9 +107,16 @@ namespace User_Login.Models
                     cmd.Parameters.AddWithValue("@phoneNumber", phoneNumber);
                     cmd.Parameters.AddWithValue("@skills", skills);
                     cmd.Parameters.AddWithValue("@expYears", experienceYears);
-                    //cmd.Parameters.AddWithValue("@resumeUpload", resumeUpload);
-                    
 
+                    if (resumePath != null)
+                    {
+                        cmd.Parameters.AddWithValue("@resumePath", resumePath);
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    
                     cn.Open();
                     cmd.ExecuteNonQuery();
                     cn.Close();

@@ -64,34 +64,32 @@ namespace User_Login.Models
                 cmd.Parameters.AddWithValue("@state", state);
                 cmd.Parameters.AddWithValue("@country", country);
 
-                cmd.Parameters.Add(new SqlParameter("@phone_number", SqlDbType.Int));
                 if (phone_number != null)
                 {
-                    cmd.Parameters["@phone_number"].Value = phone_number;
+                    cmd.Parameters.AddWithValue("@phone_number", phone_number);
                 }
                 else
                 {
-                    cmd.Parameters["@phone_number"].Value = DBNull.Value;
+                    cmd.Parameters.AddWithValue("@phone_number", DBNull.Value);
                 }
 
-                cmd.Parameters.Add(new SqlParameter("@skills", SqlDbType.VarChar));
                 if (skills != null)
                 {
-                    cmd.Parameters["@skills"].Value = skills;
+                    cmd.Parameters.AddWithValue("@skills", skills);
                 }
                 else
                 {
-                    cmd.Parameters["@skills"].Value = DBNull.Value;
+                    cmd.Parameters.AddWithValue("@skills", DBNull.Value);
                 }
 
-                cmd.Parameters.Add(new SqlParameter("@experience", SqlDbType.Int));
+                
                 if (experience_years != null)
                 {
-                    cmd.Parameters["@experience"].Value = experience_years;
+                    cmd.Parameters.AddWithValue("@experience", experience_years);
                 }
                 else
                 {
-                    cmd.Parameters["@experience"].Value = DBNull.Value;
+                    cmd.Parameters.AddWithValue("@experience", DBNull.Value);
                 }
 
                 cn.Open();

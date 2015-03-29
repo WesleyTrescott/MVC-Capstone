@@ -546,29 +546,40 @@ namespace User_Login.Controllers
 
                         string lastName = user.User_Last_Name;                  //user last name
                         string firstName = user.User_First_Name[0].ToString();  //user first name initial
-                        string date = DateTime.Now.ToString();
+                        string date = DateTime.Now.ToString();                  //current date and time to make file unique
 
+                        //remove unsupported characters in file name
                         date = date.Replace('/', '-');
                         date = date.Replace(':', '.');
+
                         //name of uploaded document
                         string fileName = Path.GetFileName(resume.FileName);
                         string extension = Path.GetExtension(fileName);
                         
+                        //validate extension of uploaded file
                         if (!allowedExtension.Contains(extension))
                         {
                             ModelState.AddModelError("", "Document not supported. Only upload pdf, txt, doc or docx documents only!");
                             Session["uploadResume"] = null;
                             return View();
                         }
-                        string tempFileName = fileName;
 
+                        string tempFileName = fileName;
+                        
+                        //unique file name
                         fileName = lastName + "_" + firstName + "_" + date + "_" + tempFileName;
+                        
                         string path = Path.Combine(Server.MapPath("~/App_Data/Applicant's Resumes"), fileName);
                         resume.SaveAs(path);
 
                         if (model.StoreResumePathInUserProfile(email, path))
                         {
                             Session["uploadResume"] = "File uploaded successfully";
+                            return View();
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("", "Error occured in uploading resume. Try again.");
                             return View();
                         }
                     }

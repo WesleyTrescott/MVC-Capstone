@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -91,7 +92,7 @@ namespace User_Login.Controllers
                     applyJob.PhoneNumber = userInfo.User_Phone_Number;
                     applyJob.Skills = userInfo.Skills;
                     applyJob.ExperienceYears = userInfo.Exp_Years;
-
+                    applyJob.ResumePath = userInfo.Resume_Upload;
                     //var errors = ModelState.Select(x => x.Value.Errors)
                     //           .where(y => y.count > 0)
                     //           .tolist();
@@ -109,7 +110,7 @@ namespace User_Login.Controllers
         }
 
         [HttpPost]
-        public ActionResult Apply(Models.Apply applyJob)
+        public ActionResult Apply(Models.Apply applyJob, HttpPostedFileBase resume)
         {
             //var user = new Models.Apply();
             string email = applyJob.EmailId;
@@ -123,12 +124,62 @@ namespace User_Login.Controllers
             int? phoneNumber = applyJob.PhoneNumber;
             string skills = applyJob.Skills;
             int? experienceYears = applyJob.ExperienceYears;
+            
+            bool useExistingResume = applyJob.UseExistingResume;
+            string resumePath = null;
 
-            if (User.Identity.IsAuthenticated)
+            if (useExistingResume)
             {
+                var entities = new Job_Candidate_Application_Entities();
+                var user = entities.Tbl_Users.Find(email);
+                resumePath = user.Resume_Upload;
+            }
+            else if (resume != null)
+            {
+                var entities = new Job_Candidate_Application_Entities();
+                var user = entities.Tbl_Users.Find(email);
+                var allowedExtension = new[] { ".pdf", ".txt", ".doc", ".docx" };
+                var model = new Models.UploadResume();
+
+                string firstNameInitial = user.User_First_Name[0].ToString();  //user first name initial
+                string date = DateTime.Now.ToString();                  //current date and time to make file unique
+
+                //remove unsupported characters in file name
+                date = date.Replace('/', '-');
+                date = date.Replace(':', '.');
+
+                //name of uploaded document
+                string fileName = Path.GetFileName(resume.FileName);
+                string extension = Path.GetExtension(fileName);
+                        
+                //validate extension of uploaded file
+                if (!allowedExtension.Contains(extension))
+                {
+                    ModelState.AddModelError("", "Document not supported. Only upload pdf, txt, doc or docx documents only!");
+                    return View();
+                }
+
+                string tempFileName = fileName;
+                        
+                //unique file name
+                fileName = lastName + "_" + firstNameInitial + "_" + date + "_" + tempFileName;
+                        
+                resumePath = Path.Combine(Server.MapPath("~/App_Data/Applicant's Resumes"), fileName);
+                resume.SaveAs(resumePath);
+
+                //if (model.StoreResumePathInJobApplicationProfile(email, path))
+                //{
+                //    return View();
+                //}
+                //else
+                //{
+                //    ModelState.AddModelError("", "Error occured in uploading resume. Try again.");
+                //    return View();
+                //}
+
                 if (ModelState.IsValid)
                 {
-                    if (applyJob.submitApplication(email, jobId, firstName, lastName, street, city, state, country, phoneNumber, skills, experienceYears))
+                    if (applyJob.submitApplication(email, jobId, firstName, lastName, street, city, state, country, phoneNumber, skills, experienceYears, resumePath))
                     {
                         Session["submitApplication"] = "Application was submitted successfully. Thank you for your interest.";
                     }
