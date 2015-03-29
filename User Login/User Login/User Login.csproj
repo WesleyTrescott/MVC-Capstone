@@ -148,6 +148,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="! mvc project awesome readme.txt" />
+    <Content Include="404.aspx" />
+    <Content Include="404.html" />
+    <Content Include="500.aspx" />
+    <Content Include="500.html" />
     <Content Include="App_Data\Job_Candidate_Application.mdf" />
     <Content Include="App_Data\Job_Candidate_Application_log.ldf">
       <DependentUpon>Job_Candidate_Application.mdf</DependentUpon>
@@ -276,6 +280,20 @@
     <Content Include="Views\User\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="404.aspx.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="404.aspx.designer.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="500.aspx.cs">
+      <DependentUpon>500.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="500.aspx.designer.cs">
+      <DependentUpon>500.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\MvcProjectAwesome.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
