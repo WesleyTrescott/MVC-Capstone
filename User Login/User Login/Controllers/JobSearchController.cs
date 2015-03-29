@@ -92,7 +92,15 @@ namespace User_Login.Controllers
                     applyJob.PhoneNumber = userInfo.User_Phone_Number;
                     applyJob.Skills = userInfo.Skills;
                     applyJob.ExperienceYears = userInfo.Exp_Years;
-                    applyJob.ResumePath = userInfo.Resume_Upload;
+                    //if (userInfo.Resume_Upload == null)
+                    //{
+                    //    applyJob.ResumePath = null;
+                    //}
+                    //else
+                    //{
+                        applyJob.ResumePath = userInfo.Resume_Upload;
+                    //}
+
                     //var errors = ModelState.Select(x => x.Value.Errors)
                     //           .where(y => y.count > 0)
                     //           .tolist();

@@ -7,12 +7,9 @@
 
 <br />
 <br />
-<br />
 @*<label class="label label-warning center-block" style="font-size:large">Confirm</label>*@
 <br />
 <label class="label label-info center-block" style="font-size:large">Verify your information and click on Submit to apply for @Html.Encode(Model.JobPosition)</label>
-
-
 @using (Html.BeginForm("Apply",
                         "JobSearch",
                         FormMethod.Post,
@@ -27,17 +24,6 @@
             <tr>
                 @Html.HiddenFor(u => u.EmailId)
                 @Html.HiddenFor(u => u.JobId)
-                @*<td>
-                        <label class="label label-default" style="font-size:small">
-                            Email
-                        </label>
-                    </td>
-                    <td>
-                        <label class="form-control-static col-lg-2">
-                            @Html.Encode(Model.EmailId)
-                            @Html.HiddenFor(u => u.JobId)
-                        </label>
-                    </td>*@
             </tr>
 
             <tr>
@@ -140,18 +126,23 @@
             </tr>
 
             <tr>
-                <td>
+                <td colspan="2">
+                    <label class="label label-default" style="font-size:small">
+                        Do you want to attach resume with your application?
+                    </label>
                 </td>
-                <td>
-                    @if (Model.ResumePath != null)
-                    <div class="checkbox">
-                        @Html.CheckBoxFor(u => u.UseExistingResume, "Yes")  Use my existing resume
-                    </div>
-                </td>
+                
             </tr>
 
             <tr>
-                <td></td>
+                <td>
+                    @if (Model.ResumePath != null)
+                    {
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(u => u.UseExistingResume, "Yes")  Use my existing resume
+                        </div>
+                    }
+                </td>
                 <td>
                     <div class="editor-field" title="Upload your resume">
                         @*@Html.TextBoxFor(u => u.EmailId, new { @class = "form-control", @placeholder = "Email address" })*@
