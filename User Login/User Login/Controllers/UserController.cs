@@ -354,6 +354,7 @@ namespace User_Login.Controllers
         public ActionResult ForgotPassword()
         {
             Session["forgotPassword"] = null;
+            Session["previousPage"] = Request.UrlReferrer.ToString();
             return View();
         }
 
