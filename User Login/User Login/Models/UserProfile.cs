@@ -49,6 +49,7 @@ namespace User_Login.Models
         public int? phone_number { get; set; }
 
         //public bool UpdateProfile(string email, string firstName, string lastName, string street, string city, string state, string country, string phone_number, int? experience_years ,string skills)
+
         public bool UpdateProfile(string email, string firstName, string lastName, string street, string city, string state, string country, int? phone_number, int? experience_years, string skills)    
         {
             using (var cn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='|DataDirectory|\Job_Candidate_Application.mdf';Integrated Security=True"))

@@ -276,10 +276,30 @@ namespace User_Login.Controllers
         }
 
         [HttpGet]
-        public ActionResult AdminLoggedIn()
+        public ActionResult AdminLoggedIn(int? page)
         {
+            var entities = new Job_Candidate_Application_Entities();
+            var model = from r in entities.Tbl_Users select r;
+            int pageSize = 3;
+            int pageNum = (page ?? 1);
+
+            AdminLoggedInViewModel viewModel = new AdminLoggedInViewModel();
+
+           // string userName = User.Identity.Name;
+            //viewModel.recJobs = getRecommendedJobs(userName, viewModel);
+
+            if (viewModel.numPagesRecUsers == 0)
+            {
+                var userentities = new Job_Candidate_Application_Entities();
+                IList<Tbl_Users> mylist = userentities.Tbl_Users.ToList();
+                //var sixRandomFoos = mylist.OrderBy(x => Guid.NewGuid()).Take(6);
+                viewModel.recUsers = mylist;
+            }
             if (User.Identity.IsAuthenticated)
-                return View();
+            {
+                viewModel.pagedList = model.OrderBy(p => p.User_Last_Name).ToPagedList(pageNum, pageSize);
+                return View(viewModel);
+            }
             else
                 return RedirectToAction("Login", "User");
         }
@@ -347,6 +367,12 @@ namespace User_Login.Controllers
             else
                 //user not authenticated
                 return RedirectToAction("Login", "User");
+        }
+        public ActionResult DeleteUser(string email)
+        {
+            Models.User user = new Models.User();
+            user.DeleteUser(email);
+            return View();
         }
 
         [HttpGet]
