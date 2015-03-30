@@ -376,6 +376,8 @@
     <Content Include="Views\User\ChangePassword.cshtml" />
     <Content Include="Views\User\UploadResume.cshtml" />
     <Content Include="Views\User\DeleteUser.cshtml" />
+    <Content Include="Views\User\DeActivateUser.cshtml" />
+    <Content Include="Views\User\ActivateUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

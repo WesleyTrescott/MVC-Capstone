@@ -375,6 +375,20 @@ namespace User_Login.Controllers
             return View();
         }
 
+        public ActionResult DeActivateUser(string email)
+        {
+            Models.User user = new Models.User();
+            user.DeActivateUser(email);
+            return View();
+        }
+
+        public ActionResult ActivateUser(string email)
+        {
+            Models.User user = new Models.User();
+            user.ActivateUser(email);
+            return View();
+        }
+
         [HttpGet]
         [AllowAnonymous]
         public ActionResult ForgotPassword()

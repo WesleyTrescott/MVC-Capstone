@@ -136,25 +136,78 @@ namespace User_Login.Models
         }
         public bool DeleteUser(string email)
         {
-            using (var cn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='|DataDirectory|\Job_Candidate_Application.mdf';Integrated Security=True"))
+            try
             {
-                string sqlStmt1 = @"DELETE FROM [Tbl_Job_Application] where [Email_Id] = @email";
-                string sqlStmt2 = @"DELETE FROM [Tbl_Users] where [Email_Id] = @email";
-                var cmd = new SqlCommand(sqlStmt1, cn);
+                using (var cn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='|DataDirectory|\Job_Candidate_Application.mdf';Integrated Security=True"))
+                {
+                    string sqlStmt1 = @"DELETE FROM [Tbl_Job_Application] where [Email_Id] = @email";
+                    string sqlStmt2 = @"DELETE FROM [Tbl_Users] where [Email_Id] = @email";
+                    var cmd = new SqlCommand(sqlStmt1, cn);
 
-                cmd.Parameters.AddWithValue("@email", email);
-                cn.Open();
-                int rows = cmd.ExecuteNonQuery();
-                cmd.Dispose();
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cn.Open();
+                    int rows = cmd.ExecuteNonQuery();
+                    cmd.Dispose();
 
-                var cmd2 = new SqlCommand(sqlStmt2, cn);
+                    var cmd2 = new SqlCommand(sqlStmt2, cn);
 
-                cmd2.Parameters.AddWithValue("@email", email);
-                cmd2.ExecuteNonQuery();
-                cmd2.Dispose();  
-                return true;
+                    cmd2.Parameters.AddWithValue("@email", email);
+                    cmd2.ExecuteNonQuery();
+                    cmd2.Dispose();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+        }
+
+        public bool DeActivateUser(string email)
+        {
+            try
+            {
+                using (var cn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='|DataDirectory|\Job_Candidate_Application.mdf';Integrated Security=True"))
+                {
+                    string sqlStmt = @"UPDATE [Tbl_Users] SET [IS_Active] = 0 where [Email_Id] = @email";
+                    var cmd = new SqlCommand(sqlStmt, cn);
+
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cn.Open();
+                    int rows = cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
+
+        public bool ActivateUser(string email)
+        {
+            try
+            {
+                using (var cn = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename='|DataDirectory|\Job_Candidate_Application.mdf';Integrated Security=True"))
+                {
+                    string sqlStmt = @"UPDATE [Tbl_Users] SET [IS_Active] = 1 where [Email_Id] = @email";
+                    var cmd = new SqlCommand(sqlStmt, cn);
+
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cn.Open();
+                    int rows = cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
 
     }
 }

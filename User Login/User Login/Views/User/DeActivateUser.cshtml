@@ -1,0 +1,16 @@
+﻿@model User_Login.Models.ForgotPassword
+@{
+    ViewBag.Title = "ForgotPassword";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<br />
+<br />
+
+<p style="font-family:'Lucida Console'; font-size:35px; font-style:italic; color:red;">User DeActivated!</p>
+
+<br />
+<br />
+<input type="button" class="btn btn-default" value="Back to Admin Dashboard" onclick="window.location.href='@Url.Action("AdminLoggedIn", "User")'" />
