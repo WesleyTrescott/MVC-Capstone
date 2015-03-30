@@ -1,6 +1,7 @@
 ﻿@model User_Login.Models.Tbl_Jobs
 @{
-    ViewBag.Title = "Job Details";    
+    ViewBag.Title = "Job Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <br />
@@ -150,8 +151,13 @@
 
     </tr>*@
 
+<script type="text/javascript">
+    $document().ready(function(){
+        $('#jobDetails').dataTable();
+    });
+</script>
 
-<table align="left" cellpadding="2500" >
+<table id="jobDetails" align="left" cellpadding="2500" class="pagination" data-pagination="true" data-search="true">
     <tr class="rowSpace">
         <th>
             Position:

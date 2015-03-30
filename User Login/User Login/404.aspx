@@ -8,17 +8,22 @@
         404 - Oops! Page could not be found
     </title>
 </head>
-<body>
+<body style="background-color:dimgray">
     <form id="form1" runat="server">
-    <div>
-        <h2 class="h2" style="color:red">
-            404 - Page not found
+        <br />
+        <br />
+        <br />
+    <div style="color:white;text-align:center;font-family:Calibri">
+        <h1 class="h1" style="font-size:40px;">
+            Page Not Found
+        </h1>
+        <br />
+        <h2 style="font-size:30px;">
+            Sorry, the page you were looking for could not be found. 
         </h2>
         <br />
-        <br />
         <h4>
-            Go back to home page
-            <a href="/home/index">Home</a>
+            <a class="" href="/home/index" style="font-size:30px;">Return to Home Page</a>
         </h4>
     </div>
     </form>
