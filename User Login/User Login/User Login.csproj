@@ -378,6 +378,7 @@
     <Content Include="Views\User\DeleteUser.cshtml" />
     <Content Include="Views\User\DeActivateUser.cshtml" />
     <Content Include="Views\User\ActivateUser.cshtml" />
+    <Content Include="Views\Shared\_Layout2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
