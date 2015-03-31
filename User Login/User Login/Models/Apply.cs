@@ -105,8 +105,24 @@ namespace User_Login.Models
                     cmd.Parameters.AddWithValue("@state", state);
                     cmd.Parameters.AddWithValue("@country", country);
                     cmd.Parameters.AddWithValue("@phoneNumber", phoneNumber);
-                    cmd.Parameters.AddWithValue("@skills", skills);
-                    cmd.Parameters.AddWithValue("@expYears", experienceYears);
+                   
+                    if (skills != null)
+                    {
+                        cmd.Parameters.AddWithValue("@skills", skills);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@skills", DBNull.Value);
+                    }
+
+                    if (experienceYears != null)
+                    {
+                        cmd.Parameters.AddWithValue("@expYears", experienceYears);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@expYears", DBNull.Value);
+                    }
 
                     if (resumePath != null)
                     {
@@ -114,8 +130,10 @@ namespace User_Login.Models
                     }
                     else
                     {
-                        return false;
+                        cmd.Parameters.Add("@resumePath", DBNull.Value);
+                        //return false;
                     }
+
                     
                     cn.Open();
                     cmd.ExecuteNonQuery();
