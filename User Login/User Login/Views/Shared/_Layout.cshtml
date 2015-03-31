@@ -13,9 +13,18 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="@Url.Action("Index", "Home", new { @class = "navbar-brand" })" title="Home">
-                    <img src="~/Content/Images/computech logo.png" class="img-responsive background-transparancy" />
-                </a>
+                @if (Request.IsAuthenticated)
+                {
+                    <a href="@Url.Action("LoggedIn", "User", new { @class = "navbar-brand" })" title="Home">
+                        <img src="~/Content/Images/computech logo.png" class="img-responsive background-transparancy" />
+                    </a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Index", "Home", new { @class = "navbar-brand" })" title="Home">
+                        <img src="~/Content/Images/computech logo.png" class="img-responsive background-transparancy" />
+                    </a>
+                }
             </div>
             <ul class="nav navbar-nav">
                 <li class="dropdown">
@@ -42,9 +51,9 @@
                         var entities = new User_Login.Models.Job_Candidate_Application_Entities();
                         string email = @User.Identity.Name;
                         var name = (from r in entities.Tbl_Users
-                                      where r.Email_Id == email
-                                      select r.User_First_Name); 
-                        
+                                    where r.Email_Id == email
+                                    select r.User_First_Name);
+
                         <a class="dropdown-toggle navbar-brand" data-toggle="dropdown" style="cursor:pointer;">@Html.Raw(email)<span class="glyphicon glyphicon-user"></span></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Sign Out", "Logout", "User")</li>
@@ -91,8 +100,8 @@
     </nav>
 
     @*<br />
-    <br />
-    <br />*@
+        <br />
+        <br />*@
     @RenderBody()
 
     <div class="container body-content">

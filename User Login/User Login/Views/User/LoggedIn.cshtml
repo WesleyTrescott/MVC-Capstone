@@ -6,6 +6,7 @@
 
 @{
     ViewBag.Title = "LoggedIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <style type="text/css">
@@ -19,6 +20,8 @@
 
 <link href="~/Content/modern-businesss.css" rel="stylesheet">
 <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
 
 <div class="container" style="padding-bottom:0px;" id="jsHome">
     <div class="jumbotron list-group-item-success">
@@ -247,7 +250,7 @@
             </div>
         </div>
         @for (int i = 1; i < Model.numPagesRecJobs; i++)
-        { 
+        {
             <div class="item">
                 <div class="fill"><img src="~/Content/Images/block2.jpg" /></div>
                 <div class="container">
@@ -453,9 +456,9 @@
 <br />
 <div class="container">
     <div class="text-center">
-            <img class="img-circle" src="~/Content/Images/question.jpg" alt="Generic placeholder image" width="140" height="140">
-            <h2>Didn't find what you're looking for?</h2>
-            <p>Run a custom job search below:</p>
+        <img class="img-circle" src="~/Content/Images/question.jpg" alt="Generic placeholder image" width="140" height="140">
+        <h2>Didn't find what you're looking for?</h2>
+        <p>Run a custom job search below:</p>
     </div>
 </div>
 <br />
@@ -722,4 +725,3 @@
         interval: 5000 //changes the speed
     })
 </script>
-
