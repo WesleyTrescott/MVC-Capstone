@@ -249,6 +249,8 @@
     <Content Include="Scripts\jquery.form.js" />
     <Content Include="Scripts\jquery.form.min.js" />
     <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -339,6 +341,7 @@
       <DependentUpon>Job_Candidate_Application_.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginUser.cs" />
+    <Compile Include="Models\PredicateBuilder.cs" />
     <Compile Include="Models\Tbl_Admin.cs">
       <DependentUpon>Job_Candidate_Application_.tt</DependentUpon>
     </Compile>
@@ -380,6 +383,7 @@
     <Content Include="Views\User\DeActivateUser.cshtml" />
     <Content Include="Views\User\ActivateUser.cshtml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\User\UserJobSearch.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

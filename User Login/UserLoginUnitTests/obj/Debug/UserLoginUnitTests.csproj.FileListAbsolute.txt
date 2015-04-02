@@ -46,3 +46,4 @@ C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\UserLoginUnitTests\bin\
 C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\UserLoginUnitTests\obj\Debug\UserLoginUnitTests.csprojResolveAssemblyReference.cache
 C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\UserLoginUnitTests\obj\Debug\UserLoginUnitTests.dll
 C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\UserLoginUnitTests\obj\Debug\UserLoginUnitTests.pdb
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\UserLoginUnitTests\bin\Debug\UserLoginUnitTests.dll.config

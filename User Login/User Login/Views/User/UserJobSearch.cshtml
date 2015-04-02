@@ -1,0 +1,78 @@
+﻿@using PagedList.Mvc
+@model User_Login.View_Models.LoggedInViewModel
+
+<div class="container-fluid" id="jobSearch">
+    <div class="well">
+        @using (Ajax.BeginForm("UserJobSearch", "User", FormMethod.Get, new AjaxOptions { UpdateTargetId = "ajaxpanel" }))
+        {
+            <div class="row">
+                <div class="col-md-4">
+                    <p style="font-family:'Agency FB'; font-weight:900; font-size:70px;">Job Search</p>
+                    <p style="font-family:'Agency FB'; font-size:25px; font-style:italic;">Find your dream job today.</p>
+                </div>
+                <div class="col-md-4">
+                    <br />
+                    <br />
+                    <button type="submit" class="btn btn-success btn-lg">Search Jobs   <span class="glyphicon glyphicon-search"></span></button>
+                    <br />
+                    <br />
+                    <button type="reset" class="btn btn-danger btn-lg">Reset Search    </button>
+
+                </div>
+                <div class="col-md-4">
+                    @Html.Label("Filter By Location")
+                    @Html.DropDownList("city", new SelectList(ViewBag.Location), "Select One", new { @class = "form-control btn btn-lg btn-default btn-block", @style = "width:100%; height: 100%" })
+                    @Html.Label("Filter By Customer")
+                    @Html.DropDownList("customer", new SelectList(ViewBag.Customer), "Select One", new { @class = "form-control btn btn-lg btn-default btn-block", @style = "width:100%; height: 100%" })
+                    @Html.Label("Filter By Required Skills")
+                    @*@Html.DropDownList("skills", Enumerable.Empty<SelectListItem>(), "Select One", new { @class = "form-control btn btn-lg btn-default btn-block", @style = "width:100%; height:100%" })*@
+                    @Html.ListBox("skills", ViewBag.skills as MultiSelectList, new { @class = "form-control btn btn-lg btn-default btn-block", @style = "width:100%; height: 100%; text-align: left" })
+                </div>
+            </div>
+        }
+        @if (!Model.pagedList.Any())
+        {
+            <p>No search results!</p>
+        }
+        else
+        {
+            <table class="table table-hover table-condensed mytable">
+                <tr>
+                    <td class="col-md-2">Job Position</td>
+                    <td class="col-md-2">Job Description</td>
+                    <td class="col-md-2">Location</td>
+                    <td class="col-md-2">Skills</td>
+                </tr>
+                @foreach (var item in Model.pagedList)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Position)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Profile_Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.City_Name) @Html.DisplayFor(modelItem => item.State_Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Required_Skills)
+                        </td>
+                        <td>
+                            <input type="button" class="btn btn-default" value="Details" onclick="window.location.href='@Url.Action("Details", "JobSearch" , new { id=@item.Job_Id })'" />
+                        </td>
+                    </tr>
+                }
+            </table>
+            <br />
+            <p>Page @(Model.pagedList.PageCount < Model.pagedList.PageNumber ? 0 : Model.pagedList.PageNumber) of @Model.pagedList.PageCount </p>
+            @Html.PagedListPager(Model.pagedList, page => Url.Action("UserJobSearch", new { city = ViewBag.LocationLabel, customer = ViewBag.CustomerLabel, page }))
+        }
+        <script>
+            $(".pagination > li > a").attr('data-ajax-update', '#ajaxpanel');
+            $(".pagination > li > a").attr('data-ajax-mode', 'replace');
+            $(".pagination > li > a").attr('data-ajax', 'true');
+        </script>
+    </div>
+
+</div>

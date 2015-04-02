@@ -18,5 +18,7 @@ namespace User_Login.View_Models
         public int numRecJobs { get; set; }
 
         public string name { get; set; }
+
+        public List<string> skills { get; set; }
     }
 }

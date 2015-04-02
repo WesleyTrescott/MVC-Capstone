@@ -172,9 +172,203 @@ namespace User_Login.Controllers
         }
 
         [HttpGet]
-        public ActionResult LoggedIn(string city, string customer, int? page)
+        public ActionResult LoggedIn(/*string city, string customer, int? page*/)
+        {
+            //var entities = new Job_Candidate_Application_Entities();
+
+
+            //if (city != null && (city != "" || city != "Select One"))
+            //{
+            //    ViewBag.LocationLabel = city;
+            //    ViewBag.Location = (from r in entities.Tbl_Jobs select r.City_Name).Distinct();
+            //}
+            //if (customer != null && (customer != "" || customer != "Select One"))
+            //{
+            //    ViewBag.CustomerLabel = customer;
+            //    ViewBag.Customer = (from r in entities.Tbl_Jobs select r.Customer).Distinct();
+            //}
+
+            //if (page == null && city == null && customer == null)
+            //{
+            //    ViewBag.Location = (from r in entities.Tbl_Jobs select r.City_Name).Distinct();
+            //    ViewBag.Customer = (from r in entities.Tbl_Jobs select r.Customer).Distinct();
+            //    ViewBag.LocationLabel = "Select One";
+            //    ViewBag.CustomerLabel = "Select One";
+            //}
+            //else if ((city == "" || city == "Select One"))
+            //{
+            //    ViewBag.Location = (from r in entities.Tbl_Jobs select r.City_Name).Distinct();
+            //    ViewBag.LocationLabel = "Select One";
+            //    city = "";
+            //}
+            //else if ((customer == "" || customer == "Select One"))
+            //{
+            //    ViewBag.Customer = (from r in entities.Tbl_Jobs select r.Customer).Distinct();
+            //    ViewBag.CustomerLabel = "Select One";
+            //    customer = "";
+            //}
+
+            //var model = from r in entities.Tbl_Jobs select r;
+
+            //if (city != "" || customer != "")
+            //{
+            //    if (city != "" && customer != "")
+            //    {
+            //        model = (from r in entities.Tbl_Jobs where r.Customer == customer && r.City_Name == city select r);
+            //    }
+            //    else if (city != "")
+            //    {
+            //        model = (from r in entities.Tbl_Jobs where r.City_Name == city select r);
+            //    }
+            //    else
+            //    {
+            //        model = (from r in entities.Tbl_Jobs where r.Customer == customer select r);
+            //    }
+            //}
+            //else
+            //{
+            //    model = from r in entities.Tbl_Jobs where r.Position == "dkjfldjls" select r;
+            //}
+
+            //int pageSize = 3;
+            //int pageNum = (page ?? 1);
+
+            LoggedInViewModel viewModel = new LoggedInViewModel();
+
+            string userName = User.Identity.Name;
+            viewModel.recJobs = getRecommendedJobs(userName, viewModel);
+
+            if (viewModel.numPagesRecJobs == 0)
+            {
+                var jobentities = new Job_Candidate_Application_Entities();
+                IList<Tbl_Jobs> mylist = jobentities.Tbl_Jobs.ToList();
+                var sixRandomFoos = mylist.OrderBy(x => Guid.NewGuid()).Take(6);
+                viewModel.recJobs = sixRandomFoos;
+            }
+
+            if (User.Identity.IsAuthenticated)
+            {
+                //viewModel.pagedList = model.OrderBy(p => p.Position).ToPagedList(pageNum, pageSize);
+                return View(viewModel);
+            }
+            else
+                return RedirectToAction("Login", "User");
+        }
+
+        private static IEnumerable<Tbl_Jobs> getRecommendedJobs(string userName, LoggedInViewModel viewModel)
         {
             var entities = new Job_Candidate_Application_Entities();
+            Tbl_Users user = entities.Tbl_Users.Find(userName);
+            if (user != null)
+            {
+                viewModel.name = user.User_First_Name;
+                string skills = user.Skills;
+                var results = from r in entities.Tbl_Jobs where r.Required_Skills.Contains("skills") select r;
+                IList<Tbl_Jobs> recJobsList = results.ToList();
+                int numresults = recJobsList.Count;
+                int numpages = numresults / 6;
+                viewModel.numRecJobs = 6 * numpages;
+                viewModel.numPagesRecJobs = numpages;
+                var randomFoos = recJobsList.OrderBy(x => Guid.NewGuid()).Take((numpages * 6));
+                return randomFoos;
+            }
+            return null;
+        }
+
+        public ActionResult UserJobSearch(string city, string customer, int? page, FormCollection form)
+        {
+            var entities = new Job_Candidate_Application_Entities();
+
+            string selectedSkills = form["skills"];
+            string selectedCity = form["city"];
+            string selectedCustomer = form["customer"];
+            List<string> skillsList = null;
+
+            if (selectedCity == null && (city != null && city != "" && city != "Select One"))
+                selectedCity = city;
+            if (selectedCustomer == null && (customer != null && customer != "" && customer != "Select One"))
+                selectedCustomer = customer;
+
+            if(selectedSkills != null)
+            {
+                skillsList = selectedSkills.Split(',').ToList();
+            }
+
+            var model = from r in entities.Tbl_Jobs select r;
+
+
+            if ((selectedCity == null || selectedCity == "") && (selectedCustomer == null || selectedCustomer == "") && (skillsList == null))
+            {
+                model = from r in entities.Tbl_Jobs where r.Position == "dkjfldjlsdlfjljwljlwjrow" select r;
+            }
+            else if ((!(selectedCity == null || selectedCity == "")) && (selectedCustomer == null || selectedCustomer == "") && (skillsList == null))
+            {
+                model = (from r in entities.Tbl_Jobs where r.City_Name == selectedCity select r);
+            }
+            else if ((selectedCity == null || selectedCity == "") && (!(selectedCustomer == null || selectedCustomer == "")) && (skillsList == null))
+            {
+                model = (from r in entities.Tbl_Jobs where r.Customer == selectedCustomer select r);
+            }
+            else if ((selectedCity == null || selectedCity == "") && (selectedCustomer == null || selectedCustomer == "") && (!(skillsList == null)))
+            {
+               List<Tbl_Jobs> resultslist = new List<Tbl_Jobs>();
+                foreach (string item in skillsList)
+                {
+                    model = (from r in entities.Tbl_Jobs where r.Required_Skills.Contains(item) select r).Distinct();
+                    foreach(var entry in model)
+                    {
+                        resultslist.Add(entry);
+                    }
+                }
+                model = resultslist.Distinct().AsQueryable();
+            }
+            else if ((!(selectedCity == null || selectedCity == "")) && (!(selectedCustomer == null || selectedCustomer == "")) && (skillsList == null))
+            {
+                model = (from r in entities.Tbl_Jobs where r.Customer == selectedCustomer && r.City_Name == selectedCity select r);
+            }
+            else if ((!(selectedCity == null || selectedCity == "")) && (selectedCustomer == null || selectedCustomer == "") && (!(skillsList == null)))
+            {
+                List<Tbl_Jobs> resultslist = new List<Tbl_Jobs>();
+                foreach (string item in skillsList)
+                {
+                    model = (from r in entities.Tbl_Jobs where r.City_Name == selectedCity && r.Required_Skills.Contains(item) select r).Distinct();
+                    foreach (var entry in model)
+                    {
+                        resultslist.Add(entry);
+                    }
+                }
+                model = resultslist.Distinct().AsQueryable();
+            }
+            else if ((!(selectedCity == null || selectedCity == "")) && (!(selectedCustomer == null || selectedCustomer == "")) && (!(skillsList == null)))
+            {
+                List<Tbl_Jobs> resultslist = new List<Tbl_Jobs>();
+                foreach (string item in skillsList)
+                {
+                    model = (from r in entities.Tbl_Jobs where r.City_Name == selectedCity && r.Customer == selectedCustomer && r.Required_Skills.Contains(item) select r).Distinct();
+                    foreach (var entry in model)
+                    {
+                        resultslist.Add(entry);
+                    }
+                }
+                model = resultslist.Distinct().AsQueryable();
+            }
+            else if ((selectedCity == null || selectedCity == "") && (!(selectedCustomer == null || selectedCustomer == "")) && (!(skillsList == null)))
+            {
+                List<Tbl_Jobs> resultslist = new List<Tbl_Jobs>();
+                foreach (string item in skillsList)
+                {
+                    model = (from r in entities.Tbl_Jobs where r.Customer == selectedCustomer && r.Required_Skills.Contains(item) select r).Distinct();
+                    foreach (var entry in model)
+                    {
+                        resultslist.Add(entry);
+                    }
+                }
+                model = resultslist.Distinct().AsQueryable();
+            }
+            else
+            {
+                model = from r in entities.Tbl_Jobs where r.Position == "dkjfldjlsdlfjljwljlwjrow" select r;
+            }
 
 
             if (city != null && (city != "" || city != "Select One"))
@@ -208,71 +402,66 @@ namespace User_Login.Controllers
                 customer = "";
             }
 
-            var model = from r in entities.Tbl_Jobs select r;
-
-            if (city != "" || customer != "")
-            {
-                if (city != "" && customer != "")
-                {
-                    model = (from r in entities.Tbl_Jobs where r.Customer == customer && r.City_Name == city select r);
-                }
-                else if (city != "")
-                {
-                    model = (from r in entities.Tbl_Jobs where r.City_Name == city select r);
-                }
-                else
-                {
-                    model = (from r in entities.Tbl_Jobs where r.Customer == customer select r);
-                }
-            }
-            else
-            {
-                model = from r in entities.Tbl_Jobs where r.Position == "dkjfldjls" select r;
-            }
-
             int pageSize = 3;
             int pageNum = (page ?? 1);
 
             LoggedInViewModel viewModel = new LoggedInViewModel();
-
-            string userName = User.Identity.Name;
-            viewModel.recJobs = getRecommendedJobs(userName, viewModel);
-
-            if (viewModel.numPagesRecJobs == 0)
-            {
-                var jobentities = new Job_Candidate_Application_Entities();
-                IList<Tbl_Jobs> mylist = jobentities.Tbl_Jobs.ToList();
-                var sixRandomFoos = mylist.OrderBy(x => Guid.NewGuid()).Take(6);
-                viewModel.recJobs = sixRandomFoos;
-            }
-
-            if (User.Identity.IsAuthenticated)
-            {
-                viewModel.pagedList = model.OrderBy(p => p.Position).ToPagedList(pageNum, pageSize);
-                return View(viewModel);
-            }
-            else
-                return RedirectToAction("Login", "User");
+            ViewBag.skills = getSkillsList(null);
+            viewModel.pagedList = model.OrderBy(p => p.Position).ToPagedList(pageNum, pageSize);
+            
+            return PartialView("UserJobSearch", viewModel);
         }
 
-        private static IEnumerable<Tbl_Jobs> getRecommendedJobs(string userName, LoggedInViewModel viewModel)
+        private MultiSelectList getSkillsList(string[] selectedValues)
         {
-            var entities = new Job_Candidate_Application_Entities();
-            Tbl_Users user = entities.Tbl_Users.Find(userName);
-            if (user != null)
-            {
-                viewModel.name = user.User_First_Name;
-                string skills = user.Skills;
-                var results = from r in entities.Tbl_Jobs where r.Required_Skills.Contains("skills") select r;
-                IList<Tbl_Jobs> recJobsList = results.ToList();
-                int numresults = recJobsList.Count;
-                int numpages = numresults / 6;
-                viewModel.numRecJobs = 6 * numpages;
-                viewModel.numPagesRecJobs = numpages;
-                var randomFoos = recJobsList.OrderBy(x => Guid.NewGuid()).Take((numpages * 6));
-                return randomFoos;
-            }
-            return null;
+            var skillsList = new List<string>();
+            skillsList.Add(".NET Framework");
+            skillsList.Add("Agile/Scrum Development");
+            skillsList.Add("Ajax");
+            skillsList.Add("Algorithms/Data Structures");
+            skillsList.Add("Analytics");
+            skillsList.Add("Android Programming ");
+            skillsList.Add("Business Best Practices");
+            skillsList.Add("Business Process Improvement");
+            skillsList.Add("Business Professionalism");
+            skillsList.Add("C Programming");       
+            skillsList.Add("C# Programming");
+            skillsList.Add("C++ Programming");
+            skillsList.Add("Cascading Style Sheets (CSS)");
+            skillsList.Add("Corporate Best Practices");
+            skillsList.Add("Corporate Management");
+            skillsList.Add("Critical Thinking");
+            skillsList.Add("Database Design");
+            skillsList.Add("From-Scratch Development");
+            skillsList.Add("Frontend/UI Development");
+            skillsList.Add("Git/Github");
+            skillsList.Add("HTML");
+            skillsList.Add("Human Resources");
+            skillsList.Add("Industrial Engineering");
+            skillsList.Add("Information Technology Management");
+            skillsList.Add("iOS Programming");
+            skillsList.Add("Java/Java Framework");
+            skillsList.Add("JavaScript Programming");
+            skillsList.Add("Mobile Application Development");
+            skillsList.Add("Problem Solving");
+            skillsList.Add("Professional Oral/Written Communication");
+            skillsList.Add("Project Build Lifecycle Management");
+            skillsList.Add("Project Management");
+            skillsList.Add("Ruby on Rails Framework");
+            skillsList.Add("Software Design Patterns");
+            skillsList.Add("Software Documentation");
+            skillsList.Add("Software Lifecycle Management");
+            skillsList.Add("Software Maintenance");
+            skillsList.Add("Software Testing");
+            skillsList.Add("Source Control Management");
+            skillsList.Add("SQL Programming");
+            skillsList.Add("Subversion (SVN)");
+            skillsList.Add("Technical Support");
+            skillsList.Add("Web Development");
+            skillsList.Add("Web Services");
+            skillsList.Add("XML Programming");
+
+            return new MultiSelectList(skillsList, selectedValues);
         }
 
         [HttpGet]
