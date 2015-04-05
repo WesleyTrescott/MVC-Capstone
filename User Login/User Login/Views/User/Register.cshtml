@@ -8,81 +8,84 @@
     <br />
     <br />
     <br />
+    <style type="text/css">
+        .borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
+            border: none;
+        }
+    </style>
     @Html.ValidationSummary( "Error processing your request", new { @class="alert alert-danger" });
-    <div style="margin:5% auto; width:350px;top:150px;"> @* modified by Simul *@
-        <fieldset>
-            <legend style="text-align:center;color:forestgreen">Register</legend>
-            @*<div class="editor-label">
-                @Html.LabelFor(u => u.FirstName)
-                <text>*</text>
-            </div>*@
-            <div class="editor-field" title="Enter first name">
-                @*@Html.LabelFor(u => u.UserName);*@
-                @*<span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>*@
-                @Html.TextBoxFor(u => u.FirstName, new {@class="form-control", @placeholder="First Name*"})
-            </div>
-            @*<div class="editor-label">
-                @Html.LabelFor(u => u.LastName)
-                <text>*</text>
-            </div>*@
-            <div class="editor-field" title="Enter last name">
-                @Html.TextBoxFor(u => u.LastName, new { @class = "form-control", @placeholder = "Last Name*" })
+    <div style="margin:5% auto; width:500px;top:150px;">
+        @* modified by Simul *@
 
-            </div>
-            @*<div class="editor-label">
-                @Html.LabelFor(u => u.Email)
-                <text>*</text>
-            </div>*@
-            <div class="editor-field" title="Enter email address">
-                @Html.TextBoxFor(u => u.Email, new { @class = "form-control", @placeholder = "Email Address*" })
-            </div>
-            @*<div class="editor-label">
-                @Html.LabelFor(u => u.Password)
-                <text>*</text>
-            </div>*@
-            <div class="editor-field" title="Enter password between 6 - 20 characters">
-                @Html.PasswordFor(u => u.Password, new { @class = "form-control", @placeholder = "Password*" })
-                @Html.ValidationMessageFor(u => u.Password)
-            </div>
-            @* added by Simul Kadakia on 2/21/2015 - confirm password field *@
-            @*<div class="editor-label">
-                @Html.LabelFor(u => u.ConfirmPassword)
-                <text>*</text>
-            </div>*@
-            <div class="editor-field" title="Reenter password">
-                @Html.PasswordFor(u => u.ConfirmPassword, new { @class = "form-control", @placeholder = "Reenter password*" })
-                @Html.ValidationMessageFor(u => u.ConfirmPassword)
-            </div>
-            <br />
-            <pre style="background-color:white;border:none;">* - Required Fields
-            </pre>
-            
-            <div class="text-center">
-                <input type="submit" class="btn btn-danger" value="Create My Account" />
-            </div>
-        </fieldset>
+        <table class="table borderless">
+            <tr>
+                <td>
+                    <div style="font-size:large" title="Enter first name">
+                        <label class="col-lg-10 label label-default">First Name*</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="col-lg-15">
+                        @Html.TextBoxFor(u => u.FirstName, new { @class = "form-control", @placeholder = "First Name" })
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div style="font-size:large" title="Enter last name">
+                        <label class="col-lg-10 label label-default">Last Name*</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="col-lg-15">
+                        @Html.TextBoxFor(u => u.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div style="font-size:large" title="Enter first name">
+                        <label class="col-lg-10 label label-default">Email*</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="col-lg-15">
+                        @Html.TextBoxFor(u => u.Email, new { @class = "form-control", @placeholder = "Email" })
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div style="font-size:large" title="Enter first name">
+                        <label class="col-lg-10 label label-default">Password*</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="col-lg-15">
+                        @Html.PasswordFor(u => u.Password, new { @class = "form-control", @placeholder = "Password" })
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div style="font-size:large" title="Enter first name">
+                        <label class="col-lg-10 label label-default">Confirm Password*</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="col-lg-15">
+                        @Html.PasswordFor(u => u.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm Password" })
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="text-center">
+        <input type="submit" class="btn btn-success" value="Create My Account" />
     </div>
 }
-
-
-@*
-    meeting 2/24 
-       contact us - submit
-    robot X - email confirmation
-    twitter feeds X
-    renderings ok
-    password credentials - email - optional
-    3 resume-x - 1 size - 5mb
-
-
-
-    details
-    position
-    customer
-    country, state, city
-    description
-    req skills
-    start end date if not null
-    pay rate
-
-*@

@@ -7,220 +7,117 @@
 <br />
 <br />
 <h3 class="h3 text-center text-info bg-info" style="align-content:center">
-        @Html.Encode(Model.Position)
+    @Html.Encode(Model.Position)
 </h3>
+
 @if (Session["hasApplied"] != null)
 {
     <label class="label-danger" style="font-size:medium">
-            @Session["hasApplied"].ToString()
+        @Session["hasApplied"].ToString()
     </label>
 }
+
 <br />
 <br />
 <br />
-
-
-@*<table cellpadding="25">
-
-    <tr>
-
-        <th></th>
-
-        <th>
-
-            Job Position
-
-        </th>
-
-        <th>
-
-            Job Description
-
-        </th>
-
-        <th>
-
-            City, State, Country
-
-        </th>
-
-        <th>
-
-            State
-
-        </th>
-
-        <th>
-
-            City
-
-        </th>
-
-        <th>
-
-            Skills
-
-        </th>
-
-        <th>
-
-            Start Date
-
-        </th>
-
-        <th>
-
-            End Date
-
-        </th>
-
-        <th>
-
-            Pay Rate
-
-        </th>
-
-    </tr>
-</table>*@
-
-@*@foreach (var item in Model) {*@
-
-@*var item = Model;*@
-
-    @*<tr>
-
-        <td>
-
-            @Html.ActionLink("Details", "Index", "Home")
-
-        </td>
-
-        <td>
-
-            @Html.Encode(Model.Job_Position)
-
-        </td>
-
-        <td>
-
-            @Html.Encode(Model.Job_Description)
-
-        </td>
-
-        <td>
-
-
-            @Html.Encode(Model.City) @Html.Encode(Model.State) @Html.Encode(Model.Country)
-        </td>
-
-        <td>
-
-            @Html.Encode(Model.State)
-
-        </td>
-
-        <td>
-
-            @Html.Encode(Model.City)
-
-        </td>
-
-        <td>
-
-            @Html.Encode(Model.Skills)
-
-        </td>
-
-        <td>
-
-            @Html.Encode(Model.Start_Date)
-
-        </td>
-
-        <td>
-
-            @Html.Encode(Model.End_Date)
-
-        </td>
-
-        <td>
-
-            @Html.Encode(Model.PayRate)
-
-        </td>
-
-    </tr>*@
-
-<script type="text/javascript">
-    $document().ready(function(){
-        $('#jobDetails').dataTable();
-    });
-</script>
 
 <table id="jobDetails" align="left" cellpadding="2500" class="pagination" data-pagination="true" data-search="true">
     <tr class="rowSpace">
-        <th>
-            Position:
-        </th>
-        <th>
-            @Html.Encode(Model.Position)
-        </th>
+        <td>
+            <div style="font-size:large">
+                <label class="col-lg-10 label label-default">Position</label>
+            </div>
+        </td>
+        <td>
+            <div style="font-size:medium" class="col-lg-12">
+                @Html.Label(Model.Position)
+            </div>
+        </td>
+    </tr>
+    <tr class="rowSpace" style="word-wrap:normal;">
+        <td>
+            <div style="font-size:large">
+                <label class="col-lg-12 label label-default">Description</label>
+            </div>
+        </td>
+        <td>
+            <div style="font-size:medium; font-weight:bold" class="col-lg-12">
+                @Html.Encode(Model.Description)
+            </div>
+        </td>
     </tr>
     <tr class="rowSpace">
-        <th style="word-wrap:normal">
-            Description:
-        </th>
-        <th>
-            @Html.Encode(Model.Description)
-        </th>
+        <td>
+            <div style="font-size:large">
+                <label class="col-lg-12 label label-default">Location</label>
+            </div>
+        </td>
+        <td>
+            <div style="font-size:medium;font-weight:bold" class="col-lg-12">
+                @Html.Encode(Model.City_Name), @Html.Encode(Model.State_Name), @Html.Encode(Model.Country_Name)
+            </div>
+        </td>
     </tr>
     <tr class="rowSpace">
-        <th>
-            Location:
-        </th>
-        <th>
-            @Html.Encode(Model.City_Name), @Html.Encode(Model.State_Name), @Html.Encode(Model.Country_Name)
-        </th>
+        <td>
+            <div style="font-size:large">
+                <label class="col-lg-12 label label-default">Required Skills</label>
+            </div>
+        </td>
+        <td>
+            <div style="font-size:medium;" class="col-lg-12">
+                @Html.Label(Model.Required_Skills)
+            </div>
+        </td>
     </tr>
-    <tr class="rowSpace">
-        <th>
-            Required Skills:
-        </th>
-        <th>
-            @Html.Encode(Model.Required_Skills)
-        </th>
+    <tr class="rowSpace" style="word-wrap:normal;">
+        <td>
+            <div style="font-size:large">
+                <label class="col-lg-12 label label-default">Customer</label>
+            </div>
+        </td>
+        <td>
+            <div style="font-size:medium" class="col-lg-12">
+                @Html.Label(Model.Customer)
+            </div>
+        </td>
     </tr>
-    <tr class="rowSpace">
-        <th>
-            Customer:
-        </th>
-        <th>
-            @Html.Encode(Model.Customer)
-        </th>
+    <tr class="rowSpace" style="word-wrap:normal;">
+        <td>
+            <div style="font-size:large;">
+                <label class="col-lg-12 label label-default">Start Date</label>
+            </div>
+        </td>
+        <td>
+            <div style="font-size:medium; font-weight:bold;" class="col-lg-12">
+                @Html.Encode(Model.Start_Date)
+            </div>
+        </td>
     </tr>
-    <tr class="rowSpace">
-        <th>
-            Start Date:
-        </th>
-        <th>
-            @Html.Encode(Model.Start_Date)
-        </th>
+    
+    <tr class="rowSpace" style="word-wrap:normal;">
+        <td>
+            <div style="font-size:large;">
+                <label class="col-lg-12 label label-default">End Date</label>
+            </div>
+        </td>
+        <td>
+            <div style="font-size:medium; font-weight:bold;" class="col-lg-12">
+                @Html.Encode(Model.End_Date)
+            </div>
+        </td>
     </tr>
-    <tr class="rowSpace">
-        <th>
-            End Date:
-        </th>
-        <th>
-            @Html.Encode(Model.End_Date)
-        </th>
-    </tr>
-    <tr class="rowSpace">
-        <th>
-            Salary:
-        </th>
-        <th>
-            @Html.Encode(Model.Pay_Rate)
-        </th>
+    <tr class="rowSpace" style="word-wrap:normal;">
+        <td>
+            <div style="font-size:large">
+                <label class="col-lg-12 label label-default">Salary</label>
+            </div>
+        </td>
+        <td>
+            <div style="font-size:medium; font-weight:bold" class="col-lg-12">
+                @Html.Encode(Model.Pay_Rate)
+            </div>
+        </td>
     </tr>
 </table>
 
@@ -230,19 +127,19 @@
 
 <style type="text/css">
     .Apply {
-        align-self:center;
-        text-align:center;
-        font-family:'Courier New';
-        font-weight:bold;
-        height:36px;
-        width:80px;
-        display:inline;
-        margin:5% auto;
-        left:500px;
+        align-self: center;
+        text-align: center;
+        font-family: 'Courier New';
+        font-weight: bold;
+        height: 36px;
+        width: 80px;
+        display: inline;
+        margin: 5% auto;
+        left: 500px;
     }
 
-    tr.rowSpace > td{
-        padding-bottom:1em;
+    tr.rowSpace > td {
+        padding-bottom: 1em;
     }
 </style>
 <br />
@@ -254,8 +151,8 @@
     @*<form class="Apply">*@
 
     <div class="text-center">
-        <input type="button" class="btn btn-toolbar" value="Apply" onclick="window.location.href='@Url.Action("Apply", "JobSearch", new { id = @Model.Job_Id  })'" />&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-toolbar" value="Back" onclick="history.go(-1)"/> @*window.location.href='@Url.Action("Index", "JobSearch")'" />*@
-    </div>                                                                                                                                                           
-      @*  </form>*@
+        <input type="button" class="btn btn-success" value="Apply" onclick="window.location.href='@Url.Action("Apply", "JobSearch", new { id = @Model.Job_Id  })'" />&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-danger" value="Back" onclick="history.go(-1)" /> @*window.location.href='@Url.Action("Index", "JobSearch")'" />*@
+    </div>
+    @*  </form>*@
     @*</pre>*@
 </div>

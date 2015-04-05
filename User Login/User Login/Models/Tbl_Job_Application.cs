@@ -17,6 +17,16 @@ namespace User_Login.Models
         public int Job_Application_Id { get; set; }
         public int Job_Id { get; set; }
         public string Email_Id { get; set; }
+        public string User_First_Name { get; set; }
+        public string User_Last_Name { get; set; }
+        public string User_Street { get; set; }
+        public string User_City { get; set; }
+        public string User_State { get; set; }
+        public string User_Country { get; set; }
+        public string User_Phone_Number { get; set; }
+        public string Skills { get; set; }
+        public Nullable<int> Exp_Years { get; set; }
+        public string Resume_Upload { get; set; }
     
         public virtual Tbl_Jobs Tbl_Jobs { get; set; }
         public virtual Tbl_Users Tbl_Users { get; set; }

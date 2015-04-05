@@ -24,9 +24,19 @@
     <Key>
       <PropertyRef Name="Job_Application_Id" />
     </Key>
-    <Property Name="Job_Application_Id" Type="int" Nullable="false" />
+    <Property Name="Job_Application_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Job_Id" Type="int" Nullable="false" />
     <Property Name="Email_Id" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="User_First_Name" Type="text" Nullable="false" />
+    <Property Name="User_Last_Name" Type="text" Nullable="false" />
+    <Property Name="User_Street" Type="varchar" MaxLength="50" />
+    <Property Name="User_City" Type="varchar" MaxLength="50" />
+    <Property Name="User_State" Type="varchar(max)" />
+    <Property Name="User_Country" Type="text" />
+    <Property Name="User_Phone_Number" Type="varchar" MaxLength="15" />
+    <Property Name="Skills" Type="varchar(max)" />
+    <Property Name="Exp_Years" Type="int" />
+    <Property Name="Resume_Upload" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="Tbl_Jobs">
     <Key>
@@ -64,7 +74,7 @@
     <Property Name="Resume_Upload" Type="varchar(max)" />
     <Property Name="Is_Active" Type="int" Nullable="false" />
     <Property Name="Password" Type="varchar" MaxLength="150" Nullable="false" />
-    <Property Name="User_Phone_Number" Type="int" />
+    <Property Name="User_Phone_Number" Type="varchar" MaxLength="15" />
     <Property Name="User_Guid" Type="varchar" MaxLength="50" />
   </EntityType>
   <Association Name="FK_Tbl_Customer_Tbl_Customer">

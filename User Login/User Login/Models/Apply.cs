@@ -48,7 +48,7 @@ namespace User_Login.Models
 
         [Display(Name = "Phone Number")]
         [DataType(DataType.PhoneNumber)]
-        public int? PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         public bool UseExistingResume { get; set; }
         public string ResumePath { get; set; }
@@ -84,7 +84,7 @@ namespace User_Login.Models
             }
         }
 
-        public bool submitApplication(string email, int jobID, string firstName, string lastName, string street, string city, string state, string country, int? phoneNumber, string skills, int? experienceYears, string resumePath)
+        public bool submitApplication(string email, int jobID, string firstName, string lastName, string street, string city, string state, string country, string phoneNumber, string skills, int? experienceYears, string resumePath)
         {
             try
             {

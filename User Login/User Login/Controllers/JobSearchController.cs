@@ -219,7 +219,7 @@ namespace User_Login.Controllers
             string city = applyJob.City;
             string state = applyJob.State;
             string country = applyJob.Country;
-            int? phoneNumber = applyJob.PhoneNumber;
+            string phoneNumber = applyJob.PhoneNumber;
             string skills = applyJob.Skills;
             int? experienceYears = applyJob.ExperienceYears;
 
@@ -294,6 +294,7 @@ namespace User_Login.Controllers
                 else
                 {
                     ModelState.AddModelError("", "Error submitting application. Make sure required fields are not empty");
+                    return View(applyJob);
                 }
 
                 //error tracing

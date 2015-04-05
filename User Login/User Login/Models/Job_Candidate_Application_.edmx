@@ -29,9 +29,19 @@
           <Key>
             <PropertyRef Name="Job_Application_Id" />
           </Key>
-          <Property Name="Job_Application_Id" Type="int" Nullable="false" />
+          <Property Name="Job_Application_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Job_Id" Type="int" Nullable="false" />
           <Property Name="Email_Id" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="User_First_Name" Type="text" Nullable="false" />
+          <Property Name="User_Last_Name" Type="text" Nullable="false" />
+          <Property Name="User_Street" Type="varchar" MaxLength="50" />
+          <Property Name="User_City" Type="varchar" MaxLength="50" />
+          <Property Name="User_State" Type="varchar(max)" />
+          <Property Name="User_Country" Type="text" />
+          <Property Name="User_Phone_Number" Type="varchar" MaxLength="15" />
+          <Property Name="Skills" Type="varchar(max)" />
+          <Property Name="Exp_Years" Type="int" />
+          <Property Name="Resume_Upload" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Tbl_Jobs">
           <Key>
@@ -69,7 +79,7 @@
           <Property Name="Resume_Upload" Type="varchar(max)" />
           <Property Name="Is_Active" Type="int" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="User_Phone_Number" Type="int" />
+          <Property Name="User_Phone_Number" Type="varchar" MaxLength="15" />
           <Property Name="User_Guid" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Tbl_Customer_Tbl_Customer">
@@ -162,6 +172,16 @@
           <Property Name="Email_Id" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Tbl_Jobs" Relationship="Self.FK_Tbl_Job_Application_Tbl_Jobs" FromRole="Tbl_Job_Application" ToRole="Tbl_Jobs" />
           <NavigationProperty Name="Tbl_Users" Relationship="Self.FK_Tbl_Job_Application_Tbl_Users" FromRole="Tbl_Job_Application" ToRole="Tbl_Users" />
+          <Property Name="User_First_Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="User_Last_Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="User_Street" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="User_City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="User_State" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="User_Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="User_Phone_Number" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Skills" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Exp_Years" Type="Int32" />
+          <Property Name="Resume_Upload" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Tbl_Jobs">
           <Key>
@@ -201,7 +221,7 @@
           <Property Name="Is_Active" Type="Int32" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Tbl_Job_Application" Relationship="Self.FK_Tbl_Job_Application_Tbl_Users" FromRole="Tbl_Users" ToRole="Tbl_Job_Application" />
-          <Property Name="User_Phone_Number" Type="Int32" />
+          <Property Name="User_Phone_Number" Type="String" />
           <Property Name="User_Guid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Tbl_Customer_Tbl_Customer">
@@ -290,6 +310,16 @@
           <EntitySetMapping Name="Tbl_Job_Application">
             <EntityTypeMapping TypeName="Job_Candidate_ApplicationModel.Tbl_Job_Application">
               <MappingFragment StoreEntitySet="Tbl_Job_Application">
+                <ScalarProperty Name="Resume_Upload" ColumnName="Resume_Upload" />
+                <ScalarProperty Name="Exp_Years" ColumnName="Exp_Years" />
+                <ScalarProperty Name="Skills" ColumnName="Skills" />
+                <ScalarProperty Name="User_Phone_Number" ColumnName="User_Phone_Number" />
+                <ScalarProperty Name="User_Country" ColumnName="User_Country" />
+                <ScalarProperty Name="User_State" ColumnName="User_State" />
+                <ScalarProperty Name="User_City" ColumnName="User_City" />
+                <ScalarProperty Name="User_Street" ColumnName="User_Street" />
+                <ScalarProperty Name="User_Last_Name" ColumnName="User_Last_Name" />
+                <ScalarProperty Name="User_First_Name" ColumnName="User_First_Name" />
                 <ScalarProperty Name="Job_Application_Id" ColumnName="Job_Application_Id" />
                 <ScalarProperty Name="Job_Id" ColumnName="Job_Id" />
                 <ScalarProperty Name="Email_Id" ColumnName="Email_Id" />

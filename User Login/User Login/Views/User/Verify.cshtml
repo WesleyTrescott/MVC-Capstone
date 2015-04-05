@@ -23,6 +23,6 @@
     <br />
 
     You will be redirected to login page soon.
-    @{Response.AddHeader("REFRESH", "10;URL=/User/Login");}
-
+    @*@{Response.AddHeader("REFRESH", "10;URL=/User/Login");}*@
+    <meta http-equiv="Refresh" content="5;URL=@(Url.Action("Login", "User"))">
 </text>

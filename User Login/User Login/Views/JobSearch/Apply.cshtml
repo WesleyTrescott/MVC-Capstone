@@ -17,113 +17,149 @@
 {
     <br />
     @Html.ValidationSummary("Application could not submitted.", new { @class = "alert alert-danger centered" });
-    <br />
+    
+    <style type="text/css">
+        .borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
+            border: none;
+        }
+    </style>
 
-    <div style="margin:5% auto; width:350px;top:30px;">
-        <table width="350">
+    <div style="margin:5% auto; width:500px;top:20px;">
+        <table width="350" class="table borderless">
             <tr>
                 @Html.HiddenFor(u => u.EmailId)
                 @Html.HiddenFor(u => u.JobId)
             </tr>
-
             <tr>
                 <td>
-                    <label class="label label-default" style="font-size:small">
-                        First Name
-                    </label>
+                    <div style="font-size:large" title="Enter first name">
+                        <label class="col-lg-10 label label-default">First Name*</label>
+                    </div>
                 </td>
                 <td>
-                    @Html.TextBoxFor(u => u.FirstName, new { @class = "form-control" })
+                    <div class="col-lg-15">
+                        @Html.TextBoxFor(u => u.FirstName, new { @class = "form-control", @placeholder = "First Name" })
+                    </div>
                 </td>
             </tr>
 
             <tr>
                 <td>
-                    <label class="label label-default" style="font-size:small">
-                        Last Name
-                    </label>
+                    <div style="font-size:large" title="Enter last name">
+                        <label class="col-lg-10 label label-default">Last Name*</label>
+                    </div>
                 </td>
                 <td>
-                    @Html.TextBoxFor(u => u.LastName, new { @class = "form-control" })
+                    <div class="col-lg-15">
+                        @Html.TextBoxFor(u => u.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+                    </div>
                 </td>
             </tr>
 
             <tr>
                 <td>
-                    <label class="label label-default" style="font-size:small">
-                        Street
-                    </label>
+                    <div style="font-size:large" title="Enter street">
+                        <label class="col-lg-10 label label-default">Street*</label>
+                    </div>
                 </td>
                 <td>
-                    @Html.TextBoxFor(u => u.Street, new { @class = "form-control", @placeholder = "Street" })
+                    <div class="col-lg-15">
+                        @Html.TextBoxFor(u => u.Street, new { @class = "form-control", @placeholder = "Street" })
+                    </div>
                 </td>
             </tr>
 
             <tr>
                 <td>
-                    <label class="label label-default" style="font-size:small">
-                        City
-                    </label>
+                    <div style="font-size:large" title="Enter City">
+                        <label class="col-lg-10 label label-default">City*</label>
+                    </div>
                 </td>
                 <td>
-                    @Html.TextBoxFor(u => u.City, new { @class = "form-control", @placeholder = "City" })
+                    <div class="col-lg-15">
+                        @Html.TextBoxFor(u => u.City, new { @class = "form-control", @placeholder = "City" })
+                    </div>
                 </td>
             </tr>
 
             <tr>
                 <td>
-                    <label class="label label-default" style="font-size:small">
-                        State
-                    </label>
+                    <div style="font-size:large" title="Enter State">
+                        <label class="col-lg-10 label label-default">State*</label>
+                    </div>
                 </td>
                 <td>
-                    @Html.TextBoxFor(u => u.State, new { @class = "form-control", @placeholder = "State" })
+                    <div class="col-lg-15">
+                        @Html.TextBoxFor(u => u.State, new { @class = "form-control", @placeholder = "State" })
+                    </div>
                 </td>
             </tr>
 
             <tr>
                 <td>
-                    <label class="label label-default" style="font-size:small">
-                        Country
-                    </label>
+                    <div style="font-size:large" title="Enter Country">
+                        <label class="col-lg-10 label label-default">Country*</label>
+                    </div>
                 </td>
                 <td>
-                    @Html.TextBoxFor(u => u.Country, new { @class = "form-control", @placeholder = "Country" })
+                    <div class="col-lg-15">
+                        @Html.TextBoxFor(u => u.Country, new { @class = "form-control", @placeholder = "Country" })
+                    </div>
                 </td>
             </tr>
 
             <tr>
                 <td>
-                    <label class="label label-default" style="font-size:small">
-                        Phone Number
-                    </label>
+                    <div style="font-size:large" title="Enter phone number">
+                        <label class="col-lg-10 label label-default">Phone Number</label>
+                    </div>
                 </td>
                 <td>
-                    @Html.TextBoxFor(u => u.PhoneNumber, new { @class = "form-control", @placeholder = "Phone Number" })
+                    <div class="col-lg-15">
+                        @Html.TextBoxFor(u => u.PhoneNumber, new { @class = "form-control", @placeholder = "Phone Number (ex: 1234567890" })
+                    </div>
                 </td>
             </tr>
 
             <tr>
                 <td>
-                    <label class="label label-default" style="font-size:small">
-                        Skills
-                    </label>
+                    <div style="font-size:large" title="Enter skills">
+                        <label class="col-lg-10 label label-default">Skills</label>
+                    </div>
                 </td>
                 <td>
-                    @Html.TextAreaFor(u => u.Skills, new { @class = "form-control", @placeholder = "Skills" })
+                    <div class="col-lg-15">
+                        @Html.TextAreaFor(u => u.Skills, new { @class = "form-control", @placeholder = "Skills (ex: C#, ASP.NET, SQL" })
+                    </div>
                 </td>
             </tr>
 
             <tr>
                 <td>
-                    <label class="label label-default" style="font-size:small">
-                        Total Years of Experience
-                    </label>
+                    <div style="font-size:large" title="Enter first name">
+                        <label class="col-lg-12 label label-default">Total Years of Experience</label>
+                    </div>
                 </td>
                 <td>
-                    @Html.TextBoxFor(u => u.ExperienceYears, new { @class = "form-control", @placeholder = "Years of Experience" })
+                    <div class="col-lg-15">
+                        @Html.TextBoxFor(u => u.ExperienceYears, new { @class = "form-control", @placeholder = "Total years of experience (ex: 7)" })
+                    </div>
                 </td>
             </tr>
+
+            <tr>
+                <td>
+                    <div style="font-size:large" title="Enter first name">
+
+                    </div>
+                </td>
+                <td>
+                    <div class="col-lg-15">
+                        @Html.ActionLink("Click here to upload your resume", "UploadResume", "User")
+                    </div>
+                </td>
+            </tr>
+        
 
             <tr>
                 <td colspan="2">
@@ -156,7 +192,7 @@
         <br />
         <br />
         <div class="text-center">
-            <input type="submit" class="btn btn-danger" value="Submit" title="Click to submit your information" />
+            <input type="submit" class="btn btn-success" value="Submit" title="Click to submit your information" />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="button" class="btn btn-danger" value="Cancel" title="Click to go back to Job Search page" onclick="window.location.href='@Url.Action("Index", "JobSearch")'" />
         </div>

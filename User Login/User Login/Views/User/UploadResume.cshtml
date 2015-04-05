@@ -34,8 +34,9 @@
         <label class="label label-success center-block" style="font-size:medium">
             <br />
             You will be redirected to login page soon.
-            @{Response.AddHeader("REFRESH", "5;URL=/User/Login");}
+            @*@{Response.AddHeader("REFRESH", "5;URL=/User/Login");}*@
         </label>
+    <meta http-equiv="Refresh" content="5;URL=@(Url.Action("Login", "User"))">
     }
     <br />
     <br />
@@ -59,7 +60,7 @@
 
 
         <div style="text-align:center" title="Click to upload resume">
-            <input type="submit" value="Upload Resume" class="btn btn-danger" />
+            <input type="submit" value="Upload Resume" class="btn btn-success" />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="button" class="btn btn-danger" value="Cancel" title="Go to Profile Page" onclick="window.location.href='@Url.Action("Profile","User")'" />
         </div>

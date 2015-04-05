@@ -11,33 +11,60 @@
     @*@Html.ValidationSummary(true, "Login failed. Check your login credentials.", new { class });*@
     @Html.ValidationSummary("Login failed.", new { @class = "alert alert-danger centered" });
 
-    <div id="test" style="margin:5% auto; width:350px;top:200px;">    @* modified by Simul *@
-        <fieldset>
-            <legend style="text-align:center;color:forestgreen">Login</legend> @*modified by Simul*@  
-            @*<div class="editor-label">
-                @Html.LabelFor(u => u.Email)
-            </div>*@
-            <div class="editor-field" title="Enter email address">
-                @Html.TextBoxFor(u => u.Email, new { @class = "form-control", @placeholder = "Email address" })
-            </div>
-            @*<div class="editor-label">
-                @Html.LabelFor(u => u.Password)
-            </div>*@
-            <div class="editor-field" title="Enter password">
-                @Html.PasswordFor(u => u.Password, new { @class = "form-control", @placeholder = "Password" })
-                @Html.ValidationMessageFor(u => u.Password)
-            </div>
-            <div class="checkbox" style="left:20px;" title="Remember me on this computer">
-                @Html.CheckBoxFor(u => u.RememberMe)
-                @Html.LabelFor(u => u.RememberMe)
-            </div>
-            <div class="text-center" title="Click to log in">
-                <input type="submit" value="Log In" class="btn btn-danger"/>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; <input type="button" class="btn btn-danger" value="Back" onclick="history.go(-1)" /> 
-            </div>
-        </fieldset>
+    <style type="text/css">
+        .borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
+            border: none;
+        }
+    </style>
 
-    <br />
-    <br />
-    @Html.ActionLink("Click here if you forgot your password", "ForgotPassword", "User")
+    <div id="test" style="margin:5% auto; width:500px;top:200px;">
+
+        <table width="350" class="table borderless">
+            <tr>
+                <td>
+                    <div style="font-size:large" title="Enter email">
+                        <label class="col-lg-10 label label-default">Email</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="col-lg-15 form-control-static">
+                        @Html.TextBoxFor(u => u.Email, new { @class = "form-control", @placeholder = "Email address" })
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div style="font-size:large" title="Enter password">
+                        <label class="col-lg-10 label label-default">Password</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="col-lg-15">
+                        @Html.TextBoxFor(u => u.Password, new { @class = "form-control", @placeholder = "New password" })
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <div class="col-lg-15">
+                        @Html.CheckBoxFor(u => u.RememberMe, new { @class = "checkbox"})
+                        @Html.LabelFor(u => u.RememberMe)
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+
+        <div class="text-center" title="Click to log in">
+            <input type="submit" value="Log In" class="btn btn-success" />&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; <input type="button" class="btn btn-danger" value="Back" onclick="history.go(-1)" />
+        </div>
+        <br />
+        <br />
+        <div class="text-center">
+            @Html.ActionLink("Click here if you forgot your password", "ForgotPassword", "User")
+        </div>
     </div>
 }

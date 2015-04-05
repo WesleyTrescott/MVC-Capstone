@@ -26,6 +26,16 @@
     <EntitySetMapping Name="Tbl_Job_Application">
       <EntityTypeMapping TypeName="Job_Candidate_ApplicationModel.Tbl_Job_Application">
         <MappingFragment StoreEntitySet="Tbl_Job_Application">
+          <ScalarProperty Name="Resume_Upload" ColumnName="Resume_Upload" />
+          <ScalarProperty Name="Exp_Years" ColumnName="Exp_Years" />
+          <ScalarProperty Name="Skills" ColumnName="Skills" />
+          <ScalarProperty Name="User_Phone_Number" ColumnName="User_Phone_Number" />
+          <ScalarProperty Name="User_Country" ColumnName="User_Country" />
+          <ScalarProperty Name="User_State" ColumnName="User_State" />
+          <ScalarProperty Name="User_City" ColumnName="User_City" />
+          <ScalarProperty Name="User_Street" ColumnName="User_Street" />
+          <ScalarProperty Name="User_Last_Name" ColumnName="User_Last_Name" />
+          <ScalarProperty Name="User_First_Name" ColumnName="User_First_Name" />
           <ScalarProperty Name="Job_Application_Id" ColumnName="Job_Application_Id" />
           <ScalarProperty Name="Job_Id" ColumnName="Job_Id" />
           <ScalarProperty Name="Email_Id" ColumnName="Email_Id" />

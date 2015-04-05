@@ -514,7 +514,7 @@ namespace User_Login.Controllers
                 user.City = model.User_City;
                 user.State = model.User_State;
                 user.Country = model.User_Country;
-                user.phone_number = model.User_Phone_Number;
+                user.PhoneNumber = model.User_Phone_Number;
                 user.Skills = model.Skills;
                 user.Experience_Years = model.Exp_Years;
 
@@ -535,7 +535,7 @@ namespace User_Login.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (user.UpdateProfile(email, user.FirstName, user.LastName, user.Street, user.City, user.State, user.Country, user.phone_number, user.Experience_Years, user.Skills))
+                    if (user.UpdateProfile(email, user.FirstName, user.LastName, user.Street, user.City, user.State, user.Country, user.PhoneNumber, user.Experience_Years, user.Skills))
                     {
                         //update successful
                         FormsAuthentication.SetAuthCookie(User.Identity.Name,true);
@@ -755,7 +755,7 @@ namespace User_Login.Controllers
                 return View();
             }
             else
-                return View("Login");
+                return RedirectToAction("Login","User");
         }
 
         [HttpPost]
@@ -785,7 +785,7 @@ namespace User_Login.Controllers
                         //name of uploaded document
                         string fileName = Path.GetFileName(resume.FileName);
                         string extension = Path.GetExtension(fileName);
-                        
+
                         //validate extension of uploaded file
                         if (!allowedExtension.Contains(extension))
                         {
@@ -795,10 +795,10 @@ namespace User_Login.Controllers
                         }
 
                         string tempFileName = fileName;
-                        
+
                         //unique file name
                         fileName = lastName + "_" + firstName + "_" + date + "_" + tempFileName;
-                        
+
                         string path = Path.Combine(Server.MapPath("~/App_Data/Applicant's Resumes"), fileName);
                         resume.SaveAs(path);
 
@@ -815,13 +815,13 @@ namespace User_Login.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("","No file uploaded!");
+                        ModelState.AddModelError("", "No file uploaded!");
                         Session["uploadResume"] = null;
                         return View();
                     }
                 }
                 else
-                    return View("Login");
+                    return RedirectToAction("Login", "User");
             }
             catch (Exception ex)
             {

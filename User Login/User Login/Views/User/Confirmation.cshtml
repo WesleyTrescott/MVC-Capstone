@@ -22,6 +22,6 @@
 <br />
 <br />
     You will be redirected to home page within soon.
-@{Response.AddHeader("REFRESH", "10;URL=/Home/Index");}
-    
+@*@{Response.AddHeader("REFRESH", "10;URL=/Home/Index");}*@
+    <meta http-equiv="Refresh" content="5;URL=@(Url.Action("Index", "Home"))">
 </text>
