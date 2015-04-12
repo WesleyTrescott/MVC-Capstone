@@ -30,7 +30,7 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-chevron-down"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="@Url.Action("ContactUs", "Home")">Contact Us</a></li>
                         <li><a href="http://www.computechcorp.com/" target="_blank">Computech Homepage</a></li>
                         <li><a href="http://www.computechcorp.com/Products.php" target="_blank">Computech Products</a></li>
                         <li><a href="http://www.computechcorp.com/Services.php" target="_blank">Computech Services</a></li>
@@ -79,15 +79,13 @@
                         <ul class="dropdown-menu">
                             <li><a href="@Url.Action("Profile","User")">Update Profile</a></li>
                             <li><a href="@Url.Action("ChangePassword","User")">Change Password</a></li>
-                            <li><a href="#">Help</a></li>
                         </ul>
                     }
                     else
                     {
                         <a class="dropdown-toggle navbar-brand" data-toggle="dropdown" style="cursor:pointer;"><span class="glyphicon glyphicon-menu-hamburger" title="Account Info" style="font-size:25px;"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="@Url.Action("ForgotPassword","User")">Forgot Password</a></li>
-                            <li><a href="#">Help</a></li>
+                            <li><a href="@Url.Action("ForgotPassword", "User")">Forgot Password</a></li>
                         </ul>
                     }
                 </li>

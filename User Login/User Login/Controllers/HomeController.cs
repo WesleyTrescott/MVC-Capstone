@@ -18,5 +18,20 @@ namespace User_Login.Controllers
             var sixRandomFoos = mylist.OrderBy(x => Guid.NewGuid()).Take(6);
             return View(sixRandomFoos);
         }
+
+        public ActionResult ContactUs(Models.ContactModel model)
+        {
+            if (model.firstname != null && model.lastname != null && model.email != null && model.message != null)
+            {
+                Manager.EmailManager.SentContactEmail(model);
+                return RedirectToAction("Confirmation", "Home");
+            }
+            return View(model);
+        }
+
+        public ActionResult Confirmation()
+        {
+            return View();
+        }
 	}
 }

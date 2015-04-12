@@ -3,7 +3,7 @@
 
 <div class="container-fluid" id="jobSearch">
     <div class="well">
-        @using (Ajax.BeginForm("UserJobSearch", "User", FormMethod.Get, new AjaxOptions { UpdateTargetId = "ajaxpanel" }))
+        @using (Ajax.BeginForm("UserJobSearch", "User", FormMethod.Get, new AjaxOptions { UpdateTargetId = "ajaxpanel" }, new { @id = "myform" }))
         {
             <div class="row">
                 <div class="col-md-4">
@@ -16,8 +16,12 @@
                     <button type="submit" class="btn btn-success btn-lg">Search Jobs   <span class="glyphicon glyphicon-search"></span></button>
                     <br />
                     <br />
-                    <button type="reset" class="btn btn-danger btn-lg">Reset Search    </button>
-
+                    <a id="resetbutton" class="btn btn-danger btn-lg">Reset Search    </a>
+                    <script>
+                        $('#resetbutton').click(function () {
+                            $("myform")[0].reset();
+                        });
+                    </script>
                 </div>
                 <div class="col-md-4">
                     @Html.Label("Filter By Location")

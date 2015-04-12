@@ -8,6 +8,7 @@ namespace User_Login.Manager
     public class EmailManager
     {
         private const string EmailFrom = "computech_capstone@yahoo.com";
+        private const string EmailTo = "fieldsal@computechcorp.com";
 
         public static void SendConfirmationEmail(string firstName, string email, string guid)
         {
@@ -57,6 +58,27 @@ namespace User_Login.Manager
                         + "</a></p><div>Best regards,</div><div>Computech Corporation Human Resources</div><p>Do not forward "
                         + "this email. The link is private.</p></body></html>";
 
+                    message.IsBodyHtml = true;
+
+                    client.EnableSsl = true;
+                    client.Send(message);
+                };
+            };
+        }
+
+        public static void SentContactEmail(Models.ContactModel contactInfo)
+        {
+            using (var client = new SmtpClient())
+            {
+
+                using (var message = new MailMessage(new MailAddress(EmailFrom, "Computech Corporation"), new MailAddress(EmailTo, "Al Fields")))
+                {
+                    message.Subject = "Computech Job Search Contact Request";
+                    message.Body = "<html><head><meta content=\"text/html; charset=utf-8\" /></head><body><p>Hello Al, " +
+                        "</p><p>My name is " + contactInfo.firstname + " " + contactInfo.lastname + ".</p>"
+                        + "<p> My email address is " + contactInfo.email + ".  Here is my contact message:"
+                        + "</p><p>" + contactInfo.message + "</p><div>Best regards,</div><div>" + contactInfo.firstname + "</div><p>Do not forward " + 
+                        "this email.</p></body></html>";
                     message.IsBodyHtml = true;
 
                     client.EnableSsl = true;

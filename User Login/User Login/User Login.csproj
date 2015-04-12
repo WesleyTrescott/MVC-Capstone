@@ -290,6 +290,7 @@
     <Compile Include="Manager\EmailManager.cs" />
     <Compile Include="Models\Apply.cs" />
     <Compile Include="Models\ChangePassword.cs" />
+    <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\EnhancedJobCandidateApp.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -384,6 +385,8 @@
     <Content Include="Views\User\ActivateUser.cshtml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Views\User\UserJobSearch.cshtml" />
+    <Content Include="Views\Home\ContactUs.cshtml" />
+    <Content Include="Views\Home\Confirmation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

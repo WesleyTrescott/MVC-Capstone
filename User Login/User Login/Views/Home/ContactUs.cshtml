@@ -1,0 +1,77 @@
+﻿@model User_Login.Models.ContactModel
+
+@{
+    ViewBag.Title = "Contact Us";
+}
+
+<br />
+<br />
+
+<style type="text/css">
+    .borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
+        border: none;
+    }
+</style>
+
+<div>
+    <h1 style="text-align:center;">Contact Us</h1>
+    @using (Html.BeginForm())
+    {
+        <div style="margin:5% auto; width:500px;top:30px;">
+            <table width="350" class="table borderless">
+                <tr>
+                    <td>
+                        <div style="font-size:large">
+                            <label class="col-lg-10 label label-default">First Name*</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-lg-15">
+                             @Html.TextBoxFor(c => Model.firstname, null, new { @class = "form-control", @placeholder = "First Name" })
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="font-size:large">
+                            <label class="col-lg-10 label label-default">Last Name*</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-lg-15">
+                            @Html.TextBoxFor(c => Model.lastname, null, new { @class = "form-control", @placeholder = "Last Name" })
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="font-size:large">
+                            <label class="col-lg-10 label label-default">E-Mail Address*</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-lg-15">
+                            @Html.TextBoxFor(c => Model.email, null, new { @class = "form-control", @placeholder = "E-Mail Address" })
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="font-size:large">
+                            <label class="col-lg-10 label label-default">Message*</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-lg-15">
+                            @Html.TextAreaFor(c => Model.message, 10, 5, new { @class = "form-control", @placeholder = "Enter Message" })
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class="text-center">
+                <input type="submit" class="btn btn-success" value="Submit" />
+            </div>
+        </div>
+    }
+</div>
+
