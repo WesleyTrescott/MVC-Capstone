@@ -142,20 +142,22 @@
     <div class="container body-content">
         <div id="footerStyle" style="margin-top:100px; margin-bottom:-100px;" class="navbar">
             <footer class="text-center">
-                @*<pre style="background-color:white;border:none;display:inline;">*@
                 @if (Request.IsAuthenticated)
                 {
-                    <pre style="background-color:snow;border:none;display:inline;">
-                    <a href="@Url.Action("LoggedIn","User")">Home</a>  |   <a>About Us</a>    |   <a>Contact Us</a>                       &copy; @DateTime.Now.Year - Computech Corporation
-                    </pre>
+                    <div style="background-color:snow; border:none; display:inline; font-family:'Agency FB';" class="row">
+                        <div class="col-md-12">
+                            <a href="@Url.Action("LoggedIn","User")">Home</a> &nbsp; | &nbsp; <a href="http://www.computechcorp.com/">About Us</a> &nbsp; | &nbsp; <a href="~/Home/ContactUs">Contact Us</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&copy; @DateTime.Now.Year - Computech Corporation
+                        </div>
+                    </div>
                 }
                 else
                 {
-                    <pre style="background-color:snow;border:none;display:inline;">
-                    <a href="~/Home">Home</a>  |   <a href="http://www.computechcorp.com/">About Us</a>    |   <a href="~/Home/ContactUs">Contact Us</a>                       &copy; @DateTime.Now.Year - Computech Corporation
-                    </pre>
+                    <div style="background-color:snow; border:none; display:inline; font-family:'Agency FB';" class="row">
+                        <div class="col-md-12">
+                            <a href="~/Home">Home</a> &nbsp; | &nbsp; <a href="http://www.computechcorp.com/">About Us</a> &nbsp; | &nbsp; <a href="~/Home/ContactUs">Contact Us</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&copy; @DateTime.Now.Year - Computech Corporation
+                        </div>
+                    </div>
                 }
-
             </footer>
         </div>
     </div>
@@ -163,6 +165,6 @@
     <script src="~/Scripts/jquery-2.1.3.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
 
-    @RenderSection("PageScripts", false);
+    @RenderSection("PageScripts", false)
 </body>
 </html>
