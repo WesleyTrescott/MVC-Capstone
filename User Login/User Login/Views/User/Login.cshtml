@@ -3,11 +3,18 @@
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<br />
+<br />
+<br />
+<div class="container">
+    <div class="jumbotron list-group-item-success" style="margin-bottom:0px;">
+        <h1 style="text-align:center;">Sign In</h1>
+    </div>
+</div>
+
 @using (Html.BeginForm())
 {
-    <br />
-    <br />
-    <br />
     @*@Html.ValidationSummary(true, "Login failed. Check your login credentials.", new { class });*@
     @Html.ValidationSummary("Login failed.", new { @class = "alert alert-danger centered" });
 

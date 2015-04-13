@@ -3,89 +3,98 @@
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@using (Html.BeginForm())
-{
-    <br />
-    <br />
-    <br />
-    <style type="text/css">
-        .borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
-            border: none;
-        }
-    </style>
-    @Html.ValidationSummary( "Error processing your request", new { @class="alert alert-danger" });
-    <div style="margin:5% auto; width:500px;top:150px;">
-        @* modified by Simul *@
 
-        <table class="table borderless">
-            <tr>
-                <td>
-                    <div style="font-size:large" title="Enter first name">
-                        <label class="col-lg-10 label label-default">First Name*</label>
-                    </div>
-                </td>
-                <td>
-                    <div class="col-lg-15">
-                        @Html.TextBoxFor(u => u.FirstName, new { @class = "form-control", @placeholder = "First Name" })
-                    </div>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <div style="font-size:large" title="Enter last name">
-                        <label class="col-lg-10 label label-default">Last Name*</label>
-                    </div>
-                </td>
-                <td>
-                    <div class="col-lg-15">
-                        @Html.TextBoxFor(u => u.LastName, new { @class = "form-control", @placeholder = "Last Name" })
-                    </div>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <div style="font-size:large" title="Enter first name">
-                        <label class="col-lg-10 label label-default">Email*</label>
-                    </div>
-                </td>
-                <td>
-                    <div class="col-lg-15">
-                        @Html.TextBoxFor(u => u.Email, new { @class = "form-control", @placeholder = "Email" })
-                    </div>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <div style="font-size:large" title="Enter first name">
-                        <label class="col-lg-10 label label-default">Password*</label>
-                    </div>
-                </td>
-                <td>
-                    <div class="col-lg-15">
-                        @Html.PasswordFor(u => u.Password, new { @class = "form-control", @placeholder = "Password" })
-                    </div>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <div style="font-size:large" title="Enter first name">
-                        <label class="col-lg-10 label label-default">Confirm Password*</label>
-                    </div>
-                </td>
-                <td>
-                    <div class="col-lg-15">
-                        @Html.PasswordFor(u => u.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm Password" })
-                    </div>
-                </td>
-            </tr>
-        </table>
+<br />
+<br />
+<br />
+<div class="container">
+    <div class="jumbotron list-group-item-success" style="margin-bottom:0px;">
+        <h1 style="text-align:center;">Register</h1>
     </div>
+</div>
 
-    <div class="text-center">
-        <input type="submit" class="btn btn-success" value="Create My Account" />
-    </div>
-}
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        <style type="text/css">
+            .borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
+                border: none;
+            }
+        </style>
+        @Html.ValidationSummary( "Error processing your request", new { @class="alert alert-danger" });
+        <div style="margin:5% auto; width:500px;top:150px;">
+            @* modified by Simul *@
+
+            <table class="table borderless">
+                <tr>
+                    <td>
+                        <div style="font-size:large" title="Enter first name">
+                            <label class="col-lg-10 label label-default">First Name*</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-lg-15">
+                            @Html.TextBoxFor(u => u.FirstName, new { @class = "form-control", @placeholder = "First Name" })
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div style="font-size:large" title="Enter last name">
+                            <label class="col-lg-10 label label-default">Last Name*</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-lg-15">
+                            @Html.TextBoxFor(u => u.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div style="font-size:large" title="Enter first name">
+                            <label class="col-lg-10 label label-default">Email*</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-lg-15">
+                            @Html.TextBoxFor(u => u.Email, new { @class = "form-control", @placeholder = "Email" })
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div style="font-size:large" title="Enter first name">
+                            <label class="col-lg-10 label label-default">Password*</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-lg-15">
+                            @Html.PasswordFor(u => u.Password, new { @class = "form-control", @placeholder = "Password" })
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div style="font-size:large" title="Enter first name">
+                            <label class="col-lg-10 label label-default">Confirm Password*</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-lg-15">
+                            @Html.PasswordFor(u => u.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm Password" })
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="text-center">
+            <input type="submit" class="btn btn-success" value="Create My Account" />
+        </div>
+    }
+</div>
