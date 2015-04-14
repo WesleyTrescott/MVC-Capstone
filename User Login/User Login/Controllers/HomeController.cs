@@ -19,6 +19,7 @@ namespace User_Login.Controllers
             return View(sixRandomFoos);
         }
 
+        [HttpPost]
         public ActionResult ContactUs(Models.ContactModel model)
         {
             if (model.firstname != null && model.lastname != null && model.email != null && model.message != null)
@@ -29,6 +30,11 @@ namespace User_Login.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public ActionResult ContactUs()
+        {
+            return View();
+        }
         public ActionResult Confirmation()
         {
             return View();

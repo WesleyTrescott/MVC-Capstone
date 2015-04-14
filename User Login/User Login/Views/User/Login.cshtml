@@ -23,10 +23,9 @@
             border: none;
         }
     </style>
-
-    <div id="test" style="margin:5% auto; width:500px;top:200px;">
-
-        <table width="350" class="table borderless">
+    <br />
+    <div id="test">
+        <table class="table borderless table-responsive" align="center" style="width:initial">
             <tr>
                 <td>
                     <div style="font-size:large" title="Enter email">
@@ -34,7 +33,7 @@
                     </div>
                 </td>
                 <td>
-                    <div class="col-lg-15 form-control-static">
+                    <div>
                         @Html.TextBoxFor(u => u.Email, new { @class = "form-control", @placeholder = "Email address" })
                     </div>
                 </td>
@@ -47,23 +46,20 @@
                     </div>
                 </td>
                 <td>
-                    <div class="col-lg-15">
-                        @Html.TextBoxFor(u => u.Password, new { @class = "form-control", @placeholder = "New password" })
+                    <div>
+                        @Html.TextBoxFor(u => u.Password, new { @class = "form-control", @placeholder = "Password" })
                     </div>
                 </td>
             </tr>
 
             <tr>
-                <td></td>
                 <td>
-                    <div class="col-lg-15">
-                        @Html.CheckBoxFor(u => u.RememberMe, new { @class = "checkbox"})
-                        @Html.LabelFor(u => u.RememberMe)
-                    </div>
+                </td>
+                <td style="display:inline; margin-left:3px; font-size: 1.0em;">
+                    @Html.CheckBoxFor(u => u.RememberMe, new { @class = "checkbox" }) @Html.LabelFor(u => u.RememberMe)
                 </td>
             </tr>
         </table>
-
 
         <div class="text-center" title="Click to log in">
             <input type="submit" value="Log In" class="btn btn-success" />&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; <input type="button" class="btn btn-danger" value="Back" onclick="history.go(-1)" />
@@ -74,4 +70,5 @@
             @Html.ActionLink("Click here if you forgot your password", "ForgotPassword", "User")
         </div>
     </div>
+    @*<div class="col-md-2"></div>*@
 }

@@ -16,12 +16,12 @@
                     <button type="submit" class="btn btn-success btn-lg">Search Jobs   <span class="glyphicon glyphicon-search"></span></button>
                     <br />
                     <br />
-                    <a id="resetbutton" class="btn btn-danger btn-lg">Reset Search    </a>
-                    <script>
+                    <button id="resetbutton" class="btn btn-danger btn-lg" onclick="location.href = '@Url.Action("LoggedIn", "User")'">Reset Search</button>
+                    @*<script>
                         $('#resetbutton').click(function () {
                             $("myform")[0].reset();
                         });
-                    </script>
+                    </script>*@
                 </div>
                 <div class="col-md-4">
                     @Html.Label("Filter By Location")
@@ -40,7 +40,7 @@
         }
         else
         {
-            <table class="table table-hover table-condensed mytable">
+            <table class="table table-hover table-condensed mytable table-responsive">
                 <tr>
                     <td class="col-md-2">Job Position</td>
                     <td class="col-md-2">Job Description</td>

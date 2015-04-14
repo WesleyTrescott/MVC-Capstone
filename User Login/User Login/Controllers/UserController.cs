@@ -464,6 +464,12 @@ namespace User_Login.Controllers
             return new MultiSelectList(skillsList, selectedValues);
         }
 
+        public ActionResult ResetSearch(FormCollection form)
+        {
+            UserJobSearch(null, null, null, form);
+            return View("~/User/LoggedIn");
+        }
+
         [HttpGet]
         public ActionResult AdminLoggedIn(int? page)
         {
