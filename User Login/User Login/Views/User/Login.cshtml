@@ -12,10 +12,9 @@
         <h1 style="text-align:center;">Sign In</h1>
     </div>
 </div>
-
-@using (Html.BeginForm())
+<br />
+@*@using (Html.BeginForm())
 {
-    @*@Html.ValidationSummary(true, "Login failed. Check your login credentials.", new { class });*@
     @Html.ValidationSummary("Login failed.", new { @class = "alert alert-danger centered" });
 
     <style type="text/css">
@@ -70,5 +69,57 @@
             @Html.ActionLink("Click here if you forgot your password", "ForgotPassword", "User")
         </div>
     </div>
-    @*<div class="col-md-2"></div>*@
-}
+}*@
+
+<div class="container-fluid">
+    <div>
+        @Html.ValidationSummary("Login failed.", new { @class = "alert alert-danger centered" })
+    </div>
+    <form class="form-horizontal" role="form" method="post">
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputEmail" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:16px;">Email</label>
+                    <label for="inputEmail" class="col-md-4 control-label visible-sm visible-xs">Email</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(u => u.Email, null, new { @class = "form-control", @placeholder = "Email address", @id = "inputEmail" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputPassword" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:16px;">Password</label>
+                    <label for="inputPassword" class="col-md-4 control-label visible-sm visible-xs">Password</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(u => u.Password, null, new { @class = "form-control", @placeholder = "Password", @id = "inputPassword" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-8">
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <div class="col-md-3"></div>
+                        @Html.CheckBoxFor(u => u.RememberMe, new { @class = "checkbox", @id = "inputCheck", @style = "display: inline" })
+                        &nbsp; &nbsp;
+                        <p style="font-weight:bold; display:inline;">Remember me on this computer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center" title="Click to log in">
+            <input type="submit" value="Log In" class="btn btn-success" />&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; <input type="button" class="btn btn-danger" value="Back" onclick="history.go(-1)" />
+        </div>
+        <br />
+        <br />
+        <div class="text-center">
+            @Html.ActionLink("Click here if you forgot your password", "ForgotPassword", "User")
+        </div>
+    </form>
+</div>

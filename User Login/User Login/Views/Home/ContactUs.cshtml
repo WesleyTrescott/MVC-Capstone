@@ -19,7 +19,7 @@
     </div>
 </div>
 
-<div>
+@*<div>
     @using (Html.BeginForm())
     {
         @Html.ValidationSummary("Error processing your request", new { @class = "alert alert-danger" });
@@ -79,5 +79,65 @@
             </div>
         </div>
     }
+</div>*@
+
+
+<div class="container-fluid">
+    <div>
+        @Html.ValidationSummary("Error processing your request", new { @class = "alert alert-danger" })
+    </div>
+    <form class="form-horizontal" role="form" method="post">
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputFName" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:16px;">First Name*</label>
+                    <label for="inputFName" class="col-md-4 control-label visible-sm visible-xs">First Name*</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(c => Model.firstname, null, new { @class = "form-control", @placeholder = "First Name", @id = "inputFName" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputLName" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align: center; font-size: 16px;">Last Name*</label>
+                    <label for="inputLName" class="col-md-4 control-label visible-sm visible-xs">Last Name*</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(c => Model.lastname, null, new { @class = "form-control", @placeholder = "Last Name", @id = "inputLName" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputEmail" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align: center; font-size: 16px;">Email Address*</label>
+                    <label for="inputEmail" class="col-md-4 control-label visible-sm visible-xs">Email Address*</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(c => Model.email, null, new { @class = "form-control", @placeholder = "Email", @id = "inputEmail" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputMessage" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align: center; font-size: 16px;">Message*</label>
+                    <label for="inputMessage" class="col-md-4 control-label visible-sm visible-xs">Message*</label>
+                    <div class="col-md-8">
+                        @Html.TextAreaFor(c => Model.message, 10, 5, new { @class = "form-control", @placeholder = "Enter Message", @id = "inputMessage" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <input type="submit" class="btn btn-success" value="Submit" />
+        </div>
+    </form>
 </div>
 
