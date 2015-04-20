@@ -13,7 +13,9 @@
     </div>
 </div>
 
-<div class="container">
+<br />
+
+@*<div class="container">
     @using (Html.BeginForm())
     {
         <style type="text/css">
@@ -23,7 +25,6 @@
         </style>
         @Html.ValidationSummary( "Error processing your request", new { @class="alert alert-danger" });
         <div style="margin:5% auto; width:500px;top:150px;">
-            @* modified by Simul *@
 
             <table class="table borderless">
                 <tr>
@@ -97,4 +98,79 @@
             <input type="submit" class="btn btn-success" value="Create My Account" />
         </div>
     }
+</div>*@
+
+<div class="container-fluid">
+    <div>
+        @Html.ValidationSummary("Error processing your request", new { @class = "alert alert-danger" })
+    </div>
+    <form class="form-horizontal" role="form" method="post">
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputFName" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:16px;">First Name*</label>
+                    <label for="inputFName" class="col-md-4 control-label visible-sm visible-xs">First Name*</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(u => u.FirstName, null, new { @class = "form-control", @placeholder = "First Name", @id = "inputFName" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputLName" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:16px;">Last Name*</label>
+                    <label for="inputLName" class="col-md-4 control-label visible-sm visible-xs">Last Name*</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(u => u.LastName, null, new { @class = "form-control", @placeholder = "Last Name", @id = "inputLName" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputEmail" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:16px;">Email*</label>
+                    <label for="inputEmail" class="col-md-4 control-label visible-sm visible-xs">Email*</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(u => u.Email, null, new { @class = "form-control", @placeholder = "Email", @id = "inputEmail" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputPW" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:16px;">Password*</label>
+                    <label for="inputPW" class="col-md-4 control-label visible-sm visible-xs">Password*</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(u => u.Password, null, new { @class = "form-control", @placeholder = "Password", @id = "inputPW" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputPW2" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:15px;">Confirm Password*</label>
+                    <label for="inputPW2" class="col-md-4 control-label visible-sm visible-xs">Confirm Password*</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(u => u.ConfirmPassword, null, new { @class = "form-control", @placeholder = "Confirm Password", @id = "inputPW2" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="text-center">
+            <input type="submit" class="btn btn-success" value="Create My Account" />
+            <br />
+            <br />
+            <p style="font-weight:bold;">* Indicates required field</p>
+        </div>
+    </form>
 </div>

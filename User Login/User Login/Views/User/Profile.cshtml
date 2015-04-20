@@ -7,6 +7,13 @@
 <br />
 <br />
 <br />
+<div class="container">
+    <div class="jumbotron list-group-item-success" style="margin-bottom:0px;">
+        <h1 style="text-align:center;">Update Profile</h1>
+    </div>
+</div>
+
+<br />
 @if (TempData["success"] != null)
 {
     <label class="label label-success center-block" style="font-size:x-large">
@@ -20,8 +27,9 @@ else
     </label>
     @Html.ValidationSummary("Profile information could not be saved.", new { @class = "alert alert-danger centered" })
 }
+<br />
 
-@using (Html.BeginForm())
+@*@using (Html.BeginForm())
 {
     <style type="text/css">
         .borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
@@ -52,7 +60,7 @@ else
                         @Html.Encode(User.Identity.Name)
                     </p>
                 </td>*@
-            </tr>
+            @*</tr>
 
             <tr>
                 <td>
@@ -192,4 +200,139 @@ else
             <input type="button" class="btn btn-danger" value="User Home Screen" title="Go to User Home Page" onclick="window.location.href='@Url.Action("LoggedIn", "User")'" />
         </div>
     </div>
-}
+}*@
+
+<div class="container-fluid">
+    <form class="form-horizontal" role="form" method="post">
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputEmail" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:14px;">Email</label>
+                    <label for="inputEmail" class="col-md-4 control-label visible-sm visible-xs">Email</label>
+                    <div class="col-md-8 form-control-static" id="inputEmail">
+                        @Html.Encode(User.Identity.Name)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputFName" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:14px;">First Name*</label>
+                    <label for="inputFName" class="col-md-4 control-label visible-sm visible-xs">First Name*</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(u => u.FirstName, null, new { @class = "form-control", @placeholder = "First Name", @id = "inputFName" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputLName" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:14px;">Last Name*</label>
+                    <label for="inputLName" class="col-md-4 control-label visible-sm visible-xs">Last Name*</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(u => u.LastName, null, new { @class = "form-control", @placeholder = "Last Name", @id = "inputLName" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputStreet" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:14px;">Street*</label>
+                    <label for="inputStreet" class="col-md-4 control-label visible-sm visible-xs">Street*</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(u => u.Street, null, new { @class = "form-control", @placeholder = "Street", @id = "inputStreet" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputCity" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:14px;">City*</label>
+                    <label for="inputCity" class="col-md-4 control-label visible-sm visible-xs">City*</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(u => u.City, null, new { @class = "form-control", @placeholder = "City", @id = "inputCity" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputState" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:14px;">State*</label>
+                    <label for="inputState" class="col-md-4 control-label visible-sm visible-xs">State*</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(u => u.State, null, new { @class = "form-control", @placeholder = "State", @id = "inputState" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputCountry" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:14px;">Country*</label>
+                    <label for="inputCountry" class="col-md-4 control-label visible-sm visible-xs">Country*</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(u => u.Country, null, new { @class = "form-control", @placeholder = "Country", @id = "inputCountry" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputPhone" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:14px;">Phone Number</label>
+                    <label for="inputPhone" class="col-md-4 control-label visible-sm visible-xs">Phone Number</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(u => u.PhoneNumber, null, new { @class = "form-control", @placeholder = "Phone Number (ex: 1234567890)", @id = "inputPhone" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputSkills" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:14px;">Skills</label>
+                    <label for="inputSkills" class="col-md-4 control-label visible-sm visible-xs">Skills</label>
+                    <div class="col-md-8">
+                        @Html.TextAreaFor(u => u.Skills, new { @class = "form-control", @placeholder = "Skills (ex: C#, ASP.NET, SQL)", @id = "inputSkills" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputExper" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:11px;">Total Years of Experience</label>
+                    <label for="inputExper" class="col-md-4 control-label visible-sm visible-xs">Total Years of Experience</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(u => u.Experience_Years, null, new { @class = "form-control", @placeholder = "Total years of experience (ex: 7)", @id = "inputExper" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="text-center">
+            @Html.ActionLink("Click here to upload your resume", "UploadResume", "User")
+            <br />
+            <br />
+            <br />
+            <input type="submit" class="btn btn-success" value="Save Information" title="Click to save information" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" class="btn btn-danger" value="User Home Screen" title="Go to User Home Page" onclick="window.location.href='@Url.Action("LoggedIn", "User")'" />
+        </div>
+    </form>
+</div>

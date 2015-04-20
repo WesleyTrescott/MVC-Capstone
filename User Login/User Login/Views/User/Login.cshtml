@@ -95,7 +95,7 @@
                     <label for="inputPassword" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:16px;">Password</label>
                     <label for="inputPassword" class="col-md-4 control-label visible-sm visible-xs">Password</label>
                     <div class="col-md-8">
-                        @Html.TextBoxFor(u => u.Password, null, new { @class = "form-control", @placeholder = "Password", @id = "inputPassword" })
+                        @Html.PasswordFor(u => u.Password, new { @class = "form-control", @placeholder = "Password", @id = "inputPassword" })
                     </div>
                 </div>
             </div>
