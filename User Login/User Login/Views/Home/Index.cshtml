@@ -13,23 +13,30 @@
             <div class="col-md-12" style=" width:100%;">
                 <br />
                 <br />
+                <div class="col-md-12 visible-sm visible-xs">
+                    <img class="img-responsive visible-sm visible-xs" src="~/Content/Images/frontimage.png" style="border-radius: 25px;" />
+                </div>
                 <div class="row">
-                    <div class="col-md-8">
-                        <br />
-                        <img class="img-responsive" src="~/Content/Images/steel.png" />
+                    <div class="col-md-8" style="text-align:center;">
+                        <img class="img-responsive hidden-sm hidden-xs" src="~/Content/Images/frontimage.png" style="border-radius: 25px; display:block; margin-left:auto; margin-right:auto;" />
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 hidden-sm hidden-xs">
                         <br />
-                        <img src="~/Content/Images/computech logo.png" />
+                        <img src="~/Content/Images/computech logo.png" class="hidden-sm hidden-xs" />
+                        <p style="font-family:'Agency FB'; font-weight:900; font-size:70px; color:white;">Job Search</p>
+                        <p style="font-family:'Agency FB'; font-size:25px; font-style:italic; color:white;">The distance between you and your career has never been closer.</p>
+                        <br />
+                        <button class="btn btn-success btn-lg" onclick="location.href = '@Url.Action("Index", "JobSearch")'">Search Open Positions</button>
+                    </div>
+                    <div class="col-md-4 visible-sm visible-xs" style="text-align:center;">
+                        <br />
+                        <img src="~/Content/Images/computech logo.png" class="hidden-sm hidden-xs" />
                         <p style="font-family:'Agency FB'; font-weight:900; font-size:70px; color:white;">Job Search</p>
                         <p style="font-family:'Agency FB'; font-size:25px; font-style:italic; color:white;">The distance between you and your career has never been closer.</p>
                         <br />
                         <button class="btn btn-success btn-lg" onclick="location.href = '@Url.Action("Index", "JobSearch")'">Search Open Positions</button>
                     </div>
                 </div>
-                <br />
-                <br />
-                <br />
                 <br />
                 <br />
             </div>

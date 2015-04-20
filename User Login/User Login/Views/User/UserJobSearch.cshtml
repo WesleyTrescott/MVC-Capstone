@@ -10,19 +10,20 @@
                     <p style="font-family:'Agency FB'; font-weight:900; font-size:70px;">Job Search</p>
                     <p style="font-family:'Agency FB'; font-size:25px; font-style:italic;">Find your dream job today.</p>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 hidden-sm hidden-xs">
                     <br />
                     <br />
                     <button type="submit" class="btn btn-success btn-lg">Search Jobs   <span class="glyphicon glyphicon-search"></span></button>
                     <br />
                     <br />
-                    <button id="resetbutton" class="btn btn-danger btn-lg" onclick="location.href = '@Url.Action("LoggedIn", "User")'">Reset Search</button>
-                    @*<script>
-                        $('#resetbutton').click(function () {
-                            $("myform")[0].reset();
-                        });
-                    </script>*@
+                    &nbsp;<button id="resetbutton" class="btn btn-danger btn-lg" onclick="location.href = '@Url.Action("LoggedIn", "User")'">Reset Search</button>
                 </div>
+                <div class="col-md-4 visible-sm visible-xs" style="text-align:center;">
+                    <br />
+                    <button type="submit" class="btn btn-success btn-lg">Search Jobs   <span class="glyphicon glyphicon-search"></span></button>
+                    &nbsp;&nbsp;&nbsp;<button id="resetbutton" class="btn btn-danger btn-lg" onclick="location.href = '@Url.Action("LoggedIn", "User")'">Reset Search</button>
+                </div>
+                <br />
                 <div class="col-md-4">
                     @Html.Label("Filter By Location")
                     @Html.DropDownList("city", new SelectList(ViewBag.Location), "Select One", new { @class = "form-control btn btn-lg btn-default btn-block", @style = "width:100%; height: 100%" })
@@ -36,11 +37,13 @@
         }
         @if (!Model.pagedList.Any())
         {
-            <p>No search results!</p>
+            <br />
+            <p style="font-weight:bold;">No search results!</p>
         }
         else
         {
-            <table class="table table-hover table-condensed mytable table-responsive">
+            <br />
+            <table class="table table-hover table-condensed mytable table-responsive hidden-sm hidden-xs">
                 <tr>
                     <td class="col-md-2">Job Position</td>
                     <td class="col-md-2">Job Description</td>
@@ -61,6 +64,22 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Required_Skills)
+                        </td>
+                        <td>
+                            <input type="button" class="btn btn-default" value="Details" onclick="window.location.href='@Url.Action("Details", "JobSearch" , new { id=@item.Job_Id })'" />
+                        </td>
+                    </tr>
+                }
+            </table>
+            <table class="table table-condensed mytable table-responsive visible-sm visible-xs">
+                <tr>
+                    <td class="col-md-2">Job Position</td>
+                </tr>
+                @foreach (var item in Model.pagedList)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Position)
                         </td>
                         <td>
                             <input type="button" class="btn btn-default" value="Details" onclick="window.location.href='@Url.Action("Details", "JobSearch" , new { id=@item.Job_Id })'" />
