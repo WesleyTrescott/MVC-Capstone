@@ -18,5 +18,13 @@ namespace User_Login.View_Models
         public int numRecUsers { get; set; }
 
         public string name { get; set; }
+
+        public string Fname { get; set; }
+
+        public string Lname { get; set; }
+
+        public string Email { get; set; }
+
+
     }
 }

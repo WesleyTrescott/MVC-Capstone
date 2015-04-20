@@ -470,6 +470,74 @@ namespace User_Login.Controllers
             return View("~/User/LoggedIn");
         }
 
+        [HttpPost]
+
+        public ActionResult SearchUsers(View_Models.AdminLoggedInViewModel user)
+        {
+            AdminLoggedInViewModel viewModel = new AdminLoggedInViewModel();
+            string fname = user.Fname;
+            string lname = user.Lname;
+            string Email = user.Email;
+            int pageSize = 3;
+            var entities = new Job_Candidate_Application_Entities();
+            var model = from r in entities.Tbl_Users where (r.User_First_Name == fname) && (r.User_Last_Name == lname) && (r.Email_Id == Email) select r;
+            if (fname != null && lname != null && Email != null)
+            {
+                model = from r in entities.Tbl_Users where (r.User_First_Name == fname) && (r.User_Last_Name == lname) && (r.Email_Id == Email) select r;
+            }
+            else if (fname != null && lname != null && Email == null)
+            {
+                model = from r in entities.Tbl_Users where (r.User_First_Name == fname) && (r.User_Last_Name == lname)  select r;
+            }
+            else if (fname != null && lname == null && Email != null)
+            {
+                model = from r in entities.Tbl_Users where (r.User_First_Name == fname) && (r.Email_Id == Email) select r;
+            }
+            else if (fname == null && lname != null && Email != null)
+            {
+                model = from r in entities.Tbl_Users where (r.User_Last_Name == lname) && (r.Email_Id == Email) select r;
+            }
+            else if (fname != null && lname == null && Email == null)
+            {
+                model = from r in entities.Tbl_Users where (r.User_First_Name == fname) select r;
+            }
+            else if (fname == null && lname != null && Email == null)
+            {
+                model = from r in entities.Tbl_Users where (r.User_Last_Name == lname) select r;
+            }
+            else if (fname == null && lname == null && Email != null)
+            {
+                model = from r in entities.Tbl_Users where (r.Email_Id == Email) select r;
+            }
+            else
+            {
+                return RedirectToAction("SearchUsersFailed", "User");
+            }
+
+            
+
+            if (User.Identity.IsAuthenticated)
+            {
+                viewModel.pagedList = model.OrderBy(p => p.User_Last_Name).ToPagedList(1, pageSize);
+                if (viewModel.pagedList.Count() > 0)
+                {
+                    return View(viewModel);
+                }
+                else
+                {
+
+                    return RedirectToAction("SearchUsersFailed", "User");
+                }
+            }
+            else
+                return RedirectToAction("Login", "User");
+        }
+
+        public ActionResult SearchUsersFailed()
+        {
+            return View();
+        }
+    
         [HttpGet]
         public ActionResult AdminLoggedIn(int? page)
         {
