@@ -509,3 +509,5 @@ C:\Data\Senior Project\Computech Mar31\MVC-Capstone-master\User Login\User Login
 C:\Data\Senior Project\Computech Mar31\MVC-Capstone-master\User Login\User Login\obj\Debug\User Login.csprojResolveAssemblyReference.cache
 C:\Data\Senior Project\Computech Mar31\MVC-Capstone-master\User Login\User Login\obj\Debug\User Login.dll
 C:\Data\Senior Project\Computech Mar31\MVC-Capstone-master\User Login\User Login\obj\Debug\User Login.pdb
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\EntityFramework.xml
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\EntityFramework.SqlServer.xml
