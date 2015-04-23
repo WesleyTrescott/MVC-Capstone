@@ -18,11 +18,6 @@
                     <br />
                     &nbsp;<button id="resetbutton" class="btn btn-danger btn-lg" onclick="location.href = '@Url.Action("LoggedIn", "User")'">Reset Search</button>
                 </div>
-                <div class="col-md-4 visible-sm visible-xs" style="text-align:center;">
-                    <br />
-                    <button type="submit" class="btn btn-success btn-lg">Search Jobs   <span class="glyphicon glyphicon-search"></span></button>
-                    &nbsp;&nbsp;&nbsp;<button id="resetbutton" class="btn btn-danger btn-lg" onclick="location.href = '@Url.Action("LoggedIn", "User")'">Reset Search</button>
-                </div>
                 <br />
                 <div class="col-md-4">
                     @Html.Label("Filter By Location")
@@ -32,6 +27,11 @@
                     @Html.Label("Filter By Required Skills")
                     @*@Html.DropDownList("skills", Enumerable.Empty<SelectListItem>(), "Select One", new { @class = "form-control btn btn-lg btn-default btn-block", @style = "width:100%; height:100%" })*@
                     @Html.ListBox("skills", ViewBag.skills as MultiSelectList, new { @class = "form-control btn btn-lg btn-default btn-block", @style = "width:100%; height: 100%; text-align: left" })
+                </div>
+                <div class="center-block visible-sm visible-xs">
+                    <br />
+                    <button type="submit" class="btn btn-success btn-lg">Search Jobs   <span class="glyphicon glyphicon-search"></span></button>
+                    <button id="resetbutton" class="btn btn-danger btn-lg" onclick="location.href = '@Url.Action("LoggedIn", "User")'">Reset Search</button>
                 </div>
             </div>
         }

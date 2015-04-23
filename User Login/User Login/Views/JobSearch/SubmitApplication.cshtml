@@ -3,15 +3,24 @@
     ViewBag.Title = "SubmitApplication";
 }
 
-<h2>Submit</h2>
-<label class="label label-success center-block" style="font-size:large">
-    @Session["submitApplication"].ToString()
-</label>
 <br />
 <br />
 <br />
-
-<label class="label label-info" style="font-size:medium">
-    You will be redirected to Job Search page soon.
-    @{Response.AddHeader("REFRESH", "5;URL=/JobSearch/Index");}
-</label>
+<div class="container">
+    <div class="jumbotron list-group-item-success" style="margin-bottom:0px;">
+        <h1 style="text-align:center;">Submit</h1>
+        <p style="font-style:italic; text-align:center; font-family:'Agency FB';">Thanks for applying!</p>
+    </div>
+</div>
+<br />
+<br />
+<br />
+<div class="container">
+    <label class="label label-success center-block" style="font-size:large; text-align:center;">
+        @Session["submitApplication"].ToString()
+    </label>
+    <label class="label label-info center-block" style="font-size:medium; text-align:center;">
+        You will be redirected to the user homepage soon.
+    </label>
+</div>
+@{Response.AddHeader("REFRESH", "5;URL=/User/LoggedIn");}

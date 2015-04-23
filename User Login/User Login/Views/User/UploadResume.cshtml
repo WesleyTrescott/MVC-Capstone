@@ -10,9 +10,12 @@
 
 @if (Session["uploadResume"] != null)
 {
-    <label class="label label-success center-block" style="font-size:x-large">
-        @Session["uploadResume"].ToString()
-    </label>
+    <div class="container">
+        <br />
+        <label class="label label-success center-block" style="font-size:x-large">
+            @Session["uploadResume"].ToString()
+        </label>
+    </div>
 }
 
 @using (Html.BeginForm("UploadResume",

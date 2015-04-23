@@ -7,10 +7,19 @@
 
 <br />
 <br />
-@*<label class="label label-warning center-block" style="font-size:large">Confirm</label>*@
 <br />
-<label class="label label-info center-block" style="font-size:large">Verify your information and click on Submit to apply for @Html.Encode(Model.JobPosition)</label>
-@using (Html.BeginForm("Apply",
+<div class="container">
+    <div class="jumbotron list-group-item-success" style="margin-bottom:0px;">
+        <h1 style="text-align:center;">Job Application</h1>
+        <p style="font-style:italic; text-align:center; font-family:'Agency FB';">@Html.Encode(Model.JobPosition)</p>
+    </div>
+    <br />
+    <br />
+    <p class="label label-info center-block hidden-sm hidden-xs" style="font-size:large">Verify your information and click on Submit to apply for the @Html.Encode(Model.JobPosition) position</p>
+    <p class="label label-info center-block visible-sm visible-xs" style="font-size:10px">Verify your information and click on Submit</p>
+</div>
+
+@*@using (Html.BeginForm("Apply",
                         "JobSearch",
                         FormMethod.Post,
                         new { enctype = "multipart/form-data" }))
@@ -181,7 +190,6 @@
                 </td>
                 <td>
                     <div class="editor-field" title="Upload your resume">
-                        @*@Html.TextBoxFor(u => u.EmailId, new { @class = "form-control", @placeholder = "Email address" })*@
                         <input type="file" id="resumeUpload" name="resume" />
                     </div>
                 </td>
@@ -197,5 +205,168 @@
             <input type="button" class="btn btn-danger" value="Cancel" title="Click to go back to Job Search page" onclick="window.location.href='@Url.Action("Index", "JobSearch")'" />
         </div>
     </div>
-}
-<input type="button" class="btn btn-default" value="Search Jobs" onclick="window.location.href='@Url.Action("Index", "JobSearch")'" />
+}*@
+
+<div class="container-fluid">
+    <form class="form-horizontal" action="@Url.Action("Apply", "JobSearch")" role="form" method="post" enctype="multipart/form-data">
+        <div>
+            @Html.ValidationSummary("Application could not submitted.", new { @class = "alert alert-danger centered" })
+            <br />
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:14px;"></label>
+                    <label for="" class="col-md-4 control-label visible-sm visible-xs"></label>
+                    <div class="col-md-8">
+                        @Html.HiddenFor(u => u.EmailId)
+                        @Html.HiddenFor(u => u.JobId)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputFName" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:14px;">First Name*</label>
+                    <label for="inputFName" class="col-md-4 control-label visible-sm visible-xs">First Name*</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(u => u.FirstName, null, new { @class = "form-control", @placeholder = "First Name", @id = "inputFName" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputLName" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:14px;">Last Name*</label>
+                    <label for="inputLName" class="col-md-4 control-label visible-sm visible-xs">Last Name*</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(u => u.LastName, null, new { @class = "form-control", @placeholder = "Last Name", @id = "inputLName" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputStreet" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:14px;">Street*</label>
+                    <label for="inputStreet" class="col-md-4 control-label visible-sm visible-xs">Street*</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(u => u.Street, null, new { @class = "form-control", @placeholder = "Street", @id = "inputStreet" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputCity" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:14px;">City*</label>
+                    <label for="inputCity" class="col-md-4 control-label visible-sm visible-xs">City*</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(u => u.City, null, new { @class = "form-control", @placeholder = "City", @id = "inputCity" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputState" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:14px;">State*</label>
+                    <label for="inputState" class="col-md-4 control-label visible-sm visible-xs">State*</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(u => u.State, null, new { @class = "form-control", @placeholder = "State", @id = "inputState" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputCountry" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:14px;">Country*</label>
+                    <label for="inputCountry" class="col-md-4 control-label visible-sm visible-xs">Country*</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(u => u.Country, null, new { @class = "form-control", @placeholder = "Country", @id = "inputCountry" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputNumber" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:14px;">Phone Number</label>
+                    <label for="inputNumber" class="col-md-4 control-label visible-sm visible-xs">Phone Number</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(u => u.PhoneNumber, null, new { @class = "form-control", @placeholder = "Phone Number (ex: 1234567890)", @id = "inputNumber" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputSkills" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:14px;">Skills</label>
+                    <label for="inputSkills" class="col-md-4 control-label visible-sm visible-xs">Skills</label>
+                    <div class="col-md-8">
+                        @Html.TextAreaFor(u => u.Skills, new { @class = "form-control", @placeholder = "Skills (ex: C#, ASP.NET, SQL)", @id = "inputSkills" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputExp" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:11px;">Total Years of Experience</label>
+                    <label for="inputExp" class="col-md-4 control-label visible-sm visible-xs">Total Years of Experience</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(u => u.ExperienceYears, null, new { @class = "form-control", @placeholder = "Total years of experience (ex: 7)", @id = "inputExp" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:14px;">Resume</label>
+                    <label for="" class="col-md-4 control-label visible-sm visible-xs">Resume</label>
+                    <div class="col-md-8">
+                        @if (Model.ResumePath != null)
+                        {
+                            <div class="checkbox" style="font-weight:bold;">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                @Html.CheckBoxFor(u => u.UseExistingResume, "Yes")  Use my existing resume
+                            </div>
+                        }
+                        else
+                        {
+                            <input type="file" id="resumeUpload" name="resume" />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="text-center">
+            <br />
+            <br />
+            <br />
+            <input type="submit" class="btn btn-success" value="Submit" title="Click to save information" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" class="btn btn-danger" value="Cancel" title="Go to User Home Page" onclick="window.location.href='@Url.Action("LoggedIn", "User")'" />
+            <br />
+            <br />
+            <p style="font-weight:bold;">* Indicates required field</p>
+        </div>
+    </form>
+</div>

@@ -10,21 +10,22 @@
 <div class="container">
     <div class="jumbotron list-group-item-success" style="margin-bottom:0px;">
         <h1 style="text-align:center;">Update Profile</h1>
+        <p style="font-style:italic; text-align:center; font-family:'Agency FB';">Tell us more about you!</p>
     </div>
 </div>
 
 <br />
 @if (TempData["success"] != null)
 {
-    <label class="label label-success center-block" style="font-size:x-large">
-        @TempData["success"].ToString()
-    </label>
+    <div class="container">
+        <br />
+        <label class="label label-success center-block" style="font-size:x-large">
+            @TempData["success"].ToString()
+        </label>
+    </div>
 }
 else
 {
-    <label class="label label-info center-block" style="font-size:x-large">
-        Tell us more about you!
-    </label>
     @Html.ValidationSummary("Profile information could not be saved.", new { @class = "alert alert-danger centered" })
 }
 <br />

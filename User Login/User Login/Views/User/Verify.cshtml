@@ -3,26 +3,25 @@
     ViewBag.Title = "Verify";
 }
 
-<h2>Thank you for verifying your email</h2>
-
 <br />
 <br />
 <br />
-<label class="label label-primary center-block" style="font-size:x-large">Email verification</label>
-
-<br />
-<br />
-<text class="text-danger" style="font-size:large">
-    @*Thank you for verifying your email. You can now log in to the account, set up your profile and apply to jobs.
-    The distance between you and your career has never been closer.*@
-    
-    <div class="text-danger">
-        @Session["verify"].ToString()
+<div class="container">
+    <div class="jumbotron list-group-item-success" style="margin-bottom:0px;">
+        <h1 style="text-align:center;">Thanks for verifying your email.</h1>
+        <p style="font-style:italic; text-align:center; font-family:'Agency FB';">You will be redirected to the login page shortly</p>
     </div>
-    <br />
-    <br />
-
-    You will be redirected to login page soon.
-    @*@{Response.AddHeader("REFRESH", "10;URL=/User/Login");}*@
-    <meta http-equiv="Refresh" content="5;URL=@(Url.Action("Login", "User"))">
-</text>
+</div>
+<br />
+<br />
+<br />
+<div class="container">
+    <p class="text-danger" style="font-size:large; text-align:center;">
+        <div class="text-danger">
+            @Session["verify"].ToString()
+        </div>
+        <br />
+        <br />
+    </p>
+</div>
+<meta http-equiv="Refresh" content="5;URL=@(Url.Action("Login", "User"))">

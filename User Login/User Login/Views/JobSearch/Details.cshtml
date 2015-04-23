@@ -6,22 +6,28 @@
 
 <br />
 <br />
-<h3 class="h3 text-center text-info bg-info" style="align-content:center">
-    @Html.Encode(Model.Position)
-</h3>
+<br />
+<div class="container">
+    <div class="jumbotron list-group-item-success" style="margin-bottom:0px;">
+        <h1 style="text-align:center;">@Html.Encode(Model.Position)</h1>
+    </div>
+</div>
 
 @if (Session["hasApplied"] != null)
 {
-    <label class="label-danger" style="font-size:medium">
-        @Session["hasApplied"].ToString()
-    </label>
+    <div class="container">
+        <br />
+        <label class="label-danger" style="font-size:medium">
+            @Session["hasApplied"].ToString()
+        </label>
+    </div>
 }
 
 <br />
 <br />
 <br />
 
-<table id="jobDetails" align="left" cellpadding="2500" class="pagination" data-pagination="true" data-search="true">
+<table id="jobDetails" align="left" cellpadding="2500" class="pagination table-responsive" data-pagination="true" data-search="true">
     <tr class="rowSpace">
         <td>
             <div style="font-size:large">

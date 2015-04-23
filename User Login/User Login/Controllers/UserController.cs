@@ -402,7 +402,7 @@ namespace User_Login.Controllers
                 customer = "";
             }
 
-            int pageSize = 3;
+            int pageSize = 10;
             int pageNum = (page ?? 1);
 
             LoggedInViewModel viewModel = new LoggedInViewModel();
@@ -670,12 +670,12 @@ namespace User_Login.Controllers
             if (email != null)
             {
                 var model = new Job_Candidate_Application_Entities();
-                Session["forgotPassword"] = "We sent an email with link to change the password. Please check your email.";
 
                 var user = model.Tbl_Users.Find(email);
 
                 if (user != null)
                 {
+                    Session["forgotPassword"] = "We sent an email with link to change the password. Please check your email.";
                     var guid = Guid.NewGuid();              //create unique global id
                     string firstName = user.User_First_Name;
                     if (forgotPassword.updateGuid(email, guid.ToString()))
@@ -686,7 +686,10 @@ namespace User_Login.Controllers
                     return View();
                 }
                 else
+                {
+                    Session["forgotPassword"] = "Invalid email!  Please enter a valid email.";
                     return View();
+                }
             }
             else
             {
