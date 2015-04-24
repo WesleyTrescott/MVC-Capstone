@@ -5,9 +5,6 @@
     ViewBag.Title = "AdminLoggedIn";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
-<div style="align-items:center">
-    <h3>Manage Users</h3>
-</div>
 
 <style type="text/css">
     .clickable {
@@ -53,14 +50,70 @@
     }
 </style>
 
-<p style="font-family:'Lucida Console'; font-size:35px; font-style:italic; color:red;">Admin Login Successful!. Manage Users Below!</p>
+
+<br />
+<br />
 <br />
 <div class="container">
-    <h2>Search for Users</h2>
+    <div class="jumbotron list-group-item-danger" style="margin-bottom:0px;">
+        <h1 style="text-align:center; font-family:'Agency FB'; font-weight:bold;">Admin Mode</h1>
+        <p style="font-style:italic; text-align:center; font-family:'Agency FB';">Mangage the users below:</p>
+    </div>
 </div>
-<div style="font-size:large" class="text-center" title="Search For Users">
+
+
+<br />
+<br />
+<div class="container-fluid">
+    <fieldset>
+        <legend style="text-align:center;color:forestgreen">Search for users</legend>
+    </fieldset>
+    <form class="form-horizontal" action="@Url.Action("SearchUsers", "User")" role="form" method="post">
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputFName" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:14px;">User First Name</label>
+                    <label for="inputFName" class="col-md-4 control-label visible-sm visible-xs">User First Name</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(u => u.Fname, null, new { @class = "form-control", @placeholder = "First Name", @id = "inputFName" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputLName" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:14px;">User Last Name</label>
+                    <label for="inputLName" class="col-md-4 control-label visible-sm visible-xs">User Last Name</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(u => u.Lname, null, new { @class = "form-control", @placeholder = "First Name", @id = "inputLName" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 hidden-sm hidden-xs"></div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="form-group">
+                    <label for="inputEmail" class="col-md-4 control-label label label-default hidden-sm hidden-xs" style="text-align:center; font-size:14px;">User Email</label>
+                    <label for="inputEmail" class="col-md-4 control-label visible-sm visible-xs">User Email</label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(u => u.Email, null, new { @class = "form-control", @placeholder = "Email", @id = "inputEmail" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="center-block">
+            <input type="submit" class="btn btn-success center-block" value="Search" />
+        </div>
+    </form>
 </div>
-@using (Html.BeginForm("SearchUsers", "User", FormMethod.Post))
+
+
+@*@using (Html.BeginForm("SearchUsers", "User", FormMethod.Post))
 {
     <style type="text/css">
         .borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
@@ -95,50 +148,86 @@
             <td></td>
             </tr>
         </table>
-}
+}*@
 
-                <table class="table table-hover table-condensed mytable">
-                    <tr>
-                        <td class="col-md-2">First Name</td>
-                        <td class="col-md-2">Last Name</td>
-                        <td class="col-md-2">Email</td>
-                        <td class="col-md-2">City</td>
-                        <td class="col-md-2">State</td>
-                    </tr>
-                    @foreach (var item in Model.pagedList)
-            {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.User_First_Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.User_Last_Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Email_Id)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.User_City)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.User_State)
-                            </td>
-                            <td>
-                                @if (item.Is_Active == 1)
-                        {
-                                    <input type="button" class="btn btn-default" value="DeActivate" onclick="window.location.href='@Url.Action("DeActivateUser", "User",  new { email = item.Email_Id})'" />
-                        }
-                        else
-                        {
-                                    <input type="button" class="btn btn-default" value="Activate" onclick="window.location.href='@Url.Action("ActivateUser", "User",  new { email = item.Email_Id})'" />
-                        }
-                            </td>
-                            <td>
-                                <input type="button" class="btn btn-default" value="Delete" onclick="window.location.href='@Url.Action("DeleteUser", "User", new { email = item.Email_Id })'" />
-                            </td>
-                        </tr>
-            }
-                </table>
-                <br />
-                <p>Page @(Model.pagedList.PageCount < Model.pagedList.PageNumber ? 0 : Model.pagedList.PageNumber) of @Model.pagedList.PageCount </p>
-                @Html.PagedListPager(Model.pagedList, page => Url.Action("LoggedIn", new { city = ViewBag.LocationLabel, customer = ViewBag.CustomerLabel, page }))
+<br />
+<br />
+<br />
+<div class="container">
+    <fieldset>
+        <legend style="text-align:center; color:red;">Complete user listing</legend>
+    </fieldset>
+    <table class="table table-responsive table-hover table-condensed mytable hidden-sm hidden-xs">
+        <tr>
+            <td class="col-md-2">First Name</td>
+            <td class="col-md-2">Last Name</td>
+            <td class="col-md-2">Email</td>
+            <td class="col-md-2">City</td>
+            <td class="col-md-2">State</td>
+        </tr>
+        @foreach (var item in Model.pagedList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User_First_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User_Last_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User_City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User_State)
+                </td>
+                <td>
+                    @if (item.Is_Active == 1)
+                    {
+                        <input type="button" class="btn btn-primary" value="Deactivate" onclick="window.location.href='@Url.Action("DeActivateUser", "User",  new { email = item.Email_Id})'" />
+                    }
+                    else
+                    {
+                        <input type="button" class="btn btn-success" value="Activate" onclick="window.location.href='@Url.Action("ActivateUser", "User",  new { email = item.Email_Id})'" />
+                    }
+                </td>
+                <td>
+                    <input type="button" class="btn btn-danger" value="Delete" onclick="window.location.href='@Url.Action("DeleteUser", "User", new { email = item.Email_Id })'" />
+                </td>
+            </tr>
+        }
+    </table>
+    <table class="table table-responsive table-hover table-condensed mytable visible-sm visible-xs">
+        <tr>
+            <td class="col-md-2">Email</td>
+        </tr>
+        @foreach(var item in Model.pagedList)
+        {
+            <tr>
+                <td>
+                    <p style="font-size:12px;">@item.Email_Id</p>
+                </td>
+                <td>
+                    @if (item.Is_Active == 1)
+                    {
+                        <input type="button" class="btn btn-primary" value="Deactivate" onclick="window.location.href='@Url.Action("DeActivateUser", "User",  new { email = item.Email_Id})'" />
+                    }
+                    else
+                    {
+                        <input type="button" class="btn btn-success" value="Activate" onclick="window.location.href='@Url.Action("ActivateUser", "User",  new { email = item.Email_Id})'" />
+                    }
+                </td>
+                <td>
+                    <input type="button" class="btn btn-danger" value="Delete" onclick="window.location.href='@Url.Action("DeleteUser", "User", new { email = item.Email_Id })'" />
+                </td>
+            </tr>
+        }
+    </table>
+    <br />
+
+    <p>Page @(Model.pagedList.PageCount < Model.pagedList.PageNumber ? 0 : Model.pagedList.PageNumber) of @Model.pagedList.PageCount </p>
+    @Html.PagedListPager(Model.pagedList, page => Url.Action("AdminLoggedIn", new { page }))
+
+</div>

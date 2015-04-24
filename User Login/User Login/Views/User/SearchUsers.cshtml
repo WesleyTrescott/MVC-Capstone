@@ -5,9 +5,6 @@
     ViewBag.Title = "AdminLoggedIn";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
-<div style="align-items:center">
-    <h3>Search Users</h3>
-</div>
 
 <style type="text/css">
     .clickable {
@@ -53,61 +50,95 @@
     }
 </style>
 
-<p style="font-family:'Lucida Console'; font-size:35px; font-style:italic; color:red;">Admin Mode</p>
+
+<br />
+<br />
 <br />
 <div class="container">
-    <h2>Search Results</h2>
+    <div class="jumbotron list-group-item-danger" style="margin-bottom:0px;">
+        <h1 style="text-align:center; font-family:'Agency FB'; font-weight:bold;">Admin Mode</h1>
+    </div>
 </div>
-<div style="font-size:large" class="text-center" title="Sesrch Results">
-</div>
+<br />
 
+<div class="container">
+    <div class="text-center">
+        <fieldset>
+            <legend style="text-align:center; color:forestgreen; font-size:35px;">Search Results</legend>
+        </fieldset>
+    </div>
 
-<table class="table table-hover table-condensed mytable">
-    <tr>
-        <td class="col-md-2">First Name</td>
-        <td class="col-md-2">Last Name</td>
-        <td class="col-md-2">Email</td>
-        <td class="col-md-2">City</td>
-        <td class="col-md-2">State</td>
-    </tr>
-    @foreach (var item in Model.pagedList)
-    {
+    <table class="table table-hover table-condensed mytable hidden-sm hidden-xs">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.User_First_Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User_Last_Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email_Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User_City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User_State)
-            </td>
-            <td>
-                @if (item.Is_Active == 1)
-                {
-                    <input type="button" class="btn btn-default" value="DeActivate" onclick="window.location.href='@Url.Action("DeActivateUser", "User",  new { email = item.Email_Id})'" />
-                }
-                else
-                {
-                    <input type="button" class="btn btn-default" value="Activate" onclick="window.location.href='@Url.Action("ActivateUser", "User",  new { email = item.Email_Id})'" />
-                }
-            </td>
-            <td>
-                <input type="button" class="btn btn-default" value="Delete" onclick="window.location.href='@Url.Action("DeleteUser", "User", new { email = item.Email_Id })'" />
-            </td>
+            <td class="col-md-2">First Name</td>
+            <td class="col-md-2">Last Name</td>
+            <td class="col-md-2">Email</td>
+            <td class="col-md-2">City</td>
+            <td class="col-md-2">State</td>
         </tr>
-    }
-</table>
-<br />
-<p>Page @(Model.pagedList.PageCount < Model.pagedList.PageNumber ? 0 : Model.pagedList.PageNumber) of @Model.pagedList.PageCount </p>
-@Html.PagedListPager(Model.pagedList, page => Url.Action("LoggedIn", new { city = ViewBag.LocationLabel, customer = ViewBag.CustomerLabel, page }))
+        @foreach (var item in Model.pagedList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User_First_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User_Last_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User_City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User_State)
+                </td>
+                <td>
+                    @if (item.Is_Active == 1)
+                    {
+                        <input type="button" class="btn btn-primary" value="Deactivate" onclick="window.location.href='@Url.Action("DeActivateUser", "User",  new { email = item.Email_Id})'" />
+                    }
+                    else
+                    {
+                        <input type="button" class="btn btn-success" value="Activate" onclick="window.location.href='@Url.Action("ActivateUser", "User",  new { email = item.Email_Id})'" />
+                    }
+                </td>
+                <td>
+                    <input type="button" class="btn btn-danger" value="Delete" onclick="window.location.href='@Url.Action("DeleteUser", "User", new { email = item.Email_Id })'" />
+                </td>
+            </tr>
+        }
+    </table>
+    <table class="table table-responsive table-hover table-condensed mytable visible-sm visible-xs">
+        <tr>
+            <td class="col-md-2">Email</td>
+        </tr>
+        @foreach (var item in Model.pagedList)
+        {
+            <tr>
+                <td>
+                    <p style="font-size:12px;">@item.Email_Id</p>
+                </td>
+                <td>
+                    @if (item.Is_Active == 1)
+                    {
+                        <input type="button" class="btn btn-primary" value="Deactivate" onclick="window.location.href='@Url.Action("DeActivateUser", "User",  new { email = item.Email_Id})'" />
+                    }
+                    else
+                    {
+                        <input type="button" class="btn btn-success" value="Activate" onclick="window.location.href='@Url.Action("ActivateUser", "User",  new { email = item.Email_Id})'" />
+                    }
+                </td>
+                <td>
+                    <input type="button" class="btn btn-danger" value="Delete" onclick="window.location.href='@Url.Action("DeleteUser", "User", new { email = item.Email_Id })'" />
+                </td>
+            </tr>
+        }
+    </table>
+    <br />
+    <p>Page @(Model.pagedList.PageCount < Model.pagedList.PageNumber ? 0 : Model.pagedList.PageNumber) of @Model.pagedList.PageCount </p>
+    @Html.PagedListPager(Model.pagedList, page => Url.Action("SearchUsers"))
 
-<br />
-<br />
-<input type="button" class="btn btn-default" value="Back to Admin Dashboard" onclick="window.location.href='@Url.Action("AdminLoggedIn", "User")'" />
+    <input type="button" class="btn btn-default" value="Back to Admin Dashboard" onclick="window.location.href='@Url.Action("AdminLoggedIn", "User")'" />
+</div>

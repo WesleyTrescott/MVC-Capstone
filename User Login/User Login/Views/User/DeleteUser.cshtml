@@ -1,16 +1,26 @@
 ﻿@model User_Login.Models.ForgotPassword
 @{
     ViewBag.Title = "ForgotPassword";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
 <br />
 <br />
 <br />
+<div class="container">
+    <div class="jumbotron list-group-item-danger" style="margin-bottom:0px;">
+        <h1 style="text-align:center; font-family:'Agency FB'; font-weight:bold;">Admin Mode</h1>
+    </div>
+</div>
 <br />
 
-<p style="font-family:'Lucida Console'; font-size:35px; font-style:italic; color:red;">User Deleted!</p>
+<div class="text-center">
+    <fieldset>
+        <legend style="text-align:center; color:red; font-size:35px;">User Deleted!</legend>
+        <input type="button" style="text-align:center;" class="btn btn-default" value="Back to Admin Dashboard" onclick="window.location.href='@Url.Action("AdminLoggedIn", "User")'" />
+    </fieldset>
+</div>
 
-<br/>
-<br/>
-<input type="button" class="btn btn-default" value="Back to Admin Dashboard" onclick="window.location.href='@Url.Action("AdminLoggedIn", "User")'" />
+<br />
+<br />
+<br />
