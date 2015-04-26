@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using User_Login.Models;
+using Recaptcha;
 
 namespace User_Login.Controllers
 {
@@ -20,12 +21,20 @@ namespace User_Login.Controllers
         }
 
         [HttpPost]
-        public ActionResult ContactUs(Models.ContactModel model)
+        [RecaptchaControlMvc.CaptchaValidator]
+        public ActionResult ContactUs(Models.ContactModel model, bool captchaValid, string captchaErrorMessage)
         {
-            if (model.firstname != null && model.lastname != null && model.email != null && model.message != null)
+            if (captchaValid)
             {
-                Manager.EmailManager.SentContactEmail(model);
-                return RedirectToAction("Confirmation", "Home");
+                if (model.firstname != null && model.lastname != null && model.email != null && model.message != null)
+                {
+                    Manager.EmailManager.SentContactEmail(model);
+                    return RedirectToAction("Confirmation", "Home");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("recaptcha", captchaErrorMessage);
             }
             return View(model);
         }

@@ -256,7 +256,13 @@ namespace User_Login.Controllers
                     if (!allowedExtension.Contains(extension))
                     {
                         ModelState.AddModelError("", "Document not supported. Only upload pdf, txt, doc or docx documents only!");
-                        return View();
+
+                        if (!String.IsNullOrWhiteSpace(user.Resume_Upload))
+                        {
+                            applyJob.ResumePath = user.Resume_Upload;
+                        }
+
+                        return View(applyJob);
                     }
 
                     string tempFileName = fileName;

@@ -509,3 +509,6 @@ C:\Data\Senior Project\Computech Mar31\MVC-Capstone-master\User Login\User Login
 C:\Data\Senior Project\Computech Mar31\MVC-Capstone-master\User Login\User Login\obj\Debug\User Login.csprojResolveAssemblyReference.cache
 C:\Data\Senior Project\Computech Mar31\MVC-Capstone-master\User Login\User Login\obj\Debug\User Login.dll
 C:\Data\Senior Project\Computech Mar31\MVC-Capstone-master\User Login\User Login\obj\Debug\User Login.pdb
+C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\User Login\bin\Recaptcha.dll
+C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\User Login\bin\Recaptcha.MvcModel.dll
+C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\User Login\bin\Recaptcha.pdb

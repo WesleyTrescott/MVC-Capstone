@@ -51,7 +51,18 @@ namespace User_Login.Controllers
                 else
                 {
                     //incorrect login information
-                    ModelState.AddModelError("", "Login data is incorrect!");
+
+                    var entities = new Job_Candidate_Application_Entities();
+                    bool model = entities.Tbl_Users.Any(u => u.Email_Id == user.Email);
+
+                    if (model)
+                    {
+                        ModelState.AddModelError("", "Account is not active");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Login data is incorrect!");
+                    }
                 }
             }
             /*

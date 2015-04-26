@@ -135,6 +135,13 @@
                 </div>
             </div>
         </div>
+
+        @* recaptcha  *@
+        <div class="center-block">
+            @Html.Raw(Html.GenerateCaptcha())
+            @Html.ValidationMessage("recaptcha")
+        </div>
+
         <div class="text-center">
             <input type="submit" class="btn btn-success" value="Submit" />
             <br />

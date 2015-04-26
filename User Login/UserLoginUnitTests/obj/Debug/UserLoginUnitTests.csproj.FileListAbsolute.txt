@@ -48,3 +48,5 @@ C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\UserLoginUnitTests\obj\
 C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\UserLoginUnitTests\obj\Debug\UserLoginUnitTests.pdb
 C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\UserLoginUnitTests\bin\Debug\UserLoginUnitTests.dll.config
 C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\UserLoginUnitTests\bin\Debug\UserLoginUnitTests.dll.config
+C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\UserLoginUnitTests\bin\Debug\Recaptcha.dll
+C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\UserLoginUnitTests\bin\Debug\Recaptcha.pdb
