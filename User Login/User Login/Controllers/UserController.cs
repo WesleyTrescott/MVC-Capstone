@@ -23,7 +23,7 @@ namespace User_Login.Controllers
         {
             return View();
         }
-        
+
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Login()
@@ -36,7 +36,7 @@ namespace User_Login.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(user.IsAdmin(user.Email, user.Password))
+                if (user.IsAdmin(user.Email, user.Password))
                 {
                     //Admin Login
                     FormsAuthentication.SetAuthCookie(user.Email, user.RememberMe);
@@ -77,6 +77,43 @@ namespace User_Login.Controllers
             return View(user);
         }
 
+        public ActionResult GoogleLogin(string name, string email)
+        {
+            List<string> nameList = name.Split(null).ToList();
+            string firstName = nameList[0];
+            string lastName = nameList.Last();
+            LoginUser user = new LoginUser();
+            user.Email = email;
+            user.RememberMe = false;
+            bool userRegistered = user.isGoogleUserRegistered(email);
+            if (userRegistered)
+            {
+                FormsAuthentication.SetAuthCookie(user.Email, user.RememberMe);
+                return RedirectToAction("LoggedIn", "User");
+            }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    if (user.RegisterGoogleUser(firstName, lastName, email, guid.ToString()))
+                    {
+                        FormsAuthentication.SetAuthCookie(user.Email, user.RememberMe);
+                        return RedirectToAction("LoggedIn", "User");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Login data is incorrect!");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Login data is incorrect!");
+                }
+                //add user to db and redirect to login page
+            }
+            return View("Login");
+        }
+
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
@@ -90,7 +127,7 @@ namespace User_Login.Controllers
             return View();
         }
 
-        
+
         [HttpPost]
         public ActionResult Register(Models.User user)
         {
@@ -300,7 +337,7 @@ namespace User_Login.Controllers
             if (selectedCustomer == null && (customer != null && customer != "" && customer != "Select One"))
                 selectedCustomer = customer;
 
-            if(selectedSkills != null)
+            if (selectedSkills != null)
             {
                 skillsList = selectedSkills.Split(',').ToList();
             }
@@ -322,11 +359,11 @@ namespace User_Login.Controllers
             }
             else if ((selectedCity == null || selectedCity == "") && (selectedCustomer == null || selectedCustomer == "") && (!(skillsList == null)))
             {
-               List<Tbl_Jobs> resultslist = new List<Tbl_Jobs>();
+                List<Tbl_Jobs> resultslist = new List<Tbl_Jobs>();
                 foreach (string item in skillsList)
                 {
                     model = (from r in entities.Tbl_Jobs where r.Required_Skills.Contains(item) select r).Distinct();
-                    foreach(var entry in model)
+                    foreach (var entry in model)
                     {
                         resultslist.Add(entry);
                     }
@@ -419,7 +456,7 @@ namespace User_Login.Controllers
             LoggedInViewModel viewModel = new LoggedInViewModel();
             ViewBag.skills = getSkillsList(null);
             viewModel.pagedList = model.OrderBy(p => p.Position).ToPagedList(pageNum, pageSize);
-            
+
             return PartialView("UserJobSearch", viewModel);
         }
 
@@ -435,7 +472,7 @@ namespace User_Login.Controllers
             skillsList.Add("Business Best Practices");
             skillsList.Add("Business Process Improvement");
             skillsList.Add("Business Professionalism");
-            skillsList.Add("C Programming");       
+            skillsList.Add("C Programming");
             skillsList.Add("C# Programming");
             skillsList.Add("C++ Programming");
             skillsList.Add("Cascading Style Sheets (CSS)");
@@ -498,7 +535,7 @@ namespace User_Login.Controllers
             }
             else if (fname != null && lname != null && Email == null)
             {
-                model = from r in entities.Tbl_Users where (r.User_First_Name == fname) && (r.User_Last_Name == lname)  select r;
+                model = from r in entities.Tbl_Users where (r.User_First_Name == fname) && (r.User_Last_Name == lname) select r;
             }
             else if (fname != null && lname == null && Email != null)
             {
@@ -525,7 +562,7 @@ namespace User_Login.Controllers
                 return RedirectToAction("SearchUsersFailed", "User");
             }
 
-            
+
 
             if (User.Identity.IsAuthenticated)
             {
@@ -548,7 +585,7 @@ namespace User_Login.Controllers
         {
             return View();
         }
-    
+
         [HttpGet]
         public ActionResult AdminLoggedIn(int? page)
         {
@@ -559,7 +596,7 @@ namespace User_Login.Controllers
 
             AdminLoggedInViewModel viewModel = new AdminLoggedInViewModel();
 
-           // string userName = User.Identity.Name;
+            // string userName = User.Identity.Name;
             //viewModel.recJobs = getRecommendedJobs(userName, viewModel);
 
             if (viewModel.numPagesRecUsers == 0)
@@ -608,7 +645,7 @@ namespace User_Login.Controllers
             else
                 //user not authenticated
                 return RedirectToAction("Login", "User");
-        } 
+        }
 
         [HttpPost]
         public ActionResult Profile(Models.UserProfile user)
@@ -623,7 +660,7 @@ namespace User_Login.Controllers
                     if (user.UpdateProfile(email, user.FirstName, user.LastName, user.Street, user.City, user.State, user.Country, user.PhoneNumber, user.Experience_Years, user.Skills))
                     {
                         //update successful
-                        FormsAuthentication.SetAuthCookie(User.Identity.Name,true);
+                        FormsAuthentication.SetAuthCookie(User.Identity.Name, true);
                         TempData["success"] = "Profile successfully updated!";
                         return RedirectToAction("Profile", "User");
                     }
@@ -843,7 +880,7 @@ namespace User_Login.Controllers
                 return View();
             }
             else
-                return RedirectToAction("Login","User");
+                return RedirectToAction("Login", "User");
         }
 
         [HttpPost]

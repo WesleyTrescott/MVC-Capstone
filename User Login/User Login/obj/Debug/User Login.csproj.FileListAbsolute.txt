@@ -512,3 +512,19 @@ C:\Data\Senior Project\Computech Mar31\MVC-Capstone-master\User Login\User Login
 C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\User Login\bin\Recaptcha.dll
 C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\User Login\bin\Recaptcha.MvcModel.dll
 C:\Users\Simul\Desktop\Winter 2015\CSC 4997\Computech Capstone\User Login\User Login\bin\Recaptcha.pdb
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\EntityFramework.xml
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\EntityFramework.SqlServer.xml
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\EntityFramework.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\EntityFramework.SqlServer.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\Microsoft.Owin.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\Microsoft.Owin.Security.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\Owin.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\Recaptcha.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\Recaptcha.MvcModel.dll
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\Microsoft.Owin.xml
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\Microsoft.Owin.Security.xml
+C:\Users\Wesley\Documents\GitHub\MVC-Capstone\User Login\User Login\bin\Recaptcha.pdb

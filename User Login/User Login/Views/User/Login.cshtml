@@ -4,6 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<meta name="google-signin-client_id" content="123266420171-fp2fku0luav5u814ckjbbmi8q09hb9fm.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
 <br />
 <br />
 <br />
@@ -14,62 +17,62 @@
 </div>
 <br />
 @*@using (Html.BeginForm())
-{
-    @Html.ValidationSummary("Login failed.", new { @class = "alert alert-danger centered" });
+    {
+        @Html.ValidationSummary("Login failed.", new { @class = "alert alert-danger centered" });
 
-    <style type="text/css">
-        .borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
-            border: none;
-        }
-    </style>
-    <br />
-    <div id="test">
-        <table class="table borderless table-responsive" align="center" style="width:initial">
-            <tr>
-                <td>
-                    <div style="font-size:large" title="Enter email">
-                        <label class="col-lg-10 label label-default">Email</label>
-                    </div>
-                </td>
-                <td>
-                    <div>
-                        @Html.TextBoxFor(u => u.Email, new { @class = "form-control", @placeholder = "Email address" })
-                    </div>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <div style="font-size:large" title="Enter password">
-                        <label class="col-lg-10 label label-default">Password</label>
-                    </div>
-                </td>
-                <td>
-                    <div>
-                        @Html.TextBoxFor(u => u.Password, new { @class = "form-control", @placeholder = "Password" })
-                    </div>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                </td>
-                <td style="display:inline; margin-left:3px; font-size: 1.0em;">
-                    @Html.CheckBoxFor(u => u.RememberMe, new { @class = "checkbox" }) @Html.LabelFor(u => u.RememberMe)
-                </td>
-            </tr>
-        </table>
-
-        <div class="text-center" title="Click to log in">
-            <input type="submit" value="Log In" class="btn btn-success" />&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; <input type="button" class="btn btn-danger" value="Back" onclick="history.go(-1)" />
-        </div>
+        <style type="text/css">
+            .borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
+                border: none;
+            }
+        </style>
         <br />
-        <br />
-        <div class="text-center">
-            @Html.ActionLink("Click here if you forgot your password", "ForgotPassword", "User")
+        <div id="test">
+            <table class="table borderless table-responsive" align="center" style="width:initial">
+                <tr>
+                    <td>
+                        <div style="font-size:large" title="Enter email">
+                            <label class="col-lg-10 label label-default">Email</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            @Html.TextBoxFor(u => u.Email, new { @class = "form-control", @placeholder = "Email address" })
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div style="font-size:large" title="Enter password">
+                            <label class="col-lg-10 label label-default">Password</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            @Html.TextBoxFor(u => u.Password, new { @class = "form-control", @placeholder = "Password" })
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                    </td>
+                    <td style="display:inline; margin-left:3px; font-size: 1.0em;">
+                        @Html.CheckBoxFor(u => u.RememberMe, new { @class = "checkbox" }) @Html.LabelFor(u => u.RememberMe)
+                    </td>
+                </tr>
+            </table>
+
+            <div class="text-center" title="Click to log in">
+                <input type="submit" value="Log In" class="btn btn-success" />&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; <input type="button" class="btn btn-danger" value="Back" onclick="history.go(-1)" />
+            </div>
+            <br />
+            <br />
+            <div class="text-center">
+                @Html.ActionLink("Click here if you forgot your password", "ForgotPassword", "User")
+            </div>
         </div>
-    </div>
-}*@
+    }*@
 
 <div class="container-fluid">
     <div>
@@ -120,6 +123,32 @@
         <br />
         <div class="text-center">
             @Html.ActionLink("Click here if you forgot your password", "ForgotPassword", "User")
+        </div>
+        <br />
+        <br />
+        <div class="text-center">
+            <p style="font-weight:bold;">Or, Log In With Google:</p>
+        </div>
+        <div class="col-md-5 col-sm-5"></div>
+        <div class="col-md-7 col-sm-7">
+            &nbsp;&nbsp;
+            <div class="g-signin2 panel-body text-center center-block" data-onsuccess="onSignIn"></div>
+            <script>
+                function onSignIn(googleUser) {
+                    var profile = googleUser.getBasicProfile();
+                    //console.log('ID: ' + profile.getId());
+                    //console.log('Name: ' + profile.getName());
+                    //console.log('Image URL: ' + profile.getImageUrl());
+                    //window.alert('Email: ' + profile.getEmail());
+                    $.post('@Url.Action("GoogleLogin", "User")',
+                        {
+                            name: profile.getName(),
+                            email: profile.getEmail()
+                        }, function () {
+                            window.location.href = '@Url.Action("LoggedIn", "User")';
+                        });
+                }
+            </script>
         </div>
     </form>
 </div>
