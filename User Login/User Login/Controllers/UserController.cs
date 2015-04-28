@@ -114,6 +114,11 @@ namespace User_Login.Controllers
             return View("Login");
         }
 
+        public ActionResult FacebookLogin(string email, string name)
+        {
+            return View();
+        }
+
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();

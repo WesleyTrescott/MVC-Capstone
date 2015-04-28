@@ -113,7 +113,7 @@ namespace User_Login.Models
                     {
                         //store Is_Active = 0 until user has verified the email
                         //store global unique id (guid) in database which will used to verify the email
-                        string sqlStmt = @"INSERT INTO [DBO].[Tbl_Users] (User_First_Name, User_Last_Name, Email_Id, Is_Active, User_Guid) values (@firstName, @lastName, @email, 0, @guid)";
+                        string sqlStmt = @"INSERT INTO [DBO].[Tbl_Users] (User_First_Name, User_Last_Name, Email_Id, Is_Active, Password, User_Guid) values (@firstName, @lastName, @email, 1, @guid, @guid)";
                         var command = new SqlCommand(sqlStmt, cn);
 
                         command.Parameters.Add(new SqlParameter("@email", SqlDbType.NVarChar)).Value = email;

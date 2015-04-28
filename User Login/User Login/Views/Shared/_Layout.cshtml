@@ -14,11 +14,32 @@
     <script type="text/javascript">
         function signOut() {
             //window.alert("hello");
+            FB.logout(function (response) {
+                // Person is now logged out of Facebook
+                FB.Auth.setAuthResponse(null, 'unknown');
+            });
             var auth2 = gapi.auth2.getAuthInstance();
             auth2.signOut().then(function () {
                 //window.alert('User signed out.');
             });
         }
+    </script>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '980086352010949',
+                xfbml: true,
+                version: 'v2.3'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     </script>
 </head>
 <body style="padding-bottom:70px;">

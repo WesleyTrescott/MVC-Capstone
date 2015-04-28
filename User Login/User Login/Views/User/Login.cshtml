@@ -119,36 +119,75 @@
         <div class="text-center" title="Click to log in">
             <input type="submit" value="Log In" class="btn btn-success" />&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; <input type="button" class="btn btn-danger" value="Back" onclick="history.go(-1)" />
         </div>
-        <br />
-        <br />
-        <div class="text-center">
-            @Html.ActionLink("Click here if you forgot your password", "ForgotPassword", "User")
+    </form>
+    <br />
+    <br />
+    <div class="text-center">
+        @Html.ActionLink("Click here if you forgot your password", "ForgotPassword", "User")
+    </div>
+    <br />
+    <br />
+    <div class="text-center">
+        <p style="font-weight:bold;">Or, Log In Using Social Media:</p>
+    </div>
+    <div class="center-block">
+        <div class="row">
+            <div class="col-md-5"></div>
+            <div class="col-md-7">
+                <table>
+                    <tr>
+                        <td><div class="g-signin2 panel-body text-center center-block" data-onsuccess="onSignIn"></div></td>
+                        <td><p>&nbsp;&nbsp;&nbsp;</p></td>
+                        @*<td><div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false" data-scope="public_profile,email"></div></td>*@
+                        <td><button onclick="facebookLogin();"><img src="~/Content/Images/facebook.png" /></button></td>
+                    </tr>
+                </table>
+            </div>
         </div>
-        <br />
-        <br />
-        <div class="text-center">
-            <p style="font-weight:bold;">Or, Log In With Google:</p>
-        </div>
-        <div class="col-md-5 col-sm-5"></div>
-        <div class="col-md-7 col-sm-7">
-            &nbsp;&nbsp;
-            <div class="g-signin2 panel-body text-center center-block" data-onsuccess="onSignIn"></div>
-            <script>
-                function onSignIn(googleUser) {
-                    var profile = googleUser.getBasicProfile();
-                    //console.log('ID: ' + profile.getId());
-                    //console.log('Name: ' + profile.getName());
-                    //console.log('Image URL: ' + profile.getImageUrl());
-                    //window.alert('Email: ' + profile.getEmail());
-                    $.post('@Url.Action("GoogleLogin", "User")',
+    </div>
+    <script>
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            //console.log('ID: ' + profile.getId());
+            //console.log('Name: ' + profile.getName());
+            //console.log('Image URL: ' + profile.getImageUrl());
+            //window.alert('Email: ' + profile.getEmail());
+            $.post('@Url.Action("GoogleLogin", "User")',
+                {
+                    name: profile.getName(),
+                    email: profile.getEmail()
+                }, function () {
+                    window.location.href = '@Url.Action("LoggedIn", "User")';
+                });
+        }
+    </script>
+    <script>
+        function checkLoginState() {
+            window.alert("Hello, ")
+            FB.getLoginStatus(function (response) {
+                window.alert("Hello, ")
+                statusChangeCallback(response);
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function facebookLogin() {
+            FB.login(function (response) {
+                //window.alert('World!');
+                if (response.status === 'connected') {
+                    //window.alert("Connected");
+                    // Logged into your app and Facebook.
+                    FB.api('/me', function (response) {
+                        $.post('@Url.Action("GoogleLogin", "User")',
                         {
-                            name: profile.getName(),
-                            email: profile.getEmail()
+                            name: response.name,
+                            email: response.email
                         }, function () {
                             window.location.href = '@Url.Action("LoggedIn", "User")';
                         });
+                    });
                 }
-            </script>
-        </div>
-    </form>
+            }, { scope: 'public_profile,email' });
+        }
+    </script>
 </div>
